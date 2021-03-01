@@ -18,7 +18,7 @@ section {
 	#jumbotron-main {
 		justify-content: center;
 		align-items: flex-start;
-		background-image: url("/images/bg_jumbotron_m.png");
+		background-image: url("./images/bg_jumbotron_m.png");
 		background-size: 100%;
 		background-position: center bottom
 	}
@@ -26,7 +26,7 @@ section {
 
 @media (min-width: 768px) {
 	#jumbotron-main {
-		background-image: url("/images/bg_jumbotron.png");
+		background-image: url("./images/bg_jumbotron.png");
 		background-position: center bottom 20%
 	}
 }
@@ -114,19 +114,19 @@ section {
 }
 
 #how-it-works .grid .column:nth-child(1) {
-	background-image: url("/images/ig_1-1.png")
+	background-image: url("./images/ig_1-1.png")
 }
 
 #how-it-works .grid .column:nth-child(2) {
-	background-image: url("/images/ig_1-2.png")
+	background-image: url("./images/ig_1-2.png")
 }
 
 #how-it-works .grid .column:nth-child(3) {
-	background-image: url("/images/ig_1-3.png")
+	background-image: url("./images/ig_1-3.png")
 }
 
 #how-it-works .grid .column:nth-child(4) {
-	background-image: url("/images/ig_1-4.png")
+	background-image: url("./images/ig_1-4.png")
 }
 
 #what-can-do .grid {
@@ -143,15 +143,15 @@ section {
 }
 
 #what-can-do .grid .column:nth-child(1) {
-	background-image: url("/images/ig_1-1.png")
+	background-image: url("./images/ig_1-1.png")
 }
 
 #what-can-do .grid .column:nth-child(2) {
-	background-image: url("/images/ig_1-2.png")
+	background-image: url("./images/ig_1-2.png")
 }
 
 #what-can-do .grid .column:nth-child(3) {
-	background-image: url("/images/ig_1-3.png")
+	background-image: url("./images/ig_1-3.png")
 }
 
 #changes-made .grid {
@@ -193,7 +193,7 @@ section {
 	margin-top: 8px;
 	width: 32px;
 	height: 32px;
-	background-image: url("/images/icon_a.png");
+	background-image: url("./images/icon_a.png");
 	background-size: 100%
 }
 
@@ -220,7 +220,7 @@ section {
 	width: 24px;
 	height: 24px;
 	transform: translateX(-50%);
-	background-image: url("/images/icon_quote.png");
+	background-image: url("./images/icon_quote.png");
 	background-repeat: no-repeat;
 	background-size: 100%
 }
@@ -253,26 +253,26 @@ section {
 }
 
 #why-tentuplay .grid .column:nth-child(1) {
-	background-image: url("/images/ig_2-1.png")
+	background-image: url("./images/ig_2-1.png")
 }
 
 #why-tentuplay .grid .column:nth-child(2) {
-	background-image: url("/images/ig_2-2.png")
+	background-image: url("./images/ig_2-2.png")
 }
 
 #why-tentuplay .grid .column:nth-child(3) {
-	background-image: url("/images/ig_2-3.png")
+	background-image: url("./images/ig_2-3.png")
 }
 
 #why-tentuplay .grid .column:nth-child(4) {
-	background-image: url("/images/ig_2-4.png")
+	background-image: url("./images/ig_2-4.png")
 }
 
 #codes .code {
 	display: block;
 	width: 100%;
 	overflow-x: auto;
-	background-image: url("/images/bg_code.png");
+	background-image: url("./images/bg_code.png");
 	background-repeat: no-repeat;
 	background-size: cover;
 	padding: 20px 16px;
@@ -358,7 +358,7 @@ section {
 	transform: translateX(-50%);
 	width: 240px;
 	height: 240px;
-	background-image: url("/images/kv_newsletter.png");
+	background-image: url("./images/kv_newsletter.png");
 	background-size: 100%;
 	background-position: right;
 	background-repeat: no-repeat
