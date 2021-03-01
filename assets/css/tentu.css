@@ -444,20 +444,20 @@ section.dark {
 }
 
 .logo.light {
-	background-image: url("images/logo_light.png")
+	background-image: url("../imageslogo_light.png")
 }
 
 .logo.dark {
-	background-image: url("images/logo_dark.png")
+	background-image: url("../imageslogo_dark.png")
 }
 
 .logo.symbol {
-	background-image: url("images/logo_symbol.png")
+	background-image: url("../imageslogo_symbol.png")
 }
 
 .logo.condensed {
 	min-width: 80px;
-	background-image: url("images/logo_condensed.png")
+	background-image: url("../imageslogo_condensed.png")
 }
 
 .logo.condensed:before {
