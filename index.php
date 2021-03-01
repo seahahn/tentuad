@@ -28,7 +28,7 @@
 				</ul>
 			</nav>
 
-			<a class="primary button" href="https://console.tentuplay.io/" target="_blank">
+			<a class="primary button" href="signup.php" target="_blank">
 			광고 관리로 이동
 			</a>
 

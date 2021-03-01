@@ -6,4 +6,6 @@
         <link rel="stylesheet" href="assets/css/bootstrap.css" />
         <link rel="stylesheet" href="assets/css/landing.css" />
 		<link rel="stylesheet" href="assets/css/tentu.css" />
+		<!-- <link rel="stylesheet" href="assets/css/chunk.css" />
+		<link rel="stylesheet" href="assets/css/app.css" /> -->
 	</head>
