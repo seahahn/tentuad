@@ -9,8 +9,8 @@
 		<title>TentuAd: AI 광고 어시스턴트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/pwreset_chunk.css" />
-		<link rel="stylesheet" href="assets/css/app.css" />
+		<link rel="stylesheet" href="assets/css/verify_failed_chunk.css" />
+		<link rel="stylesheet" href="assets/css/app_ori.css" />
         <style type="text/css"> 
             a { text-decoration:none } 
         </style> 
@@ -24,28 +24,21 @@
                 <div id="cover">
                     <!---->
                     <div id="content" class="centered">
-                    <div data-v-49fc13f1="" class="card">
-                        <div data-v-49fc13f1="" class="content">
-                            <h1 data-v-49fc13f1="">TENTUPLAY</h1>
-                            <h2 data-v-49fc13f1="">비밀번호 변경하기</h2>
-                            <form data-v-49fc13f1="">
-                                <ul data-v-49fc13f1="" class="fieldset">
-                                <li data-v-49fc13f1="">
-                                    <input data-v-49fc13f1="" type="password" maxlength="16" class=""><label data-v-49fc13f1="">비밀번호</label>
-                                    <p data-v-49fc13f1="" class="help">비밀번호는 8-16자여야 하며 적어도 한 개의 숫자 또는 특수문자를 포함해야 합니다.</p>
-                                </li>
-                                <li data-v-49fc13f1="">
-                                    <input data-v-49fc13f1="" type="password" maxlength="16" class=""><label data-v-49fc13f1="">비밀번호 확인</label><!---->
-                                </li>
-                                </ul>
-                                <div data-v-49fc13f1="" class="center aligned"><button data-v-49fc13f1="" type="submit" class="fluid primary button">확인</button><a data-v-49fc13f1="" href="/login" class="fluid ghost button"> 취소 </a></div>
-                            </form>
+                    <div data-v-84f99162="" class="card">
+                        <div data-v-84f99162="" class="content">
+                            <h1 data-v-84f99162="">TENTUPLAY</h1>
+                            <!----><!---->
+                            <div data-v-84f99162="">
+                                <h2 data-v-84f99162="">인증 실패</h2>
+                                <p data-v-84f99162="">인증 링크 유효기간이 만료되었습니다. 다시 로그인하여 30분 이내에 계정 인증을 완료해주세요.</p>
+                                <!---->
+                                <div data-v-84f99162="" class="center aligned" style="margin-top: 2rem;"><a data-v-84f99162="" href="/login" class="fluid primary button"> 로그인 페이지로 돌아가기 </a></div>
+                            </div>
                         </div>
-                        <!---->
                     </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>   
     </body>
 </html>

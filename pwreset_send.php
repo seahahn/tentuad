@@ -9,7 +9,7 @@
 		<title>TentuAd: AI 광고 어시스턴트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/pwreset_chunk.css" />
+		<link rel="stylesheet" href="assets/css/pwreset_send_chunk.css" />
 		<link rel="stylesheet" href="assets/css/app.css" />
         <style type="text/css"> 
             a { text-decoration:none } 
@@ -24,24 +24,21 @@
                 <div id="cover">
                     <!---->
                     <div id="content" class="centered">
-                    <div data-v-49fc13f1="" class="card">
-                        <div data-v-49fc13f1="" class="content">
-                            <h1 data-v-49fc13f1="">TENTUPLAY</h1>
-                            <h2 data-v-49fc13f1="">비밀번호 변경하기</h2>
-                            <form data-v-49fc13f1="">
-                                <ul data-v-49fc13f1="" class="fieldset">
-                                <li data-v-49fc13f1="">
-                                    <input data-v-49fc13f1="" type="password" maxlength="16" class=""><label data-v-49fc13f1="">비밀번호</label>
-                                    <p data-v-49fc13f1="" class="help">비밀번호는 8-16자여야 하며 적어도 한 개의 숫자 또는 특수문자를 포함해야 합니다.</p>
-                                </li>
-                                <li data-v-49fc13f1="">
-                                    <input data-v-49fc13f1="" type="password" maxlength="16" class=""><label data-v-49fc13f1="">비밀번호 확인</label><!---->
+                    <div data-v-75d61d69="" class="card">
+                        <div data-v-75d61d69="" class="content">
+                            <h1 data-v-75d61d69="">TENTUPLAY</h1>
+                            <h2 data-v-75d61d69="">비밀번호 재설정</h2>
+                            <p data-v-75d61d69=""> 회원가입 시 사용하셨던 이메일 주소를 입력해 주시면, 비밀번호를 변경할 수 있는 링크가 담긴 이메일을 전송해 드립니다. </p>
+                            <form data-v-75d61d69="" style="margin-top: 3rem;">
+                                <ul data-v-75d61d69="" class="fieldset">
+                                <li data-v-75d61d69="">
+                                    <input data-v-75d61d69="" type="email" maxlength="50" class=""><label data-v-75d61d69="">이메일</label><!---->
                                 </li>
                                 </ul>
-                                <div data-v-49fc13f1="" class="center aligned"><button data-v-49fc13f1="" type="submit" class="fluid primary button">확인</button><a data-v-49fc13f1="" href="/login" class="fluid ghost button"> 취소 </a></div>
+                                <div data-v-75d61d69="" class="center aligned"><button type="button" data-v-75d61d69="" class="fluid primary button" onclick="location.href='pwsent.php'"> 이메일 전송 </button></div>
+                                <div data-v-75d61d69="" class="center aligned" style="margin-top: 2rem;"><a data-v-75d61d69="" href="login.php" class="sub"> 로그인 페이지로 돌아가기 </a></div>
                             </form>
                         </div>
-                        <!---->
                     </div>
                     </div>
                 </div>
