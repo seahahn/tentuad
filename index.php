@@ -5,7 +5,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<?php include_once "head.php" ?>
+	<?php include_once "./util/head.php" ?>
 	<body class="is-preload">
 
 	<header>
@@ -213,7 +213,7 @@
 		</div>
 	</footer>
 
-			<?php include_once "scripts.php" ?>
+			<?php include_once "./util/scripts.php" ?>
 
 	</body>
 </html>

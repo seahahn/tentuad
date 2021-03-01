@@ -25,23 +25,26 @@
                         <div data-v-65f80472="" class="content">
                             <h1 data-v-65f80472="">TENTUPLAY</h1>
                             <h2 data-v-65f80472="" class="capitalized">회원가입</h2>
-                            <form data-v-65f80472="" id="formSignupKR">
+                        <!-- 회원가입 양식 시작 -->
+                            <form data-v-65f80472="" id="formSignupKR" name="formSignupKR" action="./signup_ok.php">
                                 <ul data-v-65f80472="" class="fieldset">
                                 <li data-v-65f80472="">
-                                    <input data-v-65f80472="" type="email" maxlength="50" class=""><label data-v-65f80472="">이메일</label><!---->
+                                    <input data-v-65f80472="" id="email" name="email" type="email" maxlength="50" class=""><label data-v-65f80472="">이메일</label><!---->
+                                    <span id="email_check_msg" data-check="0"></span>
                                 </li>
                                 <li data-v-65f80472="">
-                                    <input data-v-65f80472="" type="password" maxlength="16" class=""><label data-v-65f80472="">비밀번호</label>
-                                    <p data-v-65f80472="" class="help">비밀번호는 8-16자여야 하며 적어도 한 개의 숫자 또는 특수문자를 포함해야 합니다.</p>
+                                    <input data-v-65f80472="" id="password" name="password" type="password" maxlength="16" class=""><label data-v-65f80472="">비밀번호</label>
+                                    <p id="pw_shape" data-v-65f80472="" class="help">비밀번호는 8-16자여야 하며 적어도 한 개의 숫자 또는 특수문자를 포함해야 합니다.</p>
                                 </li>
                                 <li data-v-65f80472="">
-                                    <input data-v-65f80472="" type="password" maxlength="16" class=""><label data-v-65f80472="">비밀번호 확인</label><!---->
+                                    <input data-v-65f80472="" id="pw_confirm" name="pw_confirm" type="password" maxlength="16" class=""><label data-v-65f80472="">비밀번호 확인</label><!---->
+                                    <span id="pw_check_msg" data-check="0"></span>
                                 </li>
                                 <li data-v-65f80472="">
-                                    <input data-v-65f80472="" type="text" class=""><label data-v-65f80472="">이름</label><!---->
+                                    <input data-v-65f80472="" id="name" name="name" type="text" class=""><label data-v-65f80472="">이름</label><!---->
                                 </li>
                                 <li data-v-65f80472="">
-                                    <input data-v-65f80472="" type="tel" class=""><label data-v-65f80472="">연락처 <span data-v-65f80472="" class="condensed">(선택)</span></label><!---->
+                                    <input data-v-65f80472="" id="phone" name="phone" type="tel" class=""><label data-v-65f80472="">연락처 <span data-v-65f80472="" class="condensed">(선택)</span></label><!---->
                                 </li>
                                 <li data-v-65f80472="">
                                     <div data-v-cd70975a="" data-v-65f80472="" class="checkbox">
@@ -58,14 +61,18 @@
                                     <p data-v-65f80472="" class="error"></p>
                                 </li>
                                 </ul>
-                                <div data-v-65f80472="" class="center aligned"><button data-v-65f80472="" type="submit" class="fluid primary button">회원가입</button></div>
+                                <div data-v-65f80472="" class="center aligned"><button data-v-65f80472="" type="button" class="fluid primary button" onclick="check_input()">회원가입</button></div>
                                 <p data-v-65f80472="" class="center aligned sub"> 이미 계정이 있으신가요? <a data-v-65f80472="" href="login.php" class="sub"> 로그인 </a></p>
                             </form>
+                        <!-- 회원가입 양식 끝 -->
                         </div>
                     </div>
                     </div>
                 </div>
             </div>
         </div>
+        <?php include_once "./util/scripts.php" ?>
+        <script src="assets/js/signup.js"></script> <!-- 회원가입 기능을 위한 스크립트-->
+
     </body>
 </html>
