@@ -26,7 +26,7 @@
                             <h1 data-v-65f80472="">TENTUPLAY</h1>
                             <h2 data-v-65f80472="" class="capitalized">회원가입</h2>
                         <!-- 회원가입 양식 시작 -->
-                            <form data-v-65f80472="" id="formSignupKR" name="formSignupKR" action="./signup_ok.php">
+                            <form data-v-65f80472="" id="formSignupKR" name="formSignupKR" method="POST" action="./signup_ok.php">
                                 <ul data-v-65f80472="" class="fieldset">
                                 <li data-v-65f80472="">
                                     <input data-v-65f80472="" id="email" name="email" type="email" maxlength="50" class=""><label data-v-65f80472="">이메일</label><!---->
