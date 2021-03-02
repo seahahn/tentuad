@@ -49,7 +49,7 @@
                                 </li>
                                 </ul>
                                 <div data-v-7f893d34="" class="center aligned"><button data-v-7f893d34="" type="button" class="fluid primary button" onclick="check_input()">로그인</button></div>
-                                <p data-v-7f893d34="" class="center aligned"><a data-v-7f893d34="" href="pwreset.php" class="sub"> 패스워드를 잊으셨나요? </a></p>
+                                <p data-v-7f893d34="" class="center aligned"><a data-v-7f893d34="" href="pwreset_send.php" class="sub"> 패스워드를 잊으셨나요? </a></p>
                                 <p data-v-7f893d34="" class="center aligned sub"> 텐투플레이가 처음이신가요? <a data-v-7f893d34="" href="signup.php" class="sub"> 회원가입 </a></p>
                             </form>
                         </div>

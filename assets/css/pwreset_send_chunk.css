@@ -1,4 +1,4 @@
-.card[data-v-49fc13f1] {
+.card[data-v-75d61d69] {
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -7,11 +7,11 @@
 	width: 480px
 }
 
-.card .content[data-v-49fc13f1] {
+.card .content[data-v-75d61d69] {
 	padding: 2rem
 }
 
-h1[data-v-49fc13f1] {
+h1[data-v-75d61d69] {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -19,20 +19,20 @@ h1[data-v-49fc13f1] {
 	width: 10rem;
 	height: 2rem;
 	font-size: 0;
-	background-image: url(../img/logo_dark.3dcaa084.png);
+	background-image: url(./images/logo_dark.png);
 	background-position: 50%;
 	background-repeat: no-repeat;
 	background-size: 100%
 }
 
-h2[data-v-49fc13f1] {
+h2[data-v-75d61d69] {
 	margin-top: 1rem;
 	margin-bottom: 2rem;
 	text-align: center;
 	font-size: 18px
 }
 
-.toast[data-v-49fc13f1] {
+.toast[data-v-75d61d69] {
 	margin-bottom: 4rem;
 	text-align: center;
 	color: red

@@ -9,7 +9,7 @@
 		<title>TentuAd: AI 광고 어시스턴트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/pwreset_send_chunk.css" />
+		<link rel="stylesheet" href="assets/css/pwreset_send_chunk.css?ver=2" />
 		<link rel="stylesheet" href="assets/css/app.css" />
         <style type="text/css"> 
             a { text-decoration:none } 

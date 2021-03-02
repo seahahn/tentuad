@@ -1,4 +1,4 @@
-.card[data-v-75d61d69] {
+.card[data-v-0b9a799b] {
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -7,11 +7,11 @@
 	width: 480px
 }
 
-.card .content[data-v-75d61d69] {
+.card .content[data-v-0b9a799b] {
 	padding: 2rem
 }
 
-h1[data-v-75d61d69] {
+h1[data-v-0b9a799b] {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -25,14 +25,14 @@ h1[data-v-75d61d69] {
 	background-size: 100%
 }
 
-h2[data-v-75d61d69] {
+h2[data-v-0b9a799b] {
 	margin-top: 1rem;
 	margin-bottom: 2rem;
 	text-align: center;
 	font-size: 18px
 }
 
-.toast[data-v-75d61d69] {
+.toast[data-v-0b9a799b] {
 	margin-bottom: 4rem;
 	text-align: center;
 	color: red
