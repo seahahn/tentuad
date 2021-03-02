@@ -50,7 +50,7 @@ try {
 
   // 메일 내용
   $mail -> isHTML(true);                                               // HTML 태그 사용 여부
-  $mail -> Subject = "[텐투애드] '.$name.'님, 이메일 주소를 인증해주세요.";              // 메일 제목
+  $mail -> Subject = "[텐투애드] $name 님, 이메일 주소를 인증해주세요.";              // 메일 제목
   $mail -> Body = '
   <table class="wrapper" style="border-collapse: collapse;table-layout: fixed;min-width: 320px;width: 100%;background-color: #f8f8f9;" cellpadding="0" cellspacing="0"><tbody><tr><td>
 
@@ -103,7 +103,7 @@ try {
 
           <!-- 버튼 -->
           <div style="margin-bottom:20px;text-align:center">
-            <u></u><a style="border:1px #ff6900 solid;border-radius:30px;display:inline-block;font-size:14px;font-weight:bold;line-:1;padding:12px 24px;text-align:center;text-decoration:none!important;color:#ffffff!important;background-color:#ff6900;font-family:sans-serif" href="http://52.79.143.149/verify.php?email='.$email.'&hash='.$hash.'" target="_blank" rel="noreferrer noopener">계정 활성화하기</a><u></u>
+            <u></u><a style="border:1px #ff6900 solid;border-radius:30px;display:inline-block;font-size:14px;font-weight:bold;line-:1;padding:12px 24px;text-align:center;text-decoration:none!important;color:#ffffff!important;background-color:#ff6900;font-family:sans-serif" href="http://52.79.143.149/ad/verify.php?email='.$email.'&hash='.$hash.'" target="_blank" rel="noreferrer noopener">계정 활성화하기</a><u></u>
           </div>
 
         </div>
@@ -124,7 +124,7 @@ try {
             <div style="line-height:10px;font-size:1px">&nbsp;</div>
             <p style="margin-top:0;margin-bottom:0;text-align:center;color:rgba(0,0,0,0.65);font-family:sans-serif;font-size: 14px;font-style: normal;font-stretch: normal;letter-spacing: -0.6px;">이 이메일은 발신전용 메일입니다.</p>
             <p style="margin-top:0;margin-bottom:0;text-align:center;color:rgba(0,0,0,0.65);font-family:sans-serif;font-size: 14px;font-style: normal;font-stretch: normal;letter-spacing: -0.6px;">
-            문의: contact@tentuplay.io</p>
+            문의: seah.ahn.nt@gmail.com</p>
             <div style="line-height:10px;font-size:1px">&nbsp;</div>
             <div style="line-height:10px;font-size:1px">&nbsp;</div>
           </div>
@@ -142,8 +142,9 @@ try {
           <div style="margin-left:20px;margin-right:20px;margin-top:20px;margin-bottom:20px">
 
             <div style="font-size:12px;line-height:20px">
-              <strong style="color:rgba(0,0,0,0.85);font-family:sans-serif;font-size: 14px;font-style: normal;font-stretch: normal;letter-spacing: -0.6px;">Sentience Inc.</strong>
-              <p style="color:rgba(0,0,0,0.7);font-family:sans-serif;font-size: 12px;letter-spacing:-0.5px;font-style: normal;font-stretch: normal;font-weight:normal;margin-top:0">서울특별시 강남구 역삼로 165</p>
+              // <strong style="color:rgba(0,0,0,0.85);font-family:sans-serif;font-size: 14px;font-style: normal;font-stretch: normal;letter-spacing: -0.6px;">Sentience Inc.</strong>
+              <strong style="color:rgba(0,0,0,0.85);font-family:sans-serif;font-size: 14px;font-style: normal;font-stretch: normal;letter-spacing: -0.6px;">Team MASK</strong>
+              <p style="color:rgba(0,0,0,0.7);font-family:sans-serif;font-size: 12px;letter-spacing:-0.5px;font-style: normal;font-stretch: normal;font-weight:normal;margin-top:0">서울특별시 동작구</p>
               <p style="color:rgba(0,0,0,0.5);font-family:sans-serif;font-size: 11px;letter-spacing:normal;font-style: normal;font-stretch: normal;font-weight:normal;">COPYRIGHT ©SENTIENCE ALL RIGHTS RESERVED</p>
             </div>
 
@@ -187,7 +188,7 @@ try {
 		<title>TentuAd: AI 광고 어시스턴트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/verify_chunk.css" />
+		<link rel="stylesheet" href="assets/css/signup_ok_chunk.css" />
 		<link rel="stylesheet" href="assets/css/app_ori.css" />
         <style type="text/css"> 
             a { text-decoration:none } 
