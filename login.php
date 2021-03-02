@@ -26,7 +26,7 @@
                             <h1 data-v-7f893d34="">TENTUPLAY</h1>
                             <h2 data-v-7f893d34="" class="capitalized">로그인</h2>
                             <!---->
-                            <form data-v-7f893d34="" id="formLogin">
+                            <form data-v-7f893d34="" id="formLogin" name="formLogin">
                                 <ul data-v-7f893d34="" class="fieldset">
                                 <li data-v-7f893d34="">
                                     <input data-v-7f893d34="" id="email" name="email" type="email" maxlength="50" class=""><label data-v-7f893d34="">이메일</label><!---->
