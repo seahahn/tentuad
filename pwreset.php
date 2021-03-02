@@ -30,7 +30,7 @@ if($hash != $db_hash) {
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/pwreset_chunk.css" />
-		<link rel="stylesheet" href="assets/css/app.css" />
+		<link rel="stylesheet" href="assets/css/app_ori.css" />
         <style type="text/css"> 
             a { text-decoration:none } 
         </style> 

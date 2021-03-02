@@ -40,7 +40,7 @@ if($hash == $db_hash) {
                             <h1 data-v-4ac46ca4="">TENTUPLAY</h1>
                             <h2 data-v-4ac46ca4="">비밀번호 재설정 완료</h2>
                             <p data-v-4ac46ca4=""> 비밀번호 재설정이 완료되었습니다. </p>
-                            <div data-v-4ac46ca4="" class="center aligned" style="margin-top: 2rem;"><a data-v-4ac46ca4="" href="/login" class="fluid primary button"> 로그인 </a></div>
+                            <div data-v-4ac46ca4="" class="center aligned" style="margin-top: 2rem;"><a data-v-4ac46ca4="" href="login.php" class="fluid primary button"> 로그인 </a></div>
                         </div>
                     </div>
                     </div>

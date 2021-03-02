@@ -215,7 +215,7 @@ try {
                         <div data-v-0b9a799b="" class="content">
                             <h1 data-v-0b9a799b="">TENTUPLAY</h1>
                             <h2 data-v-0b9a799b="">메일함을 확인해주세요</h2>
-                            <p data-v-0b9a799b="">입력하신 이메일로 비밀번호 재설정 안내 메일이 전송되었습니다.<br>문제가 발생하였을 경우, <a href="mailto:contact@tentuplay.io">고객센터</a>로 문의해주세요.</p>
+                            <p data-v-0b9a799b="">입력하신 이메일로 비밀번호 재설정 안내 메일이 전송되었습니다.<br>문제가 발생하였을 경우, <a href="mailto:seah.ahn.nt@gmail.com">고객센터</a>로 문의해주세요.</p>
                             <div data-v-0b9a799b="" class="center aligned" style="margin-top: 2rem;"><a data-v-0b9a799b="" href="login.php" class="fluid primary button"> 로그인 페이지로 돌아가기 </a></div>
                         </div>
                     </div>
