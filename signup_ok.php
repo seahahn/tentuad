@@ -1,6 +1,14 @@
 <?php
 include_once "./util/db_con.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require "./PHPMailer/src/PHPMailer.php";
+require "./PHPMailer/src/SMTP.php";
+require "./PHPMailer/src/Exception.php";
+
+$usergroup = $_POST['usergroup'];
 $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $name = $_POST['name'];
@@ -10,6 +18,7 @@ $hash = md5( rand(0,1000) ); // 이메일 인증 위한 해쉬값 생성
 // Example output: f4552671f8909587cf485ea990207f3b
 
 $mq = mq("INSERT aduser set
+                usergroup = '$usergroup',
                 username = '$name',
                 email = '$email',
                 pw = '$password',
@@ -17,13 +26,33 @@ $mq = mq("INSERT aduser set
                 hashv = '$hash'
                 ");
 
-$to      = $email; // Send email to our user
-$subject = '[텐투애드] '.$name.'님, 이메일 주소를 인증해주세요.'; // Give the email a subject
-$message = '
-Please click this link to activate your account:
-http://52.79.143.149/verify_ok.php?email='.$email.'&hash='.$hash.'
+$mail = new PHPMailer(true);
 
-<table class="wrapper" style="border-collapse: collapse;table-layout: fixed;min-width: 320px;width: 100%;background-color: #f8f8f9;" cellpadding="0" cellspacing="0"><tbody><tr><td>
+try {
+
+  // 서버세팅
+  $mail -> SMTPDebug = false;    // 디버깅 설정
+  $mail -> isSMTP();        // SMTP 사용 설정
+
+  $mail -> Host = "smtp.gmail.com";                // email 보낼때 사용할 서버를 지정
+  $mail -> SMTPAuth = true;                        // SMTP 인증을 사용함
+  $mail -> Username = "tentuad.noreply@gmail.com";    // 메일 계정
+  $mail -> Password = "Teamnova123!";                // 메일 비밀번호
+  $mail -> SMTPSecure = "ssl";                    // SSL을 사용함
+  $mail -> Port = 465;                            // email 보낼때 사용할 포트를 지정
+  $mail -> CharSet = "utf-8";                        // 문자셋 인코딩
+
+  // 보내는 메일
+  $mail -> setFrom("tentuad.noreply@gmail.com", "no-reply");
+
+  // 받는 메일    
+  $mail -> addAddress("$email", "$name");
+
+  // 메일 내용
+  $mail -> isHTML(true);                                               // HTML 태그 사용 여부
+  $mail -> Subject = "[텐투애드] '.$name.'님, 이메일 주소를 인증해주세요.";              // 메일 제목
+  $mail -> Body = '
+  <table class="wrapper" style="border-collapse: collapse;table-layout: fixed;min-width: 320px;width: 100%;background-color: #f8f8f9;" cellpadding="0" cellspacing="0"><tbody><tr><td>
 
   <div>
     <div style="margin: 0 auto;max-width: 560px;min-width: 280px; width: 280px;width: calc(28000% - 167440px);">
@@ -127,16 +156,24 @@ http://52.79.143.149/verify_ok.php?email='.$email.'&hash='.$hash.'
   <div style="line-height:40px;font-size:40px">&nbsp;</div>
 
 </td></tr></tbody></table>
-'; // Our message above including the link
+  ';    // 메일 내용
 
-$headers = 'From:noreply@tentuad.io' . "\r\n"; // Set from headers
-mail($to, $subject, $message, $headers); // Send our email
+  // Gmail로 메일을 발송하기 위해서는 CA인증이 필요하다.
+    // CA 인증을 받지 못한 경우에는 아래 설정하여 인증체크를 해지하여야 한다.
+    $mail -> SMTPOptions = array(
+      "ssl" => array(
+            "verify_peer" => false
+          , "verify_peer_name" => false
+          , "allow_self_signed" => true
+      )
+  );
 
-echo "
-    <script>
-    // alert('회원가입이 완료되었습니다.');
-    // location.href = 'verify.php';
-    </script>";
+  // 메일 전송
+  $mail -> send();
+
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error : ", $mail -> ErrorInfo;
+}
 ?>
 
 <!DOCTYPE HTML>

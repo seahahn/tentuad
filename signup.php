@@ -29,11 +29,19 @@
                             <form data-v-65f80472="" id="formSignupKR" name="formSignupKR" method="POST" action="./signup_ok.php">
                                 <ul data-v-65f80472="" class="fieldset">
                                 <li data-v-65f80472="">
-                                    <input data-v-65f80472="" id="email" name="email" type="email" maxlength="50" class=""><label data-v-65f80472="">이메일</label><!---->
+                                    <input data-v-65f80472="" type="radio" name="usergroup" value="0" style="margin-right:5px">광고주
+                                    <span style="margin-right:50px"></span>
+                                    <input data-v-65f80472="" type="radio" name="usergroup" value="1" style="margin-right:5px">게임사
+                                    <label data-v-65f80472="">회원 구분</label><!---->
+                                </li>
+                                <li data-v-65f80472="">
+                                    <input data-v-65f80472="" id="email" name="email" type="email" maxlength="50" class="">
+                                    <label data-v-65f80472="">이메일</label><!---->
                                     <span id="email_check_msg" data-check="0"></span>
                                 </li>
                                 <li data-v-65f80472="">
-                                    <input data-v-65f80472="" id="password" name="password" type="password" maxlength="16" class=""><label data-v-65f80472="">비밀번호</label>
+                                    <input data-v-65f80472="" id="password" name="password" type="password" maxlength="16" class="">
+                                    <label data-v-65f80472="">비밀번호</label>
                                     <p id="pw_shape" data-v-65f80472="" class="help">비밀번호는 8-16자여야 하며 적어도 한 개의 숫자 또는 특수문자를 포함해야 합니다.</p>
                                 </li>
                                 <li data-v-65f80472="">

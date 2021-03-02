@@ -1,3 +1,23 @@
+<?php
+include_once "./util/db_con.php";
+
+$email = $_GET['email'];
+$hash = $_GET['hash'];
+$sql = "select * from user where email='$email'";
+$result = mq($sql);
+$row = mysqli_fetch_array($result);
+$db_hash = $row['hashv'];
+
+if($hash == $db_hash) {
+    mq("UPDATE aduser SET
+                hashv = '',
+                active = '1';
+                ");
+}
+
+?>
+
+
 <!DOCTYPE HTML>
 <!--
 	Miniport by HTML5 UP
@@ -24,13 +44,16 @@
                 <div id="cover">
                     <!---->
                     <div id="content" class="centered">
-                    <div data-v-660aa5c2="" class="card">
-                        <div data-v-660aa5c2="" class="content">
-                            <h1 data-v-660aa5c2="">TENTUPLAY</h1>
-                            <h2 data-v-660aa5c2="">이메일 주소를 인증해주세요</h2>
-                            <p data-v-660aa5c2=""><span data-v-660aa5c2=""><span class="highlighted">test@test.com</span>(으)로 인증메일이 전송되었습니다.</span><br data-v-660aa5c2=""> 메일의 링크를 클릭하여 계정을 활성화해주세요. </p>
-                            <p data-v-660aa5c2=""> 메일이 5분이 지나도록 도착하지 않았을 경우, 스팸함에 있는지 확인해주세요. </p>
-                            <div data-v-660aa5c2="" class="center aligned"><span data-v-660aa5c2="" class="fluid primary button"> 인증메일 다시보내기 </span><a data-v-660aa5c2="" href="/login" class="fluid ghost button"> 로그인 페이지로 돌아가기 </a></div>
+                    <div data-v-84f99162="" class="card">
+                        <div data-v-84f99162="" class="content">
+                            <h1 data-v-84f99162="">TENTUPLAY</h1>
+                            <!---->
+                            <div data-v-84f99162="">
+                                <h2 data-v-84f99162="">환영합니다!</h2>
+                                <p data-v-84f99162="">이메일 인증이 완료되었습니다.</p>
+                                <div data-v-84f99162="" class="center aligned" style="margin-top: 2rem;"><a data-v-84f99162="" href="login.php" class="fluid primary button"> 로그인 </a></div>
+                            </div>
+                            <!---->
                         </div>
                     </div>
                     </div>

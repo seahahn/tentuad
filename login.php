@@ -29,10 +29,10 @@
                             <form data-v-7f893d34="" id="formLogin">
                                 <ul data-v-7f893d34="" class="fieldset">
                                 <li data-v-7f893d34="">
-                                    <input data-v-7f893d34="" type="email" maxlength="50" class=""><label data-v-7f893d34="">이메일</label><!---->
+                                    <input data-v-7f893d34="" id="email" name="email" type="email" maxlength="50" class=""><label data-v-7f893d34="">이메일</label><!---->
                                 </li>
                                 <li data-v-7f893d34="">
-                                    <input data-v-7f893d34="" type="password" class=""><label data-v-7f893d34="">비밀번호</label><!---->
+                                    <input data-v-7f893d34="" id="password" name="password" type="password" class=""><label data-v-7f893d34="">비밀번호</label><!---->
                                 </li>
                                 <li data-v-7f893d34="">
                                     <div data-v-cd70975a="" data-v-7f893d34="" class="checkbox">
@@ -48,7 +48,7 @@
                                     </div>
                                 </li>
                                 </ul>
-                                <div data-v-7f893d34="" class="center aligned"><button data-v-7f893d34="" type="submit" class="fluid primary button">로그인</button></div>
+                                <div data-v-7f893d34="" class="center aligned"><button data-v-7f893d34="" type="button" class="fluid primary button" onclick="check_input()">로그인</button></div>
                                 <p data-v-7f893d34="" class="center aligned"><a data-v-7f893d34="" href="pwreset.php" class="sub"> 패스워드를 잊으셨나요? </a></p>
                                 <p data-v-7f893d34="" class="center aligned sub"> 텐투플레이가 처음이신가요? <a data-v-7f893d34="" href="signup.php" class="sub"> 회원가입 </a></p>
                             </form>
@@ -60,6 +60,7 @@
         </div>    
 
         <?php include_once "./util/scripts.php" ?>
+        <script src="assets/js/login.js"></script> <!-- 로그인 기능을 위한 스크립트-->
         
     </body>
 </html>

@@ -3,7 +3,7 @@
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-    
+    $sql = "select * from user where email='$email'";
     $result = mq($sql);
 
     $num_match = mysqli_num_rows($result);
@@ -27,13 +27,13 @@
                 </script>
                 ");
         } else {
-            session_start(); // 세션 시작. 본 예제는 DB에 사용자의 이메일, 닉네임과 함께 사용자 고유 번호를 가져왔습니다.
-            $_SESSION["useremail"] = $row["email"]; // 사용자 이메일
-            $_SESSION["usernickname"] = $row["nickname"]; // 사용자 닉네임
-            $_SESSION["num"] = $row["num"]; // 사용자 DB내의 고유 번호(PRIMARY KEY)
+            session_start(); // 세션 시작
+            $_SESSION["email"] = $row["email"]; // 사용자 이메일
+            $_SESSION["username"] = $row["username"]; // 사용자 닉네임
+            $_SESSION["idx"] = $row["idx"]; // 사용자 DB내의 고유 번호(PRIMARY KEY)
             echo("
                 <script>
-                location.href = '/index.php'; // 메인 페이지로 이동
+                location.href = 'index.php'; // 광고주(0)->광고 관리 / 게임사(1)->광고 수익 조회 페이지로 이동
                 </script>
                 ");
         }

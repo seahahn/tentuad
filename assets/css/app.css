@@ -1247,6 +1247,7 @@ ul.fieldset input[type=number]+label,
 ul.fieldset input[type=password]+label,
 ul.fieldset input[type=tel]+label,
 ul.fieldset input[type=text]+label,
+ul.fieldset input[type=radio]+label,
 ul.fieldset textarea+label {
 	position: absolute;
 	top: -1.25rem;
