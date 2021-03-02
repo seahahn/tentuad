@@ -41,7 +41,7 @@
             $_SESSION["idx"] = $row["idx"]; // DB의 사용자 고유 번호(PRIMARY KEY)
             echo("
                 <script>
-                location.href = 'index.php'; // 광고주(0)->광고 관리 / 게임사(1)->광고 수익 조회 페이지로 이동
+                location.href = '../dashboard.php'; // 광고주(0)->광고 관리 / 게임사(1)->광고 수익 조회 페이지로 이동
                 </script>
                 ");
         }
