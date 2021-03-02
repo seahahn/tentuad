@@ -11,7 +11,8 @@ $db_hash = $row['hashv'];
 if($hash == $db_hash) {
     mq("UPDATE aduser SET
                 hashv = '',
-                active = '1';
+                active = '1'
+                WHERE email='$email'
                 ");
 }
 

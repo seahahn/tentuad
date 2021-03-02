@@ -48,6 +48,7 @@ $(function(){
             $(this).focus();
         } else if(!regEmail.test(($(this)).val())){
             $("#email_check_msg").html("올바른 이메일 주소가 아닙니다.").css("color", "red").attr("data-check", "0");
+            $(this).focus();
         } else {
             // checkEmailAjax();
             $("#email_check_msg").html("사용 가능한 이메일입니다.").css("color", "blue").attr("data-check", "1");                            
@@ -65,7 +66,7 @@ $(function(){
         } else if($(this).val()==""){            
             $("#pw_check_msg").html("비밀번호 확인을 입력해주세요.").css("color", "red").attr("data-check", "0");
             $(this).focus();
-        }else if(!regPw.test(($(this)).val())) {
+        }else if(!regPw.test(($(this)).val()) || !regPw.test($("#password").val())) {
             console.log(regPw.test(($(this)).val()));
             $("#pw_shape").css("color", "red").attr("data-check", "0");
             $("#pw_check_msg").html("올바른 비밀번호 형식이 아닙니다.").css("color", "red").attr("data-check", "0");

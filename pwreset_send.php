@@ -29,13 +29,13 @@
                             <h1 data-v-75d61d69="">TENTUPLAY</h1>
                             <h2 data-v-75d61d69="">비밀번호 재설정</h2>
                             <p data-v-75d61d69=""> 회원가입 시 사용하셨던 이메일 주소를 입력해 주시면, 비밀번호를 변경할 수 있는 링크가 담긴 이메일을 전송해 드립니다. </p>
-                            <form data-v-75d61d69="" style="margin-top: 3rem;">
+                            <form data-v-75d61d69="" style="margin-top: 3rem;" id="pwreset" name="pwreset" method="POST" action="./pwsent.php">
                                 <ul data-v-75d61d69="" class="fieldset">
                                 <li data-v-75d61d69="">
-                                    <input data-v-75d61d69="" type="email" maxlength="50" class=""><label data-v-75d61d69="">이메일</label><!---->
+                                    <input data-v-75d61d69="" id="email" name="email" type="email" maxlength="50" class=""><label data-v-75d61d69="">이메일</label><!---->
                                 </li>
                                 </ul>
-                                <div data-v-75d61d69="" class="center aligned"><button type="button" data-v-75d61d69="" class="fluid primary button" onclick="location.href='pwsent.php'"> 이메일 전송 </button></div>
+                                <div data-v-75d61d69="" class="center aligned"><button type="submit" data-v-75d61d69="" class="fluid primary button"> 이메일 전송 </button></div>
                                 <div data-v-75d61d69="" class="center aligned" style="margin-top: 2rem;"><a data-v-75d61d69="" href="login.php" class="sub"> 로그인 페이지로 돌아가기 </a></div>
                             </form>
                         </div>
