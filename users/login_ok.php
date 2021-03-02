@@ -1,5 +1,5 @@
 <?php
-    include_once "./util/db_con.php";
+    include_once "../util/db_con.php";
 
     $email = $_POST['email'];
     $password = $_POST['password'];

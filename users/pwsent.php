@@ -1,34 +1,38 @@
 <?php
-include_once "./util/db_con.php";
+include_once "../util/db_con.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require "./PHPMailer/src/PHPMailer.php";
-require "./PHPMailer/src/SMTP.php";
-require "./PHPMailer/src/Exception.php";
+require "../PHPMailer/src/PHPMailer.php";
+require "../PHPMailer/src/SMTP.php";
+require "../PHPMailer/src/Exception.php";
 
-$usergroup = $_POST['usergroup'];
+
 $email = $_POST['email'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-$name = $_POST['name'];
-if(isset($_POST['phone'])) {
-  $phone = $_POST['phone'];
-} else {
-  $phone = '';
-}
-$hash = md5( rand(0,1000) ); // 이메일 인증 위한 해쉬값 생성
+$hash = md5( rand(0,1000) ); // 비번 변경 위한 해쉬값 생성(해쉬값으로 사용자 판별)
 // Generate random 32 character hash and assign it to a local variable.
 // Example output: f4552671f8909587cf485ea990207f3b
 
-$mq = mq("INSERT aduser set
-                usergroup = '$usergroup',
-                username = '$name',
-                email = '$email',
-                pw = '$password',
-                phone = '$phone',
+$sql = "SELECT * FROM aduser WHERE email='$email'";
+$result = mq($sql);
+$row = mysqli_fetch_array($result);
+$name = $row['username'];
+
+$num_match = mysqli_num_rows($result);
+
+if(!$num_match){
+    echo("
+        <script>
+        window.alert('등록되지 않은 이메일입니다.')
+        history.go(-1)
+        </script>
+        ");
+} else {
+    mq("UPDATE aduser SET
                 hashv = '$hash'
                 ");
+}
 
 $mail = new PHPMailer(true);
 
@@ -54,7 +58,7 @@ try {
 
   // 메일 내용
   $mail -> isHTML(true);                                               // HTML 태그 사용 여부
-  $mail -> Subject = "[텐투애드] $name 님, 이메일 주소를 인증해주세요.";              // 메일 제목
+  $mail -> Subject = "[텐투애드] 비밀번호 재설정 안내";              // 메일 제목
   $mail -> Body = '
   <table class="wrapper" style="border-collapse: collapse;table-layout: fixed;min-width: 320px;width: 100%;background-color: #f8f8f9;" cellpadding="0" cellspacing="0"><tbody><tr><td>
 
@@ -84,19 +88,22 @@ try {
 
           <!-- 제목 -->
           <div align="center" style="font-size:12px;font-style:normal;font-weight:normal;line-height:19px;margin-left:20px;margin-right:20px;margin-top:15px">
-            <div style="line-height:1px;font-size:1px;background-color: #0b1121;">&nbsp;</div>
-            <div style="margin-top: 50px; margin-bottom: 0; text-align:center;font-family:sans-serif;line-height:1;font-size: 36px;font-style: normal;font-stretch: normal;letter-spacing: -1.2px;color:#333333">
-              <strong style="line-height:1">이메일 인증</strong>
-            </div>
+              <div style="line-height:1px;font-size:1px;background-color: #0b1121;">&nbsp;</div>
+              <div style="margin-top: 50px; margin-bottom: 0; text-align:center;font-family:sans-serif;line-height:1;font-size: 36px;font-style: normal;font-stretch: normal;letter-spacing: -1.2px;color:#333333">
+                <strong style="line-height:1">비밀번호 재설정 안내</strong>
+              </div>
           </div>
 
           <!-- 내용 -->
           <div style="margin-left:20px;margin-right:20px">
             <div>
               <p align="center" style="margin-top:32px;margin-bottom:16px;font-family:sans-serif;color:#0b1121;font-size: 14px;font-style: normal;font-stretch: normal;letter-spacing: -0.6px;">
-                안녕하세요, '.$name.' 님.<br>
-                텐투애드 회원가입을 해주셔서 감사합니다.<br>
-                아래 버튼을 클릭해서 계정을 활성화해주세요.
+                안녕하세요 '.$name.' 님,<br>
+                텐투플레이 비밀번호를 아래에서 새로 설정할 수 있습니다.
+              </p>
+              <p align="center" style="margin-top:32px;margin-bottom:16px;font-family:sans-serif;color:#0b1121;font-size:14px;font-style:normal;font-stretch:normal;letter-spacing:-0.6px;">
+                비밀번호를 변경하고 싶지 않거나 본인이 요청한 것이 아닌 경우, 이 메일을 무시하고 삭제하시기 바랍니다.<br>
+                보안을 위해 이메일을 누구에게도 공유하지 마세요. 비밀번호 변경은 30분 이내에 가능합니다.
               </p>
             </div>
           </div>
@@ -107,7 +114,7 @@ try {
 
           <!-- 버튼 -->
           <div style="margin-bottom:20px;text-align:center">
-            <u></u><a style="border:1px #ff6900 solid;border-radius:30px;display:inline-block;font-size:14px;font-weight:bold;line-:1;padding:12px 24px;text-align:center;text-decoration:none!important;color:#ffffff!important;background-color:#ff6900;font-family:sans-serif" href="http://52.79.143.149/ad/verify.php?email='.$email.'&hash='.$hash.'" target="_blank" rel="noreferrer noopener">계정 활성화하기</a><u></u>
+            <u></u><a style="border:1px #ff6900 solid;border-radius:30px;display:inline-block;font-size:14px;font-weight:bold;line-:1;padding:12px 24px;text-align:center;text-decoration:none!important;color:#ffffff!important;background-color:#ff6900;font-family:sans-serif" href="http://52.79.143.149/ad/pwreset.php?email='.$email.'&hash='.$hash.'" target="_blank" rel="noreferrer noopener">비밀번호 변경하러 가기</a><u></u>
           </div>
 
         </div>
@@ -123,15 +130,16 @@ try {
       <!-- 내용 푸터 -->
       <div style="text-align:left;color:#60666d;font-size:14px;line-height:21px;font-family:sans-serif;max-width:600px;min-width:320px;width:320px;width:calc(28000% - 167400px);background-color: #fff1e8;">
         <div style="margin-left:20px;margin-right:20px;">
+
           <div style="background-color: #fff1e8;">
             <div style="line-height:10px;font-size:1px">&nbsp;</div>
             <div style="line-height:10px;font-size:1px">&nbsp;</div>
             <p style="margin-top:0;margin-bottom:0;text-align:center;color:rgba(0,0,0,0.65);font-family:sans-serif;font-size: 14px;font-style: normal;font-stretch: normal;letter-spacing: -0.6px;">이 이메일은 발신전용 메일입니다.</p>
-            <p style="margin-top:0;margin-bottom:0;text-align:center;color:rgba(0,0,0,0.65);font-family:sans-serif;font-size: 14px;font-style: normal;font-stretch: normal;letter-spacing: -0.6px;">
-            문의: seah.ahn.nt@gmail.com</p>
+            <p style="margin-top:0;margin-bottom:0;text-align:center;color:rgba(0,0,0,0.65);font-family:sans-serif;font-size: 14px;font-style: normal;font-stretch: normal;letter-spacing: -0.6px;">문의: seah.ahn.nt@gmail.com</p>
             <div style="line-height:10px;font-size:1px">&nbsp;</div>
             <div style="line-height:10px;font-size:1px">&nbsp;</div>
           </div>
+
         </div>
       </div>
 
@@ -159,7 +167,7 @@ try {
 
   <div style="line-height:40px;font-size:40px">&nbsp;</div>
 
-  </td></tr></tbody></table>
+</td></tr></tbody></table>
   ';    // 메일 내용
 
   // Gmail로 메일을 발송하기 위해서는 CA인증이 필요하다.
@@ -191,59 +199,29 @@ try {
 		<title>TentuAd: AI 광고 어시스턴트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/signup_ok_chunk.css" />
-		<link rel="stylesheet" href="assets/css/app_ori.css" />
-        <style type="text/css"> 
-            a { text-decoration:none } 
-        </style> 
+		<link rel="stylesheet" href="../assets/css/pwsent_chunk.css" />
+		<link rel="stylesheet" href="../assets/css/app.css" />
 	</head>	
-  <body>
-      <style type="text/css">html.hs-messages-widget-open.hs-messages-mobile,html.hs-messages-widget-open.hs-messages-mobile body{overflow:hidden!important;position:relative!important}html.hs-messages-widget-open.hs-messages-mobile body{height:100%!important;margin:0!important}#hubspot-messages-iframe-container{display:initial!important;z-index:2147483647;position:fixed!important;bottom:0!important}#hubspot-messages-iframe-container.widget-align-left{left:0!important}#hubspot-messages-iframe-container.widget-align-right{right:0!important}#hubspot-messages-iframe-container.internal{z-index:1016}#hubspot-messages-iframe-container.internal iframe{min-width:108px}#hubspot-messages-iframe-container .shadow-container{display:initial!important;z-index:-1;position:absolute;width:0;height:0;bottom:0;content:""}#hubspot-messages-iframe-container .shadow-container.internal{display:none!important}#hubspot-messages-iframe-container .shadow-container.active{width:400px;height:400px}#hubspot-messages-iframe-container iframe{display:initial!important;width:100%!important;height:100%!important;border:none!important;position:absolute!important;bottom:0!important;right:0!important;background:transparent!important}</style>
-      <noscript>We're sorry, but TENTUPLAY doesn't work properly without JavaScript enabled. Please enable it to continue.</noscript>
-      <div>
-          <div id="viewport" class="blur1red">
-              <!---->
-              <div id="cover">
-                  <!---->
-                  <div id="content" class="centered">
-                  <div data-v-660aa5c2="" class="card">
-                      <div data-v-660aa5c2="" class="content">
-                          <h1 data-v-660aa5c2="">TENTUPLAY</h1>
-                          <h2 data-v-660aa5c2="">이메일 주소를 인증해주세요</h2>
-                          <p data-v-660aa5c2=""><span data-v-660aa5c2=""><span class="highlighted"><?=$email?></span>(으)로 인증메일이 전송되었습니다.</span><br data-v-660aa5c2=""> 메일의 링크를 클릭하여 계정을 활성화해주세요. </p>
-                          <p data-v-660aa5c2=""> 메일이 5분이 지나도록 도착하지 않았을 경우, 스팸함에 있는지 확인해주세요. </p>
-                          <div data-v-660aa5c2="" class="center aligned">
-                              <span data-v-660aa5c2="" class="fluid primary button" onclick="sendmail()"> 인증메일 다시보내기 </span>
-                              <a data-v-660aa5c2="" href="login.php" class="fluid ghost button"> 로그인 페이지로 돌아가기 </a>
-                          </div>
-                      </div>
-                  </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <script>
-          function sendmail() {
-              <?php
-                $sql = "SELECT * FROM aduser WHERE email='$email'";
-                $result = mq($sql);
-                $row = mysqli_fetch_array($result);
-                $db_active = $row['active']; // 이메일 인증(계정 활성화) 여부
-
-                if($db_active != 1) {
-                  // 메일 전송
-                  $mail -> send();
-                } else {
-                  echo("
-                    <script>
-                    window.alert('인증된 이메일입니다.')
-                    history.go(-1)
-                    </script>
-                    ");
-                }
-              ?>
-          }
-      </script>
-  </body>
+    <body>
+        <style type="text/css">html.hs-messages-widget-open.hs-messages-mobile,html.hs-messages-widget-open.hs-messages-mobile body{overflow:hidden!important;position:relative!important}html.hs-messages-widget-open.hs-messages-mobile body{height:100%!important;margin:0!important}#hubspot-messages-iframe-container{display:initial!important;z-index:2147483647;position:fixed!important;bottom:0!important}#hubspot-messages-iframe-container.widget-align-left{left:0!important}#hubspot-messages-iframe-container.widget-align-right{right:0!important}#hubspot-messages-iframe-container.internal{z-index:1016}#hubspot-messages-iframe-container.internal iframe{min-width:108px}#hubspot-messages-iframe-container .shadow-container{display:initial!important;z-index:-1;position:absolute;width:0;height:0;bottom:0;content:""}#hubspot-messages-iframe-container .shadow-container.internal{display:none!important}#hubspot-messages-iframe-container .shadow-container.active{width:400px;height:400px}#hubspot-messages-iframe-container iframe{display:initial!important;width:100%!important;height:100%!important;border:none!important;position:absolute!important;bottom:0!important;right:0!important;background:transparent!important}</style>
+        <noscript>We're sorry, but TENTUPLAY doesn't work properly without JavaScript enabled. Please enable it to continue.</noscript>
+        <div>
+            <div id="viewport" class="blur1red">
+                <!---->
+                <div id="cover">
+                    <!---->
+                    <div id="content" class="centered">
+                    <div data-v-0b9a799b="" class="card">
+                        <div data-v-0b9a799b="" class="content">
+                            <h1 data-v-0b9a799b="">TENTUPLAY</h1>
+                            <h2 data-v-0b9a799b="">메일함을 확인해주세요</h2>
+                            <p data-v-0b9a799b="">입력하신 이메일로 비밀번호 재설정 안내 메일이 전송되었습니다.<br>문제가 발생하였을 경우, <a href="mailto:seah.ahn.nt@gmail.com">고객센터</a>로 문의해주세요.</p>
+                            <div data-v-0b9a799b="" class="center aligned" style="margin-top: 2rem;"><a data-v-0b9a799b="" href="login.php" class="fluid primary button"> 로그인 페이지로 돌아가기 </a></div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

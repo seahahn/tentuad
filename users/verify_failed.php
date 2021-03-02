@@ -1,24 +1,3 @@
-<?php
-include_once "./util/db_con.php";
-
-$email = $_GET['email'];
-$hash = $_GET['hash'];
-$sql = "SELECT * FROM aduser WHERE email='$email'";
-$result = mq($sql);
-$row = mysqli_fetch_array($result);
-$db_hash = $row['hashv'];
-
-if($hash == $db_hash) {
-    mq("UPDATE aduser SET
-                hashv = '',
-                active = '1'
-                WHERE email='$email'
-                ");
-}
-
-?>
-
-
 <!DOCTYPE HTML>
 <!--
 	Miniport by HTML5 UP
@@ -30,8 +9,8 @@ if($hash == $db_hash) {
 		<title>TentuAd: AI 광고 어시스턴트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/verify_chunk.css" />
-		<link rel="stylesheet" href="assets/css/app_ori.css" />
+		<link rel="stylesheet" href="../assets/css/verify_failed_chunk.css" />
+		<link rel="stylesheet" href="../assets/css/app_ori.css" />
         <style type="text/css"> 
             a { text-decoration:none } 
         </style> 
@@ -48,18 +27,18 @@ if($hash == $db_hash) {
                     <div data-v-84f99162="" class="card">
                         <div data-v-84f99162="" class="content">
                             <h1 data-v-84f99162="">TENTUPLAY</h1>
-                            <!---->
+                            <!----><!---->
                             <div data-v-84f99162="">
-                                <h2 data-v-84f99162="">환영합니다!</h2>
-                                <p data-v-84f99162="">이메일 인증이 완료되었습니다.</p>
-                                <div data-v-84f99162="" class="center aligned" style="margin-top: 2rem;"><a data-v-84f99162="" href="login.php" class="fluid primary button"> 로그인 </a></div>
+                                <h2 data-v-84f99162="">인증 실패</h2>
+                                <p data-v-84f99162="">인증 링크 유효기간이 만료되었습니다. 다시 로그인하여 30분 이내에 계정 인증을 완료해주세요.</p>
+                                <!---->
+                                <div data-v-84f99162="" class="center aligned" style="margin-top: 2rem;"><a data-v-84f99162="" href="login.php" class="fluid primary button"> 로그인 페이지로 돌아가기 </a></div>
                             </div>
-                            <!---->
                         </div>
                     </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>   
     </body>
 </html>

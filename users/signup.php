@@ -9,8 +9,8 @@
 		<title>TentuAd: AI 광고 어시스턴트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/signup_chunk.css" />
-		<link rel="stylesheet" href="assets/css/app.css" />
+		<link rel="stylesheet" href="../assets/css/signup_chunk.css" />
+		<link rel="stylesheet" href="../assets/css/app.css" />
 	</head>	
     <body>
         <style type="text/css">html.hs-messages-widget-open.hs-messages-mobile,html.hs-messages-widget-open.hs-messages-mobile body{overflow:hidden!important;position:relative!important}html.hs-messages-widget-open.hs-messages-mobile body{height:100%!important;margin:0!important}#hubspot-messages-iframe-container{display:initial!important;z-index:2147483647;position:fixed!important;bottom:0!important}#hubspot-messages-iframe-container.widget-align-left{left:0!important}#hubspot-messages-iframe-container.widget-align-right{right:0!important}#hubspot-messages-iframe-container.internal{z-index:1016}#hubspot-messages-iframe-container.internal iframe{min-width:108px}#hubspot-messages-iframe-container .shadow-container{display:initial!important;z-index:-1;position:absolute;width:0;height:0;bottom:0;content:""}#hubspot-messages-iframe-container .shadow-container.internal{display:none!important}#hubspot-messages-iframe-container .shadow-container.active{width:400px;height:400px}#hubspot-messages-iframe-container iframe{display:initial!important;width:100%!important;height:100%!important;border:none!important;position:absolute!important;bottom:0!important;right:0!important;background:transparent!important}</style>
@@ -79,8 +79,8 @@
                 </div>
             </div>
         </div>
-        <?php include_once "./util/scripts.php" ?>
-        <script src="assets/js/signup.js"></script> <!-- 회원가입 기능을 위한 스크립트-->
+        <?php include_once "../util/scripts.php" ?>
+        <script src="../assets/js/signup.js"></script> <!-- 회원가입 기능을 위한 스크립트-->
 
     </body>
 </html>

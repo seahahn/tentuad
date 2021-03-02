@@ -1,5 +1,5 @@
 <?php
-include_once "./util/db_con.php";
+include_once "../util/db_con.php";
 
 $email = $_GET['email'];
 $hash = $_GET['hash'];
@@ -29,8 +29,8 @@ if($hash != $db_hash) {
 		<title>TentuAd: AI 광고 어시스턴트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/pwreset_chunk.css" />
-		<link rel="stylesheet" href="assets/css/app_ori.css" />
+		<link rel="stylesheet" href="../assets/css/pwreset_chunk.css" />
+		<link rel="stylesheet" href="../assets/css/app_ori.css" />
         <style type="text/css"> 
             a { text-decoration:none } 
         </style> 
@@ -74,7 +74,7 @@ if($hash != $db_hash) {
             </div>
         </div>
     </body>
-    <?php include_once "./util/scripts.php" ?>
+    <?php include_once "../util/scripts.php" ?>
     <script>
         /* 필수 입력 채우지 않았을 경우 경고창 띄우기*/
         function check_input() {
