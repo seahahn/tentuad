@@ -142,10 +142,9 @@ try {
           <div style="margin-left:20px;margin-right:20px;margin-top:20px;margin-bottom:20px">
 
             <div style="font-size:12px;line-height:20px">
-              // <strong style="color:rgba(0,0,0,0.85);font-family:sans-serif;font-size: 14px;font-style: normal;font-stretch: normal;letter-spacing: -0.6px;">Sentience Inc.</strong>
               <strong style="color:rgba(0,0,0,0.85);font-family:sans-serif;font-size: 14px;font-style: normal;font-stretch: normal;letter-spacing: -0.6px;">Team MASK</strong>
               <p style="color:rgba(0,0,0,0.7);font-family:sans-serif;font-size: 12px;letter-spacing:-0.5px;font-style: normal;font-stretch: normal;font-weight:normal;margin-top:0">서울특별시 동작구</p>
-              <p style="color:rgba(0,0,0,0.5);font-family:sans-serif;font-size: 11px;letter-spacing:normal;font-style: normal;font-stretch: normal;font-weight:normal;">COPYRIGHT ©SENTIENCE ALL RIGHTS RESERVED</p>
+              <p style="color:rgba(0,0,0,0.5);font-family:sans-serif;font-size: 11px;letter-spacing:normal;font-style: normal;font-stretch: normal;font-weight:normal;">COPYRIGHT TeamMASK ALL RIGHTS RESERVED</p>
             </div>
 
           </div>
@@ -210,7 +209,7 @@ try {
                             <p data-v-660aa5c2=""><span data-v-660aa5c2=""><span class="highlighted"><?=$email?></span>(으)로 인증메일이 전송되었습니다.</span><br data-v-660aa5c2=""> 메일의 링크를 클릭하여 계정을 활성화해주세요. </p>
                             <p data-v-660aa5c2=""> 메일이 5분이 지나도록 도착하지 않았을 경우, 스팸함에 있는지 확인해주세요. </p>
                             <div data-v-660aa5c2="" class="center aligned">
-                                <span data-v-660aa5c2="" class="fluid primary button"> 인증메일 다시보내기 </span>
+                                <span data-v-660aa5c2="" class="fluid primary button" onclick="sendmail()"> 인증메일 다시보내기 </span>
                                 <a data-v-660aa5c2="" href="login.php" class="fluid ghost button"> 로그인 페이지로 돌아가기 </a>
                             </div>
                         </div>
@@ -223,7 +222,8 @@ try {
         <script>
             function sendmail() {
                 <?php
-                    mail($to, $subject, $message, $headers); // Send our email
+                    // 메일 전송
+                    $mail -> send();
                 ?>
             }
         </script>

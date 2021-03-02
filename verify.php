@@ -3,7 +3,7 @@ include_once "./util/db_con.php";
 
 $email = $_GET['email'];
 $hash = $_GET['hash'];
-$sql = "select * from user where email='$email'";
+$sql = "SELECT * FROM aduser WHERE email='$email'";
 $result = mq($sql);
 $row = mysqli_fetch_array($result);
 $db_hash = $row['hashv'];
