@@ -12,7 +12,11 @@ $usergroup = $_POST['usergroup'];
 $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $name = $_POST['name'];
-$phone = $_POST['phone'];
+if(isset($_POST['phone'])) {
+  $phone = $_POST['phone'];
+} else {
+  $phone = '';
+}
 $hash = md5( rand(0,1000) ); // 이메일 인증 위한 해쉬값 생성
 // Generate random 32 character hash and assign it to a local variable.
 // Example output: f4552671f8909587cf485ea990207f3b
