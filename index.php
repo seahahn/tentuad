@@ -28,7 +28,7 @@
 					</ul>
 				</nav>
 
-				<a class="primary button" href="signup.php" target="_blank">
+				<a class="primary button" href="users/signup.php" target="_blank">
 				광고 관리로 이동
 				</a>
 
@@ -49,7 +49,7 @@
 				</p>
 
 				<div class="call to action">
-					<a class="capitalized primary button" href="https://console.tentuplay.io/" target="_blank">광고 시작하기</a>
+					<a class="capitalized primary button" href="users/signup.php" target="_blank">광고 시작하기</a>
 				</div>
 				</div>
 			</div>
@@ -188,7 +188,7 @@
 						<h5 class="small headline with margin">서비스</h5>
 						<ul>
 							<li>
-								<a href="https://console.tentuplay.io/" target="_blank">광고 관리로 이동</a>
+								<a href="users/signup.php" target="_blank">광고 관리로 이동</a>
 							</li>
 							<li>
 								<a href="/ko/faq/">자주 묻는 질문</a>
