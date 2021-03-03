@@ -13,14 +13,14 @@
     $sub_ctgr = $_POST['sub_ctgr']; // 게시판 소분류
     $url = $_POST['url'];
     $period_s = $_POST['period_s'];
-    if(isset($_POST['period_e']) || $_POST['period_e']=="") {
+    if(isset($_POST['period_e']) && $_POST['period_e'] != " ") {
         $period_e = $_POST['period_e'];
     } else {
         $period_e = '9999-12-31 23:59:59';
     }
-    $img11 = "";
-    $img43 = "";
-    $img34 = "";
+    $img11 = "none";
+    $img43 = "none";
+    $img34 = "none";
 
     // $idx = $idx;
     // $email = $email;
@@ -32,17 +32,16 @@
     
     if($exists == 0)    {
         mq("ALTER TABLE adlist AUTO_INCREMENT = 1"); // 게시판에 게시물 없는 경우 auto_increment 값 초기화
-    }    
+    }
 
-    // 첨부파일이 존재한다면 실행
-    // 첨부파일 없는 경우 에러 출력되지만 글 작성은 정상적으로 이루어짐
-    $filepath_array = array();
+    print_r($_FILES['img11']['name'][0]);
+
     if($_FILES) {
         $baseDownFolder = "../images/"; // 로컬 컴퓨터 내에 임시로 파일 저장해둘 위치
 
-        if(count($_FILES['img11']['name']) > 0) {
+        if(count($_FILES['img11']['name']) > 0 && $_FILES['img11']['name'][0] != "") {
             // 실제 파일명 
-            $real_filename = $_FILES['img11']['name'];
+            $real_filename = $_FILES['img11']['name'][0];
 
             // 파일 확장자 체크 
             $nameArr = explode(".", $real_filename);
@@ -51,7 +50,7 @@
             // 임시 파일명 (현재시간_랜덤수.파일 확장자) - 파일명 중복될 경우를 대비해 임시파일명을 덧붙여 저장하려함 
             $tmp_filename = time() . '_' . mt_rand(0,99999) . '.' . strtolower($extension);
 
-            if(!move_uploaded_file($_FILES["img11"]["tmp_name"], $baseDownFolder.$tmp_filename) ) {
+            if(!move_uploaded_file($_FILES["img11"]["tmp_name"][0], $baseDownFolder.$tmp_filename) ) {
                 echo 'upload error';
             }
 
@@ -62,15 +61,16 @@
             $s3->put($bucket, $baseDownFolder.$tmp_filename, $s3path.$tmp_filename);
 
             // s3에 파일 저장 및 DB에 파일 정보 저장한 후 로컬에 저장시켰던 파일 삭제
+            global $img11;
             $img11 = $s3url.$s3path.$tmp_filename;
             if(!unlink($baseDownFolder.$tmp_filename)) {
                 echo "file delete failed.\n";
             }
         }
 
-        if(count($_FILES['img43']['name']) > 0) {
+        if(count($_FILES['img43']['name']) > 0 && $_FILES['img43']['name'][0] != "") {
             // 실제 파일명 
-            $real_filename = $_FILES['img11']['name'];
+            $real_filename = $_FILES['img11']['name'][0];
 
             // 파일 확장자 체크 
             $nameArr = explode(".", $real_filename);
@@ -79,7 +79,7 @@
             // 임시 파일명 (현재시간_랜덤수.파일 확장자) - 파일명 중복될 경우를 대비해 임시파일명을 덧붙여 저장하려함 
             $tmp_filename = time() . '_' . mt_rand(0,99999) . '.' . strtolower($extension);
 
-            if(!move_uploaded_file($_FILES["img11"]["tmp_name"], $baseDownFolder.$tmp_filename) ) {
+            if(!move_uploaded_file($_FILES["img11"]["tmp_name"][0], $baseDownFolder.$tmp_filename) ) {
                 echo 'upload error';
             }
 
@@ -90,15 +90,16 @@
             $s3->put($bucket, $baseDownFolder.$tmp_filename, $s3path.$tmp_filename);
 
             // s3에 파일 저장 및 DB에 파일 정보 저장한 후 로컬에 저장시켰던 파일 삭제
+            global $img43;
             $img43 = $s3url.$s3path.$tmp_filename;
             if(!unlink($baseDownFolder.$tmp_filename)) {
                 echo "file delete failed.\n";
             }
         }
 
-        if(count($_FILES['img34']['name']) > 0) {
+        if(count($_FILES['img34']['name']) > 0 && $_FILES['img34']['name'][0] != "") {
             // 실제 파일명 
-            $real_filename = $_FILES['img11']['name'];
+            $real_filename = $_FILES['img11']['name'][0];
 
             // 파일 확장자 체크 
             $nameArr = explode(".", $real_filename);
@@ -107,7 +108,7 @@
             // 임시 파일명 (현재시간_랜덤수.파일 확장자) - 파일명 중복될 경우를 대비해 임시파일명을 덧붙여 저장하려함 
             $tmp_filename = time() . '_' . mt_rand(0,99999) . '.' . strtolower($extension);
 
-            if(!move_uploaded_file($_FILES["img11"]["tmp_name"], $baseDownFolder.$tmp_filename) ) {
+            if(!move_uploaded_file($_FILES["img11"]["tmp_name"][0], $baseDownFolder.$tmp_filename) ) {
                 echo 'upload error';
             }
 
@@ -118,11 +119,13 @@
             $s3->put($bucket, $baseDownFolder.$tmp_filename, $s3path.$tmp_filename);
 
             // s3에 파일 저장 및 DB에 파일 정보 저장한 후 로컬에 저장시켰던 파일 삭제
+            global $img34;
             $img34 = $s3url.$s3path.$tmp_filename;
             if(!unlink($baseDownFolder.$tmp_filename)) {
                 echo "file delete failed.\n";
             }
         }
+        
     }
 
     // DB 저장
@@ -133,8 +136,14 @@
         ctgr_s = '".$sub_ctgr."',
         period_s = '".$period_s."',
         period_e = '".$period_e."',
-        adurl = '".$url."'
-        ");   
+        adurl = '".$url."',
+        img11 = '".$img11."',
+        img43 = '".$img43."',
+        img34 = '".$img34."'
+        ");
+
+    // echo $img11.' '.$img43.' '.$img34;
+    // echo '<br>';
     
 ?>
     <script>

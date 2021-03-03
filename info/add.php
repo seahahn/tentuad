@@ -63,7 +63,7 @@ include_once "../util/db_con.php";
                             <h2 class="page headline">광고 만들기</h2>
                             
                             <div data-v-defd96e4="" class="card rounded-0 p-5" chart-type="Bar">
-                                <form id="formAdd" name="formAdd" method="POST" action="./add_ok.php">
+                                <form id="formAdd" name="formAdd" enctype="multipart/form-data" method="POST" action="./add_ok.php">
                                     <div class="row mb-3">
                                         <label for="adTitle" class="col col-form-label">광고 제목</label>
                                         <div class="col-sm-10">
@@ -105,7 +105,7 @@ include_once "../util/db_con.php";
                                         <div class="col-sm-10">
                                             <div class="row px-3">
                                                 <input type="date" class="form-control col" id="period_s" name="period_s" onchange="date_check(this);">
-                                                <input type="date" class="form-control col" id="period_e" name="period_e" onchange="date_check(this);">
+                                                <input type="date" class="form-control col" id="period_e" name="period_e" value=" " onchange="date_check(this);">
                                                 <div class="form-check col-auto align-self-center ms-3">
                                                     <input class="form-check-input" type="checkbox" value="" id="none_e" onclick="endtime();" checked>
                                                     <label class="form-check-label" for="none_e">
@@ -130,7 +130,7 @@ include_once "../util/db_con.php";
                                             </div>
                                             <span class="upload-cencel" ng-click="resetImage('nativeUpload20', 1)"></span>
                                             <span class="fs-5 align-self-end">200 X 200 | 1MB</span>
-                                            <input id="img11" name="img11" type="file" accept=".jpg, .png" title="1:1" class="upload w-0" onchange="handleChange(this);">
+                                            <input id="img11" name="img11[]" type="file" accept=".jpg, .png" title="1:1" class="upload w-0" onchange="handleChange(this);">
                                         </div>
                                         <div class="area-upload d-flex mb-3">
                                             <div class="preview-native-horizontal1" onclick="document.all.img43.click();">
@@ -138,7 +138,7 @@ include_once "../util/db_con.php";
                                             </div>
                                             <span class="upload-cencel" ng-click="resetImage('nativeUpload20', 1)"></span>
                                             <span class="fs-5 align-self-end">800 X 600 | 1MB</span>
-                                            <input id="img43" name="img43" type="file" accept=".jpg, .png" title="4:3" class="upload w-0" onchange="handleChange(this);">
+                                            <input id="img43" name="img43[]" type="file" accept=".jpg, .png" title="4:3" class="upload w-0" onchange="handleChange(this);">
                                         </div>
                                         <div class="area-upload d-flex">
                                             <div class="preview-native-vertical" onclick="document.all.img34.click();">
@@ -146,7 +146,7 @@ include_once "../util/db_con.php";
                                             </div>
                                             <span class="upload-cencel" ng-click="resetImage('nativeUpload20', 1)"></span>
                                             <span class="fs-5 align-self-end">600 X 800 | 1MB</span>
-                                            <input id="img34" name="img34" type="file" accept=".jpg, .png" title="3:4" class="upload w-0" onchange="handleChange(this);">
+                                            <input id="img34" name="img34[]" type="file" accept=".jpg, .png" title="3:4" class="upload w-0" onchange="handleChange(this);">
                                         </div>
                                         
                                     </div>

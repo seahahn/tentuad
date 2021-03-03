@@ -67,9 +67,9 @@ function handleChange(file) {
         var filePic = file.files[0]; //Selected file content--image
         var fileType = filePath.slice(filePath.indexOf(".")); //Select the format of the file
         var fileSize = file.files[0].size; //Select the file size
-        console.log(filePic);
-        console.log(fileType);
-        console.log(fileSize);
+        // console.log(filePic);
+        // console.log(fileType);
+        // console.log(fileSize);
         if (fileTypes.indexOf(fileType) == -1) { //Determine whether the file format meets the requirements
             alert("올바른 이미지 파일 확장자가 아닙니다!");
             return;
@@ -90,6 +90,7 @@ function handleChange(file) {
                     if (width == 200 && height == 200) { //Judge file pixels
                     //upload image 
                     $('#img11_preview').attr('src', data);
+                    console.log($('#img11').val());
                     } else {
                         alert("이미지 픽셀 크기가 200X200이 아닙니다!");
                         return;
