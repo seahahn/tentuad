@@ -148,5 +148,5 @@
 ?>
     <script>
         alert("광고가 등록되었습니다.");
-        // location.href = 'dashboard.php';
+        location.href = 'dashboard.php';
     </script>
