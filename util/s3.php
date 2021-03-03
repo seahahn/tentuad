@@ -19,7 +19,7 @@ class aws_s3 {
     */
     public function s3Info() {
         return [
-            // 'profile' => 'default',
+            'profile' => 'default',
             'region' => 'ap-northeast-2',
             'version' => 'latest',
         ];
