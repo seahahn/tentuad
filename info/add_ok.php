@@ -18,9 +18,9 @@
     } else {
         $period_e = '9999-12-31 23:59:59';
     }
-    $img11;
-    $img43;
-    $img34;
+    $img11 = "";
+    $img43 = "";
+    $img34 = "";
 
     // $idx = $idx;
     // $email = $email;
@@ -28,7 +28,7 @@
     // $date = date('Y-m-d H:i:s');
     
     $query = mq("SELECT * FROM adlist");
-    $exists = (mysqli_num_rows($query));
+    $exists = mysqli_num_rows($query);
     
     if($exists == 0)    {
         mq("ALTER TABLE adlist AUTO_INCREMENT = 1"); // 게시판에 게시물 없는 경우 auto_increment 값 초기화
@@ -124,7 +124,7 @@
             }
         }
     }
-    
+
     // DB 저장
     $mq = mq("INSERT adlist SET
         title = '".$adTitle."',
@@ -133,11 +133,7 @@
         ctgr_s = '".$sub_ctgr."',
         period_s = '".$period_s."',
         period_e = '".$period_e."',
-        adurl = '".$url."',
-        writer = '".$nickname."', 
-        img11 ='".$img11."',
-        img43 = '".$img43."',
-        img34 = '".$img34."'
+        adurl = '".$url."'
         ");   
     
 ?>
