@@ -26,6 +26,20 @@ function check_input() {
         return;
     }
 
+    var startDate = $('#period_s').val();
+    var endDate = $('#period_e').val();
+    //-을 구분자로 연,월,일로 잘라내어 배열로 반환
+    var startArray = startDate.split('-');
+    var endArray = endDate.split('-');   
+    //배열에 담겨있는 연,월,일을 사용해서 Date 객체 생성
+    var start_date = new Date(startArray[0], startArray[1], startArray[2]);
+    var end_date = new Date(endArray[0], endArray[1], endArray[2]);
+        //날짜를 숫자형태의 날짜 정보로 변환하여 비교한다.
+    if(start_date.getTime() > end_date.getTime()) {
+        alert("종료날짜보다 시작날짜가 작아야합니다.");
+        return;
+    }
+
     console.log($("#img11").val());
     if($('#img11').val()=="" && $('#img43').val()=="" && $('#img34').val()==""){
         alert("이미지를 최소 1장 업로드해주세요.");

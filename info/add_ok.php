@@ -13,7 +13,7 @@
     $sub_ctgr = $_POST['sub_ctgr']; // 게시판 소분류
     $url = $_POST['url'];
     $period_s = $_POST['period_s'];
-    if(isset($_POST['period_e'])) {
+    if(isset($_POST['period_e']) || $_POST['period_e']=="") {
         $period_e = $_POST['period_e'];
     } else {
         $period_e = '9999-12-31 23:59:59';

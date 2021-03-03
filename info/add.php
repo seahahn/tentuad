@@ -104,8 +104,8 @@ include_once "../util/db_con.php";
                                         <label for="url" class="col col-form-label">광고 집행 기간</label>
                                         <div class="col-sm-10">
                                             <div class="row px-3">
-                                                <input type="date" class="form-control col" id="period_s" name="period_s">
-                                                <input type="date" class="form-control col" id="period_e" name="period_e">
+                                                <input type="date" class="form-control col" id="period_s" name="period_s" onchange="date_check(this);">
+                                                <input type="date" class="form-control col" id="period_e" name="period_e" onchange="date_check(this);">
                                                 <div class="form-check col-auto align-self-center ms-3">
                                                     <input class="form-check-input" type="checkbox" value="" id="none_e" onclick="endtime();" checked>
                                                     <label class="form-check-label" for="none_e">
@@ -168,20 +168,65 @@ include_once "../util/db_con.php";
         <?php include_once "../util/scripts.php" ?>
         <?php include_once "../util/adctgr.php" ?>
         <script src="../assets/js/add.js"></script>
-        <script>
-            document.getElementById('period_s').valueAsDate = new Date();
-            if($("#none_e").prop("checked")) {
-                $("#period_e").attr("disabled","disabled");
+        <script type="text/javascript">
+            window.onload = function() {
+                document.getElementById('period_s').valueAsDate = new Date();
+                $('#period_s').data('preStartDate', new Date());
+                // if($("#none_e").prop("checked")) {
+                    $("#period_e").attr("disabled","disabled");
+                    $("#period_e").val("");
+                // }
             }
+            
 
             function endtime() {
                 if(!$("#none_e").prop("checked")) {
                     $("#period_e").removeAttr("disabled");
-                    document.getElementById("period_e").valueAsDate = new Date();
+                    var date = new Date();
+                    date.setMonth(date.getMonth() + 1);
+                    document.getElementById("period_e").valueAsDate = date;
+                    $('#period_e').data('preEndDate', date);
                 } else {
                     $("#period_e").attr("disabled","disabled");
+                    $("#period_e").val("");
                 }
-            }            
+            }
+
+            function date_check(e) {
+                var startDate = $('#period_s').val();
+                var endDate = $('#period_e').val();
+                var preStartDate = $('#period_s').data('preStartDate');
+                var preEndDate = $('#period_e').data('preEndDate');
+                $('#period_s').data('preStartDate', startDate);
+                $('#period_e').data('preEndDate', endDate);
+                console.log(preStartDate);
+                console.log(preEndDate);
+                //-을 구분자로 연,월,일로 잘라내어 배열로 반환
+                var startArray = startDate.split('-');
+                var endArray = endDate.split('-');   
+                //배열에 담겨있는 연,월,일을 사용해서 Date 객체 생성
+                var start_date = new Date(startArray[0], startArray[1], startArray[2]);
+                var end_date = new Date(endArray[0], endArray[1], endArray[2]);
+                    //날짜를 숫자형태의 날짜 정보로 변환하여 비교한다.
+                if(start_date.getTime() > end_date.getTime()) {
+                    alert("종료날짜보다 시작날짜가 작아야합니다.");
+                    console.log(document.getElementById(e.getAttribute('id')).getAttribute('id'));
+                    var thisis = document.getElementById(e.getAttribute('id')).getAttribute('id');
+                    if(thisis == "period_s") {
+                        var psd = new Date(preStartDate);
+                        console.log(psd);
+                        document.getElementById("period_s").valueAsDate = psd;
+                        
+                    }
+                    if(thisis == "period_e") {
+                        var ped = new Date(preEndDate);
+                        console.log(ped);
+                        document.getElementById("period_e").valueAsDate = ped;
+                        
+                    }
+                    return;
+                }
+            }
         </script>
         
     </body>
