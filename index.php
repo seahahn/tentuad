@@ -17,13 +17,13 @@
 
 					<ul class="global navigation">
 						<li>
-							<a href="/ko/products/">제품소개</a>
+							<a href="/ko/products/">제품소개(미완)</a>
 						</li>
 						<li>
-							<a href="/ko/pricing/">가격정책</a>
+							<a href="/ko/pricing/">가격정책(미완)</a>
 						</li>
 						<li>
-							<a href="/ko/docs/">개발자문서</a>
+							<a href="/ko/docs/">개발자문서(미완)</a>
 						</li>
 					</ul>
 				</nav>
@@ -170,16 +170,7 @@
 						<h5 class="small headline with margin">개발자</h5>
 						<ul>
 							<li>
-								<a href="/ko/docs/">개발자문서</a>
-							</li>
-							<li>
-								<a href="/ko/docs/0.25/concept/players-personas/">페르소나 모델</a>
-							</li>
-							<li>
-								<a href="/ko/docs/0.25/references/unity-api/">API 참조</a>
-							</li>
-							<li>
-								<a href="/ko/docs/0.25/sdk/">SDK</a>
+								<a href="/ko/docs/">개발자문서(미완)</a>
 							</li>
 						</ul>
 					</div>
@@ -191,16 +182,13 @@
 								<a href="users/signup.php" target="_blank">광고 관리로 이동</a>
 							</li>
 							<li>
-								<a href="/ko/faq/">자주 묻는 질문</a>
+								<a href="/ko/terms/">서비스 이용약관(미완)</a>
 							</li>
 							<li>
-								<a href="/ko/terms/">서비스 이용약관</a>
+								<a href="/ko/privacy/">개인정보이용방침(미완)</a>
 							</li>
 							<li>
-								<a href="/ko/privacy/">개인정보이용방침</a>
-							</li>
-							<li>
-								<a href="/ko/contact/">문의하기</a>
+								<a href="/ko/contact/">문의하기(미완)</a>
 							</li>
 						</ul>
 					</div>
@@ -208,7 +196,7 @@
 				</div>
 
 				<sub class="copyright">
-				ⓒ Sentience, All Rights Reserved
+				ⓒ Team MASK, All Rights Reserved
 				</sub>
 			</div>
 		</footer>

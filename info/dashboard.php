@@ -1,3 +1,9 @@
+<?php
+include_once "../util/config.php";
+include_once "../util/db_con.php";
+
+?>
+
 <!DOCTYPE HTML>
 <html>	
     <head>
@@ -5,7 +11,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="../assets/css/bootstrap.css" />
-		<link rel="stylesheet" href="../assets/css/login_chunk.css" />
+		<!-- <link rel="stylesheet" href="../assets/css/login_chunk.css" /> -->
 		<link rel="stylesheet" href="../assets/css/dashboard.css" />
 	</head>	
     <body>
@@ -29,31 +35,21 @@
                         <!-- 사이드바 내용 부분 시작-->
                         <ul class="global navigation">
                             <li>
-                                <h3 class="headline active">
-                                <span>캠페인 (2)</span>
-                                <i class="small icon">
-                                    <svg>
-                                        <use xlink:href="/img/sprites.df5ba72e.svg#chevron-down"></use>
-                                    </svg>
-                                </i>
-                                </h3>
+                                <span data-v-4bcec590="" class="exact active">광고 목록</span>
                                 <div aria-expanded="true">
                                 <ul class="submenu level one">
                                     <li data-v-4bcec590="">
-                                        <a data-v-4bcec590="" href="#" aria-current="page" class="exact active"><span data-v-4bcec590="">광고 그룹 1</span></a>
-                                        <ul class="submenu level two">
-                                            <li data-v-4bcec590=""><a data-v-4bcec590="" href="#" aria-current="page" class=""><span data-v-4bcec590="">소재 1</span></a></li>
-                                            <li data-v-4bcec590=""><a data-v-4bcec590="" href="#" aria-current="page" class=""><span data-v-4bcec590="">소재 2</span></a></li>
-                                            <li data-v-4bcec590=""><a data-v-4bcec590="" href="#" aria-current="page" class=""><span data-v-4bcec590="">소재 3</span></a></li>
-                                        </ul>
+                                        <a data-v-4bcec590="" href="#" aria-current="page" class=""><span data-v-4bcec590="">광고 1 </span></a>
                                     </li>
-                                    <li data-v-4bcec590=""><a data-v-4bcec590="" href="#" class=""><span data-v-4bcec590="">광고 그룹 2</span></a></li>
+                                    <li data-v-4bcec590="">
+                                        <a data-v-4bcec590="" href="#" class=""><span data-v-4bcec590="">광고 2</span></a>
+                                    </li>
                                 </ul>
                                 </div>
                             </li>
                         </ul>
                         <!-- 사이드바 내용 부분 끝-->
-                        <button type="button" class="btn btn-lg btn-warning mt-3 justify-content-center w-100"><span class="text-light">+ 광고 만들기</span></button>
+                        <button type="button" class="btn btn-lg btn-warning mt-3 justify-content-center w-100 rounded-0" onclick="location.href='add.php'"><span class="text-light">+ 광고 만들기</span></button>
                     </nav>
                     </div>
                 </aside>
@@ -157,7 +153,7 @@
                             <!-- 상단 요약 끝 -->
 
                             <div class="grid with gutter">
-                                <div class="four wide column">
+                                <div class="three wide column">
                                 <div>
                                     <div data-v-defd96e4="" class="card" chart-type="Bar">
                                         <h5 data-v-defd96e4="" class="title">
@@ -169,7 +165,6 @@
                                             </i>
                                         </h5>
                                         <div data-v-defd96e4="" class="content">
-                                            <h3 data-v-defd96e4="" class="center aligned tiny headline">일간 사용자 수</h3>
                                             <div data-v-defd96e4="" class="spinner">
                                             <!---->
                                             </div>
@@ -188,7 +183,7 @@
                                     </div>
                                 </div>
                                 </div>
-                                <div class="eight wide column">
+                                <div class="twelve wide column">
                                 <div>
                                     <div data-v-80081fce="" class="card" chart-type="Line">
                                         <h5 data-v-80081fce="" class="title">
@@ -200,7 +195,6 @@
                                             </i>
                                         </h5>
                                         <div data-v-80081fce="" class="content">
-                                            <h3 data-v-80081fce="" class="center aligned tiny headline">D1 잔존율</h3>
                                             <div data-v-80081fce="" class="spinner">
                                             <!---->
                                             </div>

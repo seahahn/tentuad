@@ -4,7 +4,7 @@
     $db_name="tentuad";
     $db_domain="localhost"; // 처음에 localhost 넣는 바로 그 곳
     
-    $db=mysqli_connect($db_domain,$db_id,$db_pw,$db_name);
+    $db=mysqli_connect($db_domain, $db_id, $db_pw, $db_name);
 
     function mq($sql){
         global $db;
