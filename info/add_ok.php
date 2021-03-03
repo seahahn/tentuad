@@ -29,10 +29,9 @@
     
     $query = mq("SELECT * FROM adList");
     $exists = mysqli_num_rows($query);
-    echo $query;
     
     if($exists == 0)    {
-        mq("ALTER TABLE adlist AUTO_INCREMENT = 1"); // 게시판에 게시물 없는 경우 auto_increment 값 초기화
+        mq("ALTER TABLE adList AUTO_INCREMENT = 1"); // 게시판에 게시물 없는 경우 auto_increment 값 초기화
     }
 
     print_r($_FILES['img11']['name'][0]);
@@ -130,7 +129,7 @@
     }
 
     // DB 저장
-    $mq = mq("INSERT adlist SET
+    $mq = mq("INSERT adList SET
         title = '".$adTitle."',
         owner_idx = '".$idx."',
         ctgr_b = '".$category."',
