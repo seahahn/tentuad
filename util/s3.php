@@ -3,7 +3,7 @@
 // use Aws\S3\Exception\S3Exception;
 
 class aws_s3 {
-    public $bucket = 'salon-de-ahn';
+    public $bucket = 'tentuad';
     public $url = 'https://tentuad.s3.ap-northeast-2.amazonaws.com/';
 
     // Constructor

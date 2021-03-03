@@ -29,6 +29,7 @@
     
     $query = mq("SELECT * FROM adlist");
     $exists = mysqli_num_rows($query);
+    echo $exists;
     
     if($exists == 0)    {
         mq("ALTER TABLE adlist AUTO_INCREMENT = 1"); // 게시판에 게시물 없는 경우 auto_increment 값 초기화
