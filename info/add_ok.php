@@ -35,8 +35,6 @@
         mq("ALTER TABLE adList AUTO_INCREMENT = 1"); // 게시판에 게시물 없는 경우 auto_increment 값 초기화
     }
 
-    print_r($_FILES['img11']['name'][0]);
-
     if($_FILES) {
         $baseDownFolder = "../images/"; // 로컬 컴퓨터 내에 임시로 파일 저장해둘 위치
 
@@ -72,7 +70,6 @@
         if(count($_FILES['img43']['name']) > 0 && $_FILES['img43']['name'][0] != "") {
             // 실제 파일명 
             $real_filename = $_FILES['img11']['name'][0];
-            echo $real_filename;
 
             // 파일 확장자 체크 
             $nameArr = explode(".", $real_filename);
