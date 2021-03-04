@@ -4,10 +4,9 @@ include_once "../util/db_con.php";
 
 $aduser = mq("SELECT * FROM aduser WHERE email='$email'");
 $userinfo = mysqli_fetch_array($aduser);
-$money = $userinfo['money'];
+$money = $userinfo['money']; // 광고주가 소지한 광고용 충전 금액
 
 $adlist = mq("SELECT * FROM adList WHERE owner_idx = '$idx'");
-$adinfo = mysqli_fetch_array($adlist);
 $budget_sum = 0; // 광고 예산 합계
 $cost_sum = 0; // 광고 비용 합계
 $imp_sum = 0; // 광고 노출 수 합계
@@ -27,6 +26,9 @@ while($count = $adlist->fetch_array()){
 		<title>TentuAd: AI 광고 어시스턴트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+        <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+        <link rel="stylesheet" href="../assets/css/jquery-ui.css" />
         <link rel="stylesheet" href="../assets/css/bootstrap.css" />
 		<!-- <link rel="stylesheet" href="../assets/css/login_chunk.css" /> -->
 		<link rel="stylesheet" href="../assets/css/dashboard.css" />
@@ -43,30 +45,6 @@ while($count = $adlist->fetch_array()){
 
                         <div class="container">
                             <h2 class="page headline">대시보드</h2>
-                            <div class="right aligned">
-                                <div data-v-f6def87c="" class="datepicker">
-                                <i data-v-f6def87c="" class="small calendar icon">
-                                    <svg data-v-f6def87c="">
-                                        <use data-v-f6def87c="" xlink:href="/img/sprites.df5ba72e.svg#calendar"></use>
-                                    </svg>
-                                </i>
-                                <div data-v-f6def87c="" class="label">지난 7일</div>
-                                <div data-v-f6def87c="" class="binding">2021년 2월 23일 - 3월 1일</div>
-                                <i data-v-f6def87c="" class="small chevron icon">
-                                    <svg data-v-f6def87c="">
-                                        <use data-v-f6def87c="" xlink:href="/img/sprites.df5ba72e.svg#chevron-down"></use>
-                                    </svg>
-                                </i>
-                                <div data-v-f6def87c="" class="combo">
-                                    <ul data-v-f6def87c="">
-                                        <li data-v-f6def87c="" class=""> 어제 </li>
-                                        <li data-v-f6def87c="" class="active"> 지난 7일 </li>
-                                        <li data-v-f6def87c="" class=""> 지난 14일 </li>
-                                        <!---->
-                                    </ul>
-                                </div>
-                                </div>
-                            </div>
 
                             <!-- 상단 요약 시작 -->
                             <div class="grid with gutter">
@@ -134,91 +112,171 @@ while($count = $adlist->fetch_array()){
                             </div>
                             <!-- 상단 요약 끝 -->
 
+                            <!-- 대시보드 메인 시작 -->
+                            <!-- 광고 지표 그래프 표시 시작 -->
                             <div class="grid with gutter">
-                                <div class="three wide column">
-                                <div>
-                                    <div data-v-defd96e4="" class="card" chart-type="Bar">
-                                        <h5 data-v-defd96e4="" class="title">
-                                            (사용자 관련 정보 표시 예정)
-                                            <i data-v-defd96e4="" class="help icon has-tooltip" data-original-title="null">
-                                            <svg data-v-defd96e4="">
-                                                <use data-v-defd96e4="" xlink:href="/img/sprites.df5ba72e.svg#help-circle"></use>
-                                            </svg>
-                                            </i>
-                                        </h5>
-                                        <div data-v-defd96e4="" class="content">
-                                            <div data-v-defd96e4="" class="spinner">
-                                            <!---->
-                                            </div>
-                                            <div data-v-defd96e4="" class="" style="height: 320px; position: relative;">
-                                            <div class="chartjs-size-monitor">
-                                                <div class="chartjs-size-monitor-expand">
-                                                    <div class=""></div>
-                                                </div>
-                                                <div class="chartjs-size-monitor-shrink">
-                                                    <div class=""></div>
-                                                </div>
-                                            </div>
-                                            <canvas id="bar-chart" width="440" height="320" class="chartjs-render-monitor" style="display: block; width: 440px; height: 320px;"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
                                 <div class="twelve wide column">
                                 <div>
                                     <div data-v-80081fce="" class="card" chart-type="Line">
                                         <h5 data-v-80081fce="" class="title">
-                                            (그래프 표시 예정)
-                                            <i data-v-80081fce="" class="help icon has-tooltip" data-original-title="null">
-                                            <svg data-v-80081fce="">
-                                                <use data-v-80081fce="" xlink:href="/img/sprites.df5ba72e.svg#help-circle"></use>
-                                            </svg>
-                                            </i>
+                                            <div class="d-flex justify-content-between">
+                                            <span class="align-self-center">그래프</span>
+                                            <span class="align-self-center">기간 : <input type="text" id="datepicker_s"> ~ <input type="text" id="datepicker_e"></span>
+                                            </div>
                                         </h5>
                                         <div data-v-80081fce="" class="content">
-                                            <div data-v-80081fce="" class="spinner">
-                                            <!---->
-                                            </div>
-                                            <div data-v-80081fce="" class="" style="height: 320px; position: relative;">
-                                            <div class="chartjs-size-monitor">
-                                                <div class="chartjs-size-monitor-expand">
-                                                    <div class=""></div>
-                                                </div>
-                                                <div class="chartjs-size-monitor-shrink">
-                                                    <div class=""></div>
-                                                </div>
-                                            </div>
-                                            <canvas id="line-chart" width="440" height="320" class="chartjs-render-monitor" style="display: block; width: 440px; height: 320px;"></canvas>
-                                            </div>
+                                            <canvas id="myChart"></canvas>
                                         </div>
                                     </div>
                                 </div>
                                 </div>
                             </div>
+                            <!-- 사용자 정보, 광고 지표 그래프 표시 끝 -->
+                            <!-- 광고별 예산, 비용, 노출 수, 클릭 수, 클릭률 표시 시작 -->
                             <div class="grid with gutter">
                                 <div class="twelve wide column">
                                 <div>
                                     <div data-v-defd96e4="" class="card" chart-type="Bar">
                                         <h5 data-v-defd96e4="" class="title">
-                                            (노출수, 클릭수, 클릭률 관련 표 표시 예정)
+                                            광고 지표
                                             <i data-v-defd96e4="" class="help icon has-tooltip" data-original-title="null">
                                             <svg data-v-defd96e4="">
                                                 <use data-v-defd96e4="" xlink:href="/img/sprites.df5ba72e.svg#help-circle"></use>
                                             </svg>
                                             </i>
                                         </h5>
+                                        <div class="px-1 py-3">
+                                            <table id="table_id" class="display">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ㅁ</th>
+                                                        <th>광고 제목</th>
+                                                        <th>ON/OFF</th>
+                                                        <th>상태</th>
+                                                        <th>예산</th>
+                                                        <th>비용</th>
+                                                        <th>노출 수</th>
+                                                        <th>클릭 수</th>
+                                                        <th>클릭률</th>
+                                                        <th>노출당 비용</th>
+                                                        <th>클릭당 비용</th>
+                                                        <th>기간</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <?php
+                                                        $sql = mq("SELECT * FROM adList WHERE owner_idx = '$idx' ORDER BY title DESC, period_s ASC");
+                                                        while($ad = $sql->fetch_array()){
+                                                            $title = $ad['title'];
+                                                            $onoff = $ad['onoff'];
+                                                            $status = $ad['status'];
+                                                            $budget = $ad['budget'];
+                                                            $cost = $ad['cost'];
+                                                            $imp = $ad['imp'];
+                                                            $click = $ad['click'];
+
+                                                            $start = $ad['period_s'];
+                                                            $timestamp = strtotime($start);
+                                                            $start = date("Y-m-d", $timestamp);
+                                                            $end = $ad['period_e'];
+                                                            $end = $ad['period_e'];
+                                                            $timestamp = strtotime($end);
+                                                            $end = date("Y-m-d", $timestamp);
+                                                            $end_year = date("Y", $timestamp);
+                                                            if($end_year == 9999) $end = "종료일 없음";
+                                                        ?>
+                                                    <tr>
+                                                        <td>ㅁ</td>
+                                                        <td><?=$title;?></td>
+                                                        <td>(스위치)</td>
+                                                        <td><?=$status;?></td>
+                                                        <td><?=$budget;?></td>
+                                                        <td><?=$cost;?></td>
+                                                        <td><?=$imp;?></td>
+                                                        <td><?=$click;?></td>
+                                                        <td><?php if($imp==0) { echo '-';} else { ($click/$imp)*100; }?></td>
+                                                        <td><?php if($imp==0) { echo '-';} else { $cost/$imp; }?></td>
+                                                        <td><?php if($click==0) { echo '-';} else { $cost/$click; }?></td>
+                                                        <td><?=$start.' ~ '.$end;?></td>
+                                                    </tr>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                                 </div>
                             </div>
+                            <!-- 광고별 예산, 비용, 노출 수, 클릭 수, 클릭률 표시 끝 -->
+                            <!-- 대시보드 메인 끝 -->
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <?php include_once "../util/scripts.php" ?>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+        $(document).ready( function () {
+            $('#table_id').DataTable();
+        } );
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+
+            // The data for our dataset
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: '비용',
+                    backgroundColor: 'rgb(255, 255, 255, 0)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [0, 10, 5, 2, 20, 30, 45]
+                },
+                {
+                    label: '노출 수',
+                    backgroundColor: 'rgb(255, 255, 255, 0)',
+                    borderColor: 'rgb(51, 0, 255)',
+                    data: [3, 14, 6, 7, 4, 25, 45]
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
+
+        $( function() {
+            $( "#datepicker_s" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true
+            });
+            $( "#datepicker_s" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+            $( "#datepicker_e" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true
+            });
+            $( "#datepicker_e" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+
+            // $( "#datepicker_s" ).datepicker({
+            //     changeMonth: true,
+            //     changeYear: true,
+            //     showButtonPanel: true
+            // });
+            // $( "#datepicker_e" ).datepicker({
+            //     changeMonth: true,
+            //     changeYear: true,
+            //     showButtonPanel: true
+            // });
+        } );
+        </script>
     </body>
 </html>
