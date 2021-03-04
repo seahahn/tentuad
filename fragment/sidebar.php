@@ -18,7 +18,7 @@
                 <div aria-expanded="true">
                 <ul class="submenu level one">
                 <?php
-                
+                $sql = mq("SELECT * FROM adList WHERE email='".$email."' ORDER BY title DESC, period_s ASC");
                 while($ad = $sql->fetch_array()){
                 ?>
                     <li data-v-4bcec590="">
