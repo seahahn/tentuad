@@ -73,7 +73,7 @@
 
         if(count($_FILES['img43']['name']) > 0 && $_FILES['img43']['name'][0] != "") {
             // 실제 파일명 
-            $real_filename = $_FILES['img11']['name'][0];
+            $real_filename = $_FILES['img43']['name'][0];
 
             // 파일 확장자 체크 
             $nameArr = explode(".", $real_filename);
@@ -82,7 +82,7 @@
             // 임시 파일명 (현재시간_랜덤수.파일 확장자) - 파일명 중복될 경우를 대비해 임시파일명을 덧붙여 저장하려함 
             $tmp_filename = time() . '_' . mt_rand(0,99999) . '.' . strtolower($extension);
 
-            if(!move_uploaded_file($_FILES["img11"]["tmp_name"][0], $baseDownFolder.$tmp_filename) ) {
+            if(!move_uploaded_file($_FILES["img43"]["tmp_name"][0], $baseDownFolder.$tmp_filename) ) {
                 echo 'upload error';
             }
 
@@ -102,7 +102,7 @@
 
         if(count($_FILES['img34']['name']) > 0 && $_FILES['img34']['name'][0] != "") {
             // 실제 파일명 
-            $real_filename = $_FILES['img11']['name'][0];
+            $real_filename = $_FILES['img34']['name'][0];
 
             // 파일 확장자 체크 
             $nameArr = explode(".", $real_filename);
@@ -111,7 +111,7 @@
             // 임시 파일명 (현재시간_랜덤수.파일 확장자) - 파일명 중복될 경우를 대비해 임시파일명을 덧붙여 저장하려함 
             $tmp_filename = time() . '_' . mt_rand(0,99999) . '.' . strtolower($extension);
 
-            if(!move_uploaded_file($_FILES["img11"]["tmp_name"][0], $baseDownFolder.$tmp_filename) ) {
+            if(!move_uploaded_file($_FILES["img34"]["tmp_name"][0], $baseDownFolder.$tmp_filename) ) {
                 echo 'upload error';
             }
 
