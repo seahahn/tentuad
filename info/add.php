@@ -56,9 +56,8 @@ include_once "../util/db_con.php";
                 </aside>
 
                 <div id="main">
-                    <div id="content" class="d-flex flex-column">
-                    <i data-v-42570b20="" class="round icon align-self-end"><svg data-v-42570b20=""><use data-v-42570b20="" xlink:href="/img/sprites.df5ba72e.svg#user"></use></svg></i>
-                    <div>
+                    <?php include_once "../fragment/profile_icon.php";?>
+                    
                         <div class="container">
                             <h2 class="page headline">광고 만들기</h2>
                             
