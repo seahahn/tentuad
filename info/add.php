@@ -101,6 +101,21 @@ include_once "../util/db_con.php";
                                     </div>
 
                                     <div class="row mb-3">
+                                        <label for="url" class="col col-form-label">일 광고 예산</label>
+                                        <div class="col-sm-10">
+                                            <div class="row px-3">                                                
+                                                <input type="number" class="form-control" id="budget" name="budget"><span class="align-self-center w-auto">원</span>
+                                                <div class="form-check col-auto align-self-center ms-3">
+                                                    <input class="form-check-input" type="checkbox" value="" id="no_budget" onclick="none_budget();">
+                                                    <label class="form-check-label" for="none_budget">
+                                                        예산 미설정
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
                                         <label for="url" class="col col-form-label">광고 집행 기간</label>
                                         <div class="col-sm-10">
                                             <div class="row px-3">
@@ -176,6 +191,16 @@ include_once "../util/db_con.php";
                     $("#period_e").attr("disabled","disabled");
                     $("#period_e").val("");
                 // }
+            }
+
+            function none_budget() {
+                if(!$("#no_budget").prop("checked")) {
+                    $("#budget").removeAttr("disabled");
+                    $("#budget").val("");
+                } else {
+                    $("#budget").attr("disabled","disabled");
+                    $("#budget").val("");
+                }
             }
             
 

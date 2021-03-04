@@ -12,6 +12,7 @@
     $category = $_POST['category']; // 게시판 대분류
     $sub_ctgr = $_POST['sub_ctgr']; // 게시판 소분류
     $url = $_POST['url'];
+    $budget = $_POST['budget'];
     $period_s = $_POST['period_s'];
     if(isset($_POST['period_e']) && $_POST['period_e'] != " ") {
         $period_e = $_POST['period_e'];
@@ -131,6 +132,7 @@
     // DB 저장
     $mq = mq("INSERT adList SET
         title = '".$adTitle."',
+        budget = '".$budget."',
         owner_idx = '".$idx."',
         ctgr_b = '".$category."',
         ctgr_s = '".$sub_ctgr."',
