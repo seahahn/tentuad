@@ -8,10 +8,10 @@ $money = $userinfo['money'];
 
 $adlist = mq("SELECT * FROM adList WHERE owner_idx = '$idx'");
 $adinfo = mysqli_fetch_array($adlist);
-$budget_sum; // 광고 예산 합계
-$cost_sum; // 광고 비용 합계
-$imp_sum; // 광고 노출 수 합계
-$click_sum; // 광고 클릭 수 합계
+$budget_sum = 0; // 광고 예산 합계
+$cost_sum = 0; // 광고 비용 합계
+$imp_sum = 0; // 광고 노출 수 합계
+$click_sum = 0; // 광고 클릭 수 합계
 while($count = $adlist->fetch_array()){
     $budget_sum += $count['budget'];
     $cost_sum += $count['cost'];
