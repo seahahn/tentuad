@@ -21,6 +21,10 @@
     mq("UPDATE aduser SET username='".$name."' WHERE idx='$idx'");
     
 
+    session_start(); // 세션 시작
+    $_SESSION["email"] = $email; // 사용자 이메일
+    $_SESSION["username"] = $name; // 사용자 닉네임
+    $_SESSION["idx"] = $idx; // DB의 사용자 고유 번호(PRIMARY KEY)
     echo("
         <script>
         alert('회원 정보가 수정되었습니다.');
