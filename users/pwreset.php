@@ -97,7 +97,7 @@ if($hash != $db_hash) {
                 return;
             }
 
-            var regPw = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; // 비번 형식 검증식
+            var regPw = /^.*(?=^.{8,16}$)([a-zA-Z]|[0-9]|[~!@#$%^&*()_+|<>?:{}]).*$/; // 비번 형식 검증식
             if(!regPw.test($("#password").val()) || !regPw.test($("#pw_confirm").val())) {
                 alert("올바른 비밀번호 형식이 아닙니다.");
                 return;

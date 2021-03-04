@@ -12,7 +12,11 @@
     $category = $_POST['category']; // 게시판 대분류
     $sub_ctgr = $_POST['sub_ctgr']; // 게시판 소분류
     $url = $_POST['url'];
-    $budget = $_POST['budget'];
+    if(isset($_POST['period_e']) && $_POST['period_e'] != " ") {
+        $budget = $_POST['budget'];
+    } else {
+        
+    }
     $period_s = $_POST['period_s'];
     if(isset($_POST['period_e']) && $_POST['period_e'] != " ") {
         $period_e = $_POST['period_e'];

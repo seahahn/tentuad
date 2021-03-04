@@ -118,7 +118,7 @@ include_once "../util/db_con.php";
                                                 <img id="img43_preview">
                                             </div>
                                             <span class="upload-cencel" ng-click="resetImage('nativeUpload20', 1)"></span>
-                                            <span class="fs-5 align-self-end">800 X 600 | 1MB</span>
+                                            <span class="fs-5 align-self-end">400 X 300 | 1MB</span>
                                             <input id="img43" name="img43[]" type="file" accept=".jpg, .png" title="4:3" class="upload w-0" onchange="handleChange(this);">
                                         </div>
                                         <div class="area-upload d-flex">
@@ -126,7 +126,7 @@ include_once "../util/db_con.php";
                                                 <img id="img34_preview">
                                             </div>
                                             <span class="upload-cencel" ng-click="resetImage('nativeUpload20', 1)"></span>
-                                            <span class="fs-5 align-self-end">600 X 800 | 1MB</span>
+                                            <span class="fs-5 align-self-end">300 X 400 | 1MB</span>
                                             <input id="img34" name="img34[]" type="file" accept=".jpg, .png" title="3:4" class="upload w-0" onchange="handleChange(this);">
                                         </div>
                                         

@@ -6,6 +6,12 @@ function check_input() {
         return;
     }
 
+    if(!$("#budget").val() || $("#no_budget").prop("checked")){
+        alert("광고 예산을 입력해주세요.");                    
+        $("#budget").focus();
+        return;
+    }
+
     console.log($("#category").val());
     console.log($("#sub_ctgr").val());
     if(!$("#category").val()){
