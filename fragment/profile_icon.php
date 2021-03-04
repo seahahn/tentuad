@@ -7,7 +7,7 @@
     </i>
     
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="#">회원정보</a></li>
+        <li><a class="dropdown-item" href="../users/profile.php">회원정보</a></li>
         <li><a class="dropdown-item" href="../users/logout_ok.php">로그아웃</a></li>
     </ul>
 <div>
