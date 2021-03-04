@@ -20,6 +20,7 @@ include_once "../util/db_con.php";
         <noscript>We're sorry, but TENTUPLAY doesn't work properly without JavaScript enabled. Please enable it to continue.</noscript>
         <div>
             <div id="viewport" class="blur1red">
+<<<<<<< HEAD
                 <aside id="sidebar">
                     <div class="sidebar">
                     <nav id="gnb">
@@ -59,6 +60,13 @@ include_once "../util/db_con.php";
                     <div id="content" class="d-flex flex-column">
                     <i data-v-42570b20="" class="round icon align-self-end"><svg data-v-42570b20=""><use data-v-42570b20="" xlink:href="/img/sprites.df5ba72e.svg#user"></use></svg></i>
                     <div>
+=======
+                <?php include_once "../fragment/sidebar.php"; ?>
+
+                <div id="main">
+                    <?php include_once "../fragment/profile_icon.php";?>
+
+>>>>>>> f7ac80c9feaa9f49aaf5d4bda599ef5cd10c771c
                         <div class="container">
                             <h2 class="page headline">광고 만들기</h2>
                             
@@ -101,6 +109,24 @@ include_once "../util/db_con.php";
                                     </div>
 
                                     <div class="row mb-3">
+<<<<<<< HEAD
+=======
+                                        <label for="url" class="col col-form-label">일 광고 예산</label>
+                                        <div class="col-sm-10">
+                                            <div class="row px-3">                                                
+                                                <input type="number" class="form-control" id="budget" name="budget"><span class="align-self-center w-auto">원</span>
+                                                <div class="form-check col-auto align-self-center ms-3">
+                                                    <input class="form-check-input" type="checkbox" value="" id="no_budget" onclick="none_budget();">
+                                                    <label class="form-check-label" for="none_budget">
+                                                        예산 미설정
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+>>>>>>> f7ac80c9feaa9f49aaf5d4bda599ef5cd10c771c
                                         <label for="url" class="col col-form-label">광고 집행 기간</label>
                                         <div class="col-sm-10">
                                             <div class="row px-3">
@@ -177,6 +203,19 @@ include_once "../util/db_con.php";
                     $("#period_e").val("");
                 // }
             }
+<<<<<<< HEAD
+=======
+
+            function none_budget() {
+                if(!$("#no_budget").prop("checked")) {
+                    $("#budget").removeAttr("disabled");
+                    $("#budget").val("");
+                } else {
+                    $("#budget").attr("disabled","disabled");
+                    $("#budget").val("");
+                }
+            }
+>>>>>>> f7ac80c9feaa9f49aaf5d4bda599ef5cd10c771c
             
 
             function endtime() {

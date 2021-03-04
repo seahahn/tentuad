@@ -27,7 +27,6 @@ while($count = $adlist->fetch_array()){
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
-        <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
         <link rel="stylesheet" href="../assets/css/jquery-ui.css" />
         <link rel="stylesheet" href="../assets/css/bootstrap.css" />
 		<!-- <link rel="stylesheet" href="../assets/css/login_chunk.css" /> -->
@@ -119,10 +118,12 @@ while($count = $adlist->fetch_array()){
                                 <div>
                                     <div data-v-80081fce="" class="card" chart-type="Line">
                                         <h5 data-v-80081fce="" class="title">
-                                            <div class="d-flex justify-content-between">
-                                            <span class="align-self-center">그래프</span>
-                                            <span class="align-self-center">기간 : <input type="text" id="datepicker_s"> ~ <input type="text" id="datepicker_e"></span>
-                                            </div>
+                                            그래프
+                                            <i data-v-80081fce="" class="help icon has-tooltip" data-original-title="null">
+                                            <svg data-v-80081fce="">
+                                                <use data-v-80081fce="" xlink:href="/img/sprites.df5ba72e.svg#help-circle"></use>
+                                            </svg>
+                                            </i>
                                         </h5>
                                         <div data-v-80081fce="" class="content">
                                             <canvas id="myChart"></canvas>
@@ -220,7 +221,6 @@ while($count = $adlist->fetch_array()){
         <?php include_once "../util/scripts.php" ?>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
         $(document).ready( function () {
             $('#table_id').DataTable();
@@ -235,13 +235,13 @@ while($count = $adlist->fetch_array()){
             data: {
                 labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
                 datasets: [{
-                    label: '비용',
+                    label: 'My First dataset',
                     backgroundColor: 'rgb(255, 255, 255, 0)',
                     borderColor: 'rgb(255, 99, 132)',
                     data: [0, 10, 5, 2, 20, 30, 45]
                 },
                 {
-                    label: '노출 수',
+                    label: 'My Second dataset',
                     backgroundColor: 'rgb(255, 255, 255, 0)',
                     borderColor: 'rgb(51, 0, 255)',
                     data: [3, 14, 6, 7, 4, 25, 45]
@@ -251,32 +251,6 @@ while($count = $adlist->fetch_array()){
             // Configuration options go here
             options: {}
         });
-
-        $( function() {
-            $( "#datepicker_s" ).datepicker({
-                changeMonth: true,
-                changeYear: true,
-                showButtonPanel: true
-            });
-            $( "#datepicker_s" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-            $( "#datepicker_e" ).datepicker({
-                changeMonth: true,
-                changeYear: true,
-                showButtonPanel: true
-            });
-            $( "#datepicker_e" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-
-            // $( "#datepicker_s" ).datepicker({
-            //     changeMonth: true,
-            //     changeYear: true,
-            //     showButtonPanel: true
-            // });
-            // $( "#datepicker_e" ).datepicker({
-            //     changeMonth: true,
-            //     changeYear: true,
-            //     showButtonPanel: true
-            // });
-        } );
         </script>
     </body>
 </html>

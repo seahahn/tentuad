@@ -12,6 +12,7 @@
     $category = $_POST['category']; // 게시판 대분류
     $sub_ctgr = $_POST['sub_ctgr']; // 게시판 소분류
     $url = $_POST['url'];
+    $budget = $_POST['budget'];
     $period_s = $_POST['period_s'];
     if(isset($_POST['period_e']) && $_POST['period_e'] != " ") {
         $period_e = $_POST['period_e'];
@@ -33,8 +34,6 @@
     if($exists == 0)    {
         mq("ALTER TABLE adList AUTO_INCREMENT = 1"); // 게시판에 게시물 없는 경우 auto_increment 값 초기화
     }
-
-    print_r($_FILES['img11']['name'][0]);
 
     if($_FILES) {
         $baseDownFolder = "../images/"; // 로컬 컴퓨터 내에 임시로 파일 저장해둘 위치
@@ -131,6 +130,7 @@
     // DB 저장
     $mq = mq("INSERT adList SET
         title = '".$adTitle."',
+        budget = '".$budget."',
         owner_idx = '".$idx."',
         ctgr_b = '".$category."',
         ctgr_s = '".$sub_ctgr."',
@@ -141,8 +141,12 @@
         img43 = '".$img43."',
         img34 = '".$img34."'
         ");
+
+    // echo $img11.' '.$img43.' '.$img34;
+    // echo '<br>';
+    
 ?>
     <script>
         alert("광고가 등록되었습니다.");
-        location.href = 'dashboard.php';
+        // location.href = 'dashboard.php';
     </script>
