@@ -96,19 +96,19 @@ function handleChange(file) {
                         return;
                     }
                 } else if(id == "img43") {
-                    if (width == 800 && height == 600) { //Judge file pixels
+                    if (width == 400 && height == 300) { //Judge file pixels
                     //upload image 
                     $('#img43_preview').attr('src', data);
                     } else {
-                        alert("이미지 픽셀 크기가 800X600이 아닙니다!");
+                        alert("이미지 픽셀 크기가 400X300이 아닙니다!");
                         return;
                     }
                 } else if(id == "img34") {
-                    if (width == 600 && height == 800) { //Judge file pixels
+                    if (width == 300 && height == 400) { //Judge file pixels
                     //upload image 
                     $('#img34_preview').attr('src', data);
                     } else {
-                        alert("이미지 픽셀 크기가 600X800이 아닙니다!");
+                        alert("이미지 픽셀 크기가 300X400이 아닙니다!");
                         return;
                     }
                 }

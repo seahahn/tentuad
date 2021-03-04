@@ -1,5 +1,11 @@
 /* 필수 입력 채우지 않았을 경우 경고창 띄우기*/
 function check_input() {
+    if(!$("#usergroup0").val() && !$("#usergroup1").val()){
+        alert("회원 구분을 선택해주세요.");                    
+        $("#email").focus();
+        return;
+    }
+
     if(!$("#email").val()){
         alert("이메일 주소를 입력해주세요.");                    
         $("#email").focus();
@@ -22,6 +28,12 @@ function check_input() {
         alert("비밀번호가 일치하지 않습니다.\n다시 입력해주세요.");
         $("#password").focus();
         $("#password").select();
+        return;
+    }
+
+    if(!$("#pw_check_msg").attr("data-check") != "1"){
+        alert("올바른 비밀번호 형식이 아닙니다.");
+        $("#password").focus();
         return;
     }
 
@@ -59,20 +71,21 @@ $(function(){
 /* 비밀번호 입력 및 일치 여부 검증 */
 $(function(){
     $("#pw_confirm").blur(function(){
-        var regPw = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; // 비번 형식 검증식
+        var regPw = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[!@#$%^&+=]).*$/; // 비번 형식 검증식
+        // var regPw = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; // 비번 형식 검증식
         if($("#password").val()==""){
             $("#pw_check_msg").html("비밀번호를 입력해주세요.").css("color", "red").attr("data-check", "0");
             $("#password").focus();
         } else if($(this).val()==""){            
             $("#pw_check_msg").html("비밀번호 확인을 입력해주세요.").css("color", "red").attr("data-check", "0");
             $(this).focus();
-        }else if(!regPw.test(($(this)).val()) || !regPw.test($("#password").val())) {
-            console.log(regPw.test(($(this)).val()));
-            $("#pw_shape").css("color", "red").attr("data-check", "0");
-            $("#pw_check_msg").html("올바른 비밀번호 형식이 아닙니다.").css("color", "red").attr("data-check", "0");
         } else if($(this).val() != $("#password").val()){
             $("#pw_shape").css("color", "silver").attr("data-check", "0");
             $("#pw_check_msg").html("비밀번호가 일치하지 않습니다.").css("color", "red").attr("data-check", "0");
+        } else if(!regPw.test(($(this)).val()) || !regPw.test($("#password").val())) {
+            console.log(regPw.test(($(this)).val()));
+            $("#pw_shape").css("color", "red").attr("data-check", "0");
+            $("#pw_check_msg").html("올바른 비밀번호 형식이 아닙니다.").css("color", "red").attr("data-check", "0");
         } else {    
             $("#pw_shape").css("color", "silver").attr("data-check", "0");
             $("#pw_check_msg").html("비밀번호가 일치합니다.").css("color", "blue").attr("data-check", "1");

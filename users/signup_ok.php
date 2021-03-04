@@ -107,7 +107,7 @@ try {
 
           <!-- 버튼 -->
           <div style="margin-bottom:20px;text-align:center">
-            <u></u><a style="border:1px #ff6900 solid;border-radius:30px;display:inline-block;font-size:14px;font-weight:bold;line-:1;padding:12px 24px;text-align:center;text-decoration:none!important;color:#ffffff!important;background-color:#ff6900;font-family:sans-serif" href="http://52.79.143.149/ad/verify.php?email='.$email.'&hash='.$hash.'" target="_blank" rel="noreferrer noopener">계정 활성화하기</a><u></u>
+            <u></u><a style="border:1px #ff6900 solid;border-radius:30px;display:inline-block;font-size:14px;font-weight:bold;line-:1;padding:12px 24px;text-align:center;text-decoration:none!important;color:#ffffff!important;background-color:#ff6900;font-family:sans-serif" href="http://52.79.143.149/ad/users/verify.php?email='.$email.'&hash='.$hash.'" target="_blank" rel="noreferrer noopener">계정 활성화하기</a><u></u>
           </div>
 
         </div>

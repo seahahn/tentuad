@@ -29,9 +29,9 @@
                             <form data-v-65f80472="" id="formSignupKR" name="formSignupKR" method="POST" action="./signup_ok.php">
                                 <ul data-v-65f80472="" class="fieldset">
                                 <li data-v-65f80472="">
-                                    <input data-v-65f80472="" type="radio" name="usergroup" value="0" style="margin-right:5px">광고주
+                                    <input data-v-65f80472="" type="radio" id="usergroup0" name="usergroup" value="0" style="margin-right:5px">광고주
                                     <span style="margin-right:50px"></span>
-                                    <input data-v-65f80472="" type="radio" name="usergroup" value="1" style="margin-right:5px">게임사
+                                    <input data-v-65f80472="" type="radio" id="usergroup1" name="usergroup" value="1" style="margin-right:5px">게임사
                                     <label data-v-65f80472="">회원 구분</label><!---->
                                 </li>
                                 <li data-v-65f80472="">
@@ -80,7 +80,7 @@
             </div>
         </div>
         <?php include_once "../util/scripts.php" ?>
-        <script src="../assets/js/signup.js"></script> <!-- 회원가입 기능을 위한 스크립트-->
+        <script src="../assets/js/signup.js?ver=2"></script> <!-- 회원가입 기능을 위한 스크립트-->
 
     </body>
 </html>
