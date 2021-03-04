@@ -72,6 +72,7 @@
         if(count($_FILES['img43']['name']) > 0 && $_FILES['img43']['name'][0] != "") {
             // 실제 파일명 
             $real_filename = $_FILES['img11']['name'][0];
+            echo $real_filename;
 
             // 파일 확장자 체크 
             $nameArr = explode(".", $real_filename);
@@ -150,5 +151,5 @@
 ?>
     <script>
         alert("광고가 등록되었습니다.");
-        location.href = 'dashboard.php';
+        // location.href = 'dashboard.php';
     </script>
