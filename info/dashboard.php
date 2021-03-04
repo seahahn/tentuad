@@ -2,8 +2,22 @@
 include_once "../util/config.php";
 include_once "../util/db_con.php";
 
-$result = mq("SELECT * FROM aduser WHERE email='$email'");
-$row = mysqli_fetch_array($result);
+$aduser = mq("SELECT * FROM aduser WHERE email='$email'");
+$userinfo = mysqli_fetch_array($aduser);
+$money = $userinfo['money'];
+
+$adlist = mq("SELECT * FROM adList WHERE owner_idx = '$idx'");
+$adinfo = mysqli_fetch_array($adlist);
+$budget_sum; // 광고 예산 합계
+$cost_sum; // 광고 비용 합계
+$imp_sum; // 광고 노출 수 합계
+$click_sum; // 광고 클릭 수 합계
+while($count = $adlist->fetch_array()){
+    $budget_sum += $count['budget'];
+    $cost_sum += $count['cost'];
+    $imp_sum += $count['imp'];
+    $click_sum += $count['click'];
+}
 
 ?>
 
@@ -71,7 +85,7 @@ $row = mysqli_fetch_array($result);
                                             <dd role="status">
                                                 <!---->
                                             </dd>
-                                            <dd class="highlight">100,000 원</dd>
+                                            <dd class="highlight"><?=$money?> 원</dd>
                                             </dl>
 
                                             <dl>
@@ -81,7 +95,7 @@ $row = mysqli_fetch_array($result);
                                             <dd role="status">
                                                 <!---->
                                             </dd>
-                                            <dd class="highlight">50,000 원</dd>
+                                            <dd class="highlight"><?=$budget_sum?> 원</dd>
                                             </dl>
 
                                             <dl>
@@ -91,7 +105,7 @@ $row = mysqli_fetch_array($result);
                                             <dd role="status">
                                                 <!---->
                                             </dd>
-                                            <dd class="highlight">30,000 원</dd>
+                                            <dd class="highlight"><?=$cost_sum?> 원</dd>
                                             </dl>
 
                                             <dl>
@@ -101,7 +115,7 @@ $row = mysqli_fetch_array($result);
                                             <dd role="status">
                                                 <!---->
                                             </dd>
-                                            <dd class="highlight">100</dd>
+                                            <dd class="highlight"><?=$imp_sum?></dd>
                                             </dl>
 
                                             <dl>
@@ -111,7 +125,7 @@ $row = mysqli_fetch_array($result);
                                             <dd role="status">
                                                 <!---->
                                             </dd>
-                                            <dd class="highlight">70</dd>
+                                            <dd class="highlight"><?=$click_sum?></dd>
                                             </dl>
                                         </div>
                                     </div>
