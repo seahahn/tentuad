@@ -141,10 +141,6 @@
         img43 = '".$img43."',
         img34 = '".$img34."'
         ");
-
-    // echo $img11.' '.$img43.' '.$img34;
-    // echo '<br>';
-    
 ?>
     <script>
         alert("광고가 등록되었습니다.");
