@@ -200,6 +200,11 @@
                         ticks: {
                             source: 'data'
                         }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true,
+                        }
                     }]
             }
 
@@ -246,10 +251,69 @@
         }
 
         function datepick_e(chart) {
-            
-            
-            console.log("datepick_e");
-            chart.update();
+            config.options.scales = {
+                xAxes: [{
+                        type: 'time',
+                        time: {
+                            parser: 'YYYY-MM-DD HH:mm:ss',
+                            unit: 'month',
+                            displayFormats: {
+                                month: 'MM-DD'
+                            },
+                            min: sdate,
+                            max: edate
+                        },
+                        ticks: {
+                            source: 'data'
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true,
+                        }
+                    }]
+            }
+
+            // X축에 변경된 날짜 범위 적용
+            var time = chart.options.scales.xAxes[0].time, // 'time' object reference
+                // difference (in days) between min and max date
+                timeDiff = moment(time.max).diff(moment(time.min), 'd');
+            // populate 'labels' array
+            // (create a date string for each date between min and max, inclusive)
+            for (i = 0; i <= timeDiff; i++) {
+                chart.data.labels.splice(-1,1); // 기존 데이터 전부 제거(안그러면 왼쪽 끝부터 표시되지 않음)
+            }
+            for (i = 0; i <= timeDiff; i++) {
+                var _label = moment(time.min).add(i, 'd').format('YYYY-MM-DD HH:mm:ss');
+                chart.data.labels.push(_label);
+            }
+
+            // 변경된 날짜 범위에 해당하는 데이터 가져오기
+            checkImpClick();
+
+            // 새로운 데이터셋 불러오기
+            var dataset = config.data.datasets;
+		    for(var i=0; i<dataset.length; i++){
+                config.data.datasets.splice(-1,1); // 기존 데이터셋 삭제
+            }
+            config.data.datasets = [
+                {
+                    label: '노출 수',
+                    // yAxisID: 'A',
+                    backgroundColor: 'rgb(255, 255, 255, 0)',
+                    borderColor: 'rgb(255, 105, 0)',
+                    data: imp
+                },
+                {
+                    label: '클릭 수',
+                    // yAxisID: 'A',
+                    backgroundColor: 'rgb(255, 255, 255, 0)',
+                    borderColor: 'rgb(51, 0, 255)',
+                    data: click
+                }];
+
+            console.log(config.data.datasets);
+            // chart.update();
         }
 
         /* 시작일~종료일에 해당되는 노출수, 클릭수 불러오기*/
