@@ -326,6 +326,11 @@ while($count = $adlist->fetch_array()){
                         ticks: {
                             source: 'data'
                         }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:false,
+                        }
                     }]
                 }
             },
