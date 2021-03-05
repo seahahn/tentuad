@@ -360,11 +360,11 @@ while($count = $adlist->fetch_array()){
                 },
                 success : function(data){
                     if(data){
-                        imp = data.imp;
+                        imp = data['imp'];
                         click = data.click;
                         console.log("노출수, 클릭수 불러오기 성공");
-                        console.log(data);
-                        console.log(data['imp']);
+                        console.log("data : " + data);
+                        console.log(imp);
                         console.log(click);
                         config.data.datasets = [
                         {
