@@ -15,6 +15,12 @@ if($hash == $db_hash) {
                 hashv = ''
                 WHERE email='$email'
                 ");
+} else {
+    echo "<script>
+        alert('잘못된 접근입니다.');
+        history.go(-1)
+        </script>";
+    return;
 }
 ?>
 

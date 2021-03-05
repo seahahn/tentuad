@@ -1,8 +1,7 @@
 /* 필수 입력 채우지 않았을 경우 경고창 띄우기*/
 function check_input() {
-    if(!$("#usergroup0").val() && !$("#usergroup1").val()){
-        alert("회원 구분을 선택해주세요.");                    
-        $("#email").focus();
+    if(!$("#usergroup0").prop("checked") && !$("#usergroup1").prop("checked")){
+        alert("회원 구분을 선택해주세요.");
         return;
     }
 
@@ -31,7 +30,7 @@ function check_input() {
         return;
     }
 
-    if(!$("#pw_check_msg").attr("data-check") != "1"){
+    if($("#pw_check_msg").attr("data-check") != "1"){
         alert("올바른 비밀번호 형식이 아닙니다.");
         $("#password").focus();
         return;
