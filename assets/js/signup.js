@@ -11,6 +11,12 @@ function check_input() {
         return;
     }
 
+    if($("#email_check_msg").attr("data-check") != "1"){
+        alert("중복된 이메일입니다.");
+        $("#email").focus();
+        return;
+    }
+
     if(!$("#password").val()){
         alert("비밀번호를 입력해주세요.");
         $("#password").focus();
@@ -61,8 +67,8 @@ $(function(){
             $("#email_check_msg").html("올바른 이메일 주소가 아닙니다.").css("color", "red").attr("data-check", "0");
             $(this).focus();
         } else {
-            // checkEmailAjax();
-            $("#email_check_msg").html("사용 가능한 이메일입니다.").css("color", "blue").attr("data-check", "1");                            
+            checkEmailAjax();
+            // $("#email_check_msg").html("사용 가능한 이메일입니다.").css("color", "blue").attr("data-check", "1");                            
         }
     });
 });

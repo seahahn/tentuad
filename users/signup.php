@@ -80,7 +80,7 @@
             </div>
         </div>
         <?php include_once "../util/scripts.php" ?>
-        <script src="../assets/js/signup.js?ver=3"></script> <!-- 회원가입 기능을 위한 스크립트-->
+        <script src="../assets/js/signup.js"></script> <!-- 회원가입 기능을 위한 스크립트-->
 
     </body>
 </html>
