@@ -17,13 +17,13 @@
 
 					<ul class="global navigation">
 						<li>
-							<a href="/ko/products/">제품소개(미완)</a>
+							<a href="/ko/products/">제품소개</a>
 						</li>
 						<li>
-							<a href="/ko/pricing/">가격정책(미완)</a>
+							<a href="/ko/pricing/">가격정책</a>
 						</li>
 						<li>
-							<a href="/ko/docs/">개발자문서(미완)</a>
+							<a href="/ko/docs/">개발자문서</a>
 						</li>
 					</ul>
 				</nav>
@@ -170,7 +170,7 @@
 						<h5 class="small headline with margin">개발자</h5>
 						<ul>
 							<li>
-								<a href="/ko/docs/">개발자문서(미완)</a>
+								<a href="/ko/docs/">개발자문서</a>
 							</li>
 						</ul>
 					</div>
@@ -182,13 +182,13 @@
 								<a href="users/signup.php" target="_blank">광고 관리로 이동</a>
 							</li>
 							<li>
-								<a href="/ko/terms/">서비스 이용약관(미완)</a>
+								<a href="/ko/terms/">서비스 이용약관</a>
 							</li>
 							<li>
-								<a href="/ko/privacy/">개인정보이용방침(미완)</a>
+								<a href="/ko/privacy/">개인정보이용방침</a>
 							</li>
 							<li>
-								<a href="/ko/contact/">문의하기(미완)</a>
+								<a href="/ko/contact/">문의하기</a>
 							</li>
 						</ul>
 					</div>
