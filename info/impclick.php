@@ -4,8 +4,8 @@ include_once "../util/config.php";
 
 // $labels = $_POST['labels'];
 $labels = ["2021-02-27", "2021-02-28", "2021-03-01", "2021-03-02", "2021-03-03", "2021-03-04", "2021-03-05", "2021-03-06"];
-// $adlist = mq("SELECT * FROM adList WHERE owner_idx = '$idx'");
-$adlist = mq("SELECT * FROM adList WHERE owner_idx = '16'");
+$adlist = mq("SELECT * FROM adList WHERE owner_idx = '$idx'");
+// $adlist = mq("SELECT * FROM adList WHERE owner_idx = '16'");
 $imp = [];
 $click = [];
 // 날짜별 클릭수, 노출수 불러오기
@@ -13,7 +13,7 @@ for($i = 0; $i < count($labels); $i++){ // 설정된 날짜 갯수만큼 반복
     // echo 'for '.$i;
     // echo '<br>';
     $adlist = mq("SELECT * FROM adList WHERE owner_idx = '$idx'"); // 쿼리문 안 넣으면 반복이 안됨
-    $adlist = mq("SELECT * FROM adList WHERE owner_idx = '16'"); // 쿼리문 안 넣으면 반복이 안됨
+    // $adlist = mq("SELECT * FROM adList WHERE owner_idx = '16'"); // 쿼리문 안 넣으면 반복이 안됨
     while($impclick = $adlist->fetch_array()){ // 해당 날짜에 기록된 광고 노출/클릭 수 불러오기
         // echo $i;
         // echo '<br>';
@@ -25,8 +25,8 @@ for($i = 0; $i < count($labels); $i++){ // 설정된 날짜 갯수만큼 반복
         // echo 'date :'.$date;
         // echo '<br>';
         // $query = mq("SELECT * FROM UserAdClick WHERE owner_idx = '".$impclick['owner_idx']."' AND DATE(actiondate)='".$date."'");
-        $query_imp = mq("SELECT * FROM UserAdClick WHERE owner_idx = '16' AND DATE(actiondate)='".$date."'");
-        $query_click = mq("SELECT * FROM UserAdClick WHERE owner_idx = '16' AND isClick='1' AND DATE(actiondate)=DATE('".$date."')");
+        $query_imp = mq("SELECT * FROM UserAdClick WHERE owner_idx = '".$impclick['owner_idx']."' AND DATE(actiondate)='".$date."'");
+        $query_click = mq("SELECT * FROM UserAdClick WHERE owner_idx = '".$impclick['owner_idx']."' AND isClick='1' AND DATE(actiondate)=DATE('".$date."')");
         $imp[$i] = mysqli_num_rows($query_imp); // 노출 수
         $click[$i] = mysqli_num_rows($query_click); // 노출 수
         // echo 'mysqli_num_rows imp :'.$imp[$i];
