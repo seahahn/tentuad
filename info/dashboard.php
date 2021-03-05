@@ -373,7 +373,7 @@ while($count = $adlist->fetch_array()){
             $.ajax({
                 url : "./impclick.php",
                 type : "POST",
-                traditional : true,
+                // traditional : true,
                 dataType : "JSON",
                 data : {
                     "labels" : config.data.labels
