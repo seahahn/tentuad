@@ -217,10 +217,10 @@ while($count = $adlist->fetch_array()){
                                                         <td><?=$cost;?></td>
                                                         <td><?=$imp;?></td>
                                                         <td><?=$click;?></td>
-                                                        <td><?php if($imp==0) { echo '-';} else { ($click/$imp)*100; }?></td>
-                                                        <td><?php if($imp==0) { echo '-';} else { $cost/$imp; }?></td>
-                                                        <td><?php if($click==0) { echo '-';} else { $cost/$click; }?></td>
-                                                        <td><?=$start.' ~ '.$end;?></td>
+                                                        <td><?php if($imp==0) { echo '-';} else { echo round(($click/$imp)*100).'%'; echo '<script>console.log('.(($click/$imp)*100).');</script>';}?></td>
+                                                        <td><?php if($imp==0) { echo '-';} else { echo round($cost/$imp); echo '<script>console.log('.($cost/$imp).');</script>';}?></td>
+                                                        <td><?php if($click==0) { echo '-';} else { echo round($cost/$click); echo '<script>console.log('.($cost/$click).');</script>';}?></td>
+                                                        <td><?=$start.'~'.$end;?></td>
                                                     </tr>
                                                         <?php
                                                         }
@@ -248,8 +248,8 @@ while($count = $adlist->fetch_array()){
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript">
-        console.log(moment().format("MM-DD"));
-
+        // console.log(moment().format("MM-DD"));
+        
         // 화면 하단 광고 지표(노출 수, 클릭 수, 클릭률 등) 표시하는 테이블
         $(document).ready( function () {
             $('#table_id').DataTable();
@@ -308,6 +308,7 @@ while($count = $adlist->fetch_array()){
 
         // 화면 중앙 광고 지표 표시하는 꺾은선그래프(차트)
         var ctx = document.getElementById('myChart').getContext('2d'); // 차트 불러올 위치 초기화
+        // 차트 옵션 초기화
         var config = {
             type: 'line',
             options: {
@@ -367,31 +368,29 @@ while($count = $adlist->fetch_array()){
                     data: []
                 }]
             }
-        }; // 차트 옵션 설정
-        
+        };
         
         var chart = new Chart(ctx, config); // 차트 초기화
-        console.log(config.data.labels);
+
         /* 시작일~종료일에 해당되는 노출수, 클릭수 불러오기*/
         // function checkImpClick(){
             $(document).ready( function () {
-                console.log('ajaxtest');
             $.ajax({
                 url : "./impclick.php",
                 type : "POST",
                 // traditional : true,
                 dataType : "JSON",
                 data : {
-                    "labels" : config.data.labels
+                    "labels" : config.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
                 },
                 success : function(data){
                     if(data){
-                        imp = data['imp'];
+                        imp = data.imp;
                         click = data.click;
-                        console.log("노출수, 클릭수 불러오기 성공");
-                        console.log("data : " + data);
-                        console.log(imp);
-                        console.log(click);
+                        // console.log("노출수, 클릭수 불러오기 성공");
+                        // console.log("data : " + data);
+                        // console.log(imp);
+                        // console.log(click);
                         config.data.datasets = [
                         {
                             label: '노출 수',
@@ -495,65 +494,52 @@ while($count = $adlist->fetch_array()){
         }
 
         function datepick_e(chart) {
-            config.options.scales = {
-                xAxes: [{
-                        type: 'time',
-                        time: {
-                            parser: 'YYYY-MM-DD HH:mm:ss',
-                            unit: 'month',
-                            displayFormats: {
-                                month: 'MM-DD'
-                            },
-                            min: sdate,
-                            max: edate
-                        },
-                        ticks: {
-                            source: 'data'
-                        }
-                    }]
-            }
-
-            var imp = []; // 노출 수
-            var click = []; // 클릭 수
-            // X축에 변경된 날짜 범위 적용
-            var time = chart.options.scales.xAxes[0].time, // 'time' object reference
-                // difference (in days) between min and max date
-                timeDiff = moment(time.max).diff(moment(time.min), 'd');
-            // populate 'labels' array
-            // (create a date string for each date between min and max, inclusive)
-            for (i = 0; i <= timeDiff; i++) {
-                chart.data.labels.splice(-1,1); // 기존 데이터 전부 제거(안그러면 왼쪽 끝부터 표시되지 않음)
-            }
-            for (i = 0; i <= timeDiff; i++) {
-                var _label = moment(time.min).add(i, 'd').format('YYYY-MM-DD HH:mm:ss');
-                chart.data.labels.push(_label);
-                imp.push((Math.floor(Math.random() * (300 - 100)) + 100));
-                click.push(Math.floor(Math.random() * (100 - 0)));
-            }
             
-            // 새로운 데이터셋 불러오기
-            var dataset = config.data.datasets;
-		    for(var i=0; i<dataset.length; i++){
-                config.data.datasets.splice(-1,1); // 기존 데이터셋 삭제
-            }
-            config.data.datasets = [
-                {
-                    label: '노출 수',
-                    // yAxisID: 'A',
-                    backgroundColor: 'rgb(255, 255, 255, 0)',
-                    borderColor: 'rgb(255, 105, 0)',
-                    data: imp
-                },
-                {
-                    label: '클릭 수',
-                    // yAxisID: 'A',
-                    backgroundColor: 'rgb(255, 255, 255, 0)',
-                    borderColor: 'rgb(51, 0, 255)',
-                    data: click
-                }];
             
             console.log("datepick_e");
             chart.update();
+        }
+
+        /* 시작일~종료일에 해당되는 노출수, 클릭수 불러오기*/
+        function checkImpClick(){
+            // $(document).ready( function () {
+            $.ajax({
+                url : "./impclick.php",
+                type : "POST",
+                // traditional : true,
+                dataType : "JSON",
+                data : {
+                    "labels" : config.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
+                },
+                success : function(data){
+                    if(data){
+                        imp = data['imp'];
+                        click = data.click;
+                        // console.log("노출수, 클릭수 불러오기 성공");
+                        // console.log("data : " + data);
+                        // console.log(imp);
+                        // console.log(click);
+                        config.data.datasets = [
+                        {
+                            label: '노출 수',
+                            // yAxisID: 'A',
+                            backgroundColor: 'rgb(255, 255, 255, 0)',
+                            borderColor: 'rgb(255, 105, 0)',
+                            data: imp
+                        },
+                        {
+                            label: '클릭 수',
+                            // yAxisID: 'A',
+                            backgroundColor: 'rgb(255, 255, 255, 0)',
+                            borderColor: 'rgb(51, 0, 255)',
+                            data: click
+                        }];
+                        chart.update();
+                    } else {
+                        console.log("노출수, 클릭수 불러오기 실패");
+                    }
+                }
+            });
         }
         </script>
     </body>
