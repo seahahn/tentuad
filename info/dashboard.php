@@ -171,6 +171,24 @@ while($count = $adlist->fetch_array()){
                                                             $title = $ad['title'];
                                                             $onoff = $ad['onoff'];
                                                             $status = $ad['status'];
+                                                            switch($status){
+                                                                //광고중(0), 광고 중지(1), 광고 운영 불가(예산 부족(2), 검수 반려(3)), 심사중(4)
+                                                                case 0:
+                                                                    $status_show = '광고중';
+                                                                    break;
+                                                                case 1:
+                                                                    $status_show = '광고 중지';
+                                                                    break;
+                                                                case 2:
+                                                                    $status_show = '예산 부족';
+                                                                    break;
+                                                                case 3:
+                                                                    $status_show = '검수 반려';
+                                                                    break;
+                                                                case 4:
+                                                                    $status_show = '심사중';
+                                                                    break;
+                                                            }
                                                             $budget = $ad['budget'];
                                                             $cost = $ad['cost'];
                                                             $imp = $ad['imp'];
@@ -191,10 +209,10 @@ while($count = $adlist->fetch_array()){
                                                         <td><?=$title;?></td>
                                                         <td>
                                                             <div class="form-check form-switch">
-                                                                <input class="form-check-input" type="checkbox" id="switch_<?=$idx?>">
+                                                                <input class="form-check-input" type="checkbox" id="switch_<?=$idx?>" checked>
                                                             </div>
                                                         </td>
-                                                        <td><?=$status;?></td>
+                                                        <td><?=$status_show;?></td>
                                                         <td><?=$budget;?></td>
                                                         <td><?=$cost;?></td>
                                                         <td><?=$imp;?></td>
@@ -317,7 +335,7 @@ while($count = $adlist->fetch_array()){
                     // populate 'labels' array
                     // (create a date string for each date between min and max, inclusive)
                     for (i = 0; i <= timeDiff; i++) {
-                        var _label = moment(time.min).add(i, 'd').format('YYYY-MM-DD HH:mm:ss');
+                        var _label = moment(time.min).add(i, 'd').format('YYYY-MM-DD');
                         chart.data.labels.push(_label);
                     }
                 }
