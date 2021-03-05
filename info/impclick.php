@@ -2,8 +2,8 @@
 include_once "../util/db_con.php";
 include_once "../util/config.php";
 
-// $labels = $_POST['labels'];
-$labels = ["2021-02-27", "2021-02-28", "2021-03-01", "2021-03-02", "2021-03-03", "2021-03-04", "2021-03-05", "2021-03-06"];
+$labels = $_POST['labels'];
+// $labels = ["2021-02-27", "2021-02-28", "2021-03-01", "2021-03-02", "2021-03-03", "2021-03-04", "2021-03-05", "2021-03-06"];
 $adlist = mq("SELECT * FROM adList WHERE owner_idx = '$idx'");
 $imp = [];
 $click = [];
