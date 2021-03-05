@@ -25,7 +25,7 @@ for($i = 0; $i < count($labels); $i++){ // 설정된 날짜 갯수만큼 반복
         // echo 'date :'.$date;
         // echo '<br>';
         // $query = mq("SELECT * FROM UserAdClick WHERE owner_idx = '".$impclick['owner_idx']."' AND DATE(actiondate)='".$date."'");
-        $query_imp = mq("SELECT * FROM UserAdClick WHERE owner_idx = '".$impclick['owner_idx']."' AND DATE(actiondate)='".$date."'");
+        $query_imp = mq("SELECT * FROM UserAdClick WHERE owner_idx = '".$impclick['owner_idx']."' AND isClick='0' AND DATE(actiondate)=DATE('".$date."')");
         $query_click = mq("SELECT * FROM UserAdClick WHERE owner_idx = '".$impclick['owner_idx']."' AND isClick='1' AND DATE(actiondate)=DATE('".$date."')");
         $imp[$i] = mysqli_num_rows($query_imp); // 노출 수
         $click[$i] = mysqli_num_rows($query_click); // 노출 수

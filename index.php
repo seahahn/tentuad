@@ -52,7 +52,7 @@
 				</p>
 
 				<div class="call to action">
-					<a class="capitalized primary button" href="users/signup.php" target="_blank">광고 시작하기</a>
+					<a class="capitalized primary button" href="./users/signup.php" target="_blank">광고 시작하기</a>
 				</div>
 				</div>
 			</div>

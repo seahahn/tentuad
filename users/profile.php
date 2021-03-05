@@ -5,6 +5,15 @@ include_once "../util/db_con.php";
 $sql = "SELECT * FROM aduser WHERE email='$email'";
 $result = mq($sql);
 $userinfo = mysqli_fetch_array($result);
+$usergroup = $userinfo['usergroup'];
+switch($usergroup){
+    case 0:
+        $usergroup_show = '광고주';
+        break;
+    case 1:
+        $usergroup_show = '게임사';
+        break;
+}
 $phone = $userinfo['phone'];
 ?>
 
@@ -33,6 +42,7 @@ $phone = $userinfo['phone'];
                         <div data-v-0a969038="" class="tiny grid bg-white p-5">
                             <form data-v-0a969038="" id="profile" name="profile" method="POST" action="./profile_ok.php">
                                 <ul data-v-0a969038="" class="fieldset">
+                                    <li data-v-0a969038="" data-children-count="1"><input data-v-0a969038="" type="text" value="<?=$usergroup_show?>" maxlength="50" readonly="readonly"><label data-v-0a969038="">회원 구분</label></li>
                                     <li data-v-0a969038="" data-children-count="1"><input data-v-0a969038="" type="email" value="<?=$email?>" maxlength="50" readonly="readonly"><label data-v-0a969038="">이메일</label></li>
                                     <li data-v-0a969038="" data-children-count="1">
                                         <input data-v-0a969038="" id="password" name="password" type="password" maxlength="16" class="" data-kwimpalastatus="alive" data-kwimpalaid="1614837893747-15"><label data-v-0a969038="">새 비밀번호</label>
