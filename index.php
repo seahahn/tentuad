@@ -25,6 +25,9 @@
 						<li>
 							<a href="/ko/docs/">개발자문서</a>
 						</li>
+						<li>
+							<a href="https://tentuad.s3.ap-northeast-2.amazonaws.com/pkg/TentuAd_SDK.unitypackage">SDK 다운로드</a>
+						</li>
 					</ul>
 				</nav>
 
@@ -171,6 +174,9 @@
 						<ul>
 							<li>
 								<a href="/ko/docs/">개발자문서</a>
+							</li>
+							<li>
+								<a href="/ko/docs/">SDK 다운로드</a>
 							</li>
 						</ul>
 					</div>
