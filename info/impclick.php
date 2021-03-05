@@ -27,7 +27,7 @@ for($i = 0; $i < count($labels); $i++){ // 설정된 날짜 갯수만큼 반복
         // echo 'mysqli_num_rows :'.mysqli_num_rows($query);
         // echo '<br>';
         $clicksql = mysqli_fetch_array($query);
-        if($clicksql['isClick'] != null) {
+        if(isset($clicksql['isClick'])) {
             $click[$i] = $clicksql['isClick'];
         } else {
             $click[$i] = 0;
@@ -42,7 +42,7 @@ for($i = 0; $i < count($labels); $i++){ // 설정된 날짜 갯수만큼 반복
     // echo '<br>';
 }
 for($i=0; $i<count($click); $i++){
-    if($click[$i] == null) $click[$i] = 0;
+    if(!isset($clicksql['isClick'])) $click[$i] = 0;
 }
 $ret['imp'] = $imp;
 $ret['click'] = $click;
