@@ -123,7 +123,8 @@ $phone = $userinfo['phone'];
                 //     $("#name").focus();
                 //     return;
                 // }
-                var regPw = /^.*(?=^.{8,16}$)([a-zA-Z]|[0-9]|[~!@#$%^&*()_+|<>?:{}]).*$/; // 비번 형식 검증식
+                var regPw = /^((?=.*\d)|(?=.*\W)).{8,16}$/; // 비번 형식 검증식
+                // var regPw = /^.*(?=^.{8,16}$)([a-zA-Z]|[0-9]|[~!@#$%^&*()_+|<>?:{}]).*$/; // 비번 형식 검증식
                 if($("#password").val()==""){
                         $("#pw_check_msg").html("비밀번호를 입력해주세요.").css("color", "red").attr("data-check", "0");
                         $("#pw_shape").css("color", "red").attr("data-check", "0");
@@ -153,7 +154,8 @@ $phone = $userinfo['phone'];
             /* 비밀번호 입력 및 일치 여부 검증 */
             $(function(){
                 $("#pw_confirm").blur(function(){
-                    var regPw = /^.*(?=^.{8,16}$)([a-zA-Z]|[0-9]|[~!@#$%^&*()_+|<>?:{}]).*$/; // 비번 형식 검증식
+                    var regPw = /^((?=.*\d)|(?=.*\W)).{8,16}$/; // 비번 형식 검증식
+                    // var regPw = /^.*(?=^.{8,16}$)([a-zA-Z]|[0-9]|[~!@#$%^&*()_+|<>?:{}]).*$/; // 비번 형식 검증식
                     // var regPw = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; // 비번 형식 검증식
                     if($("#password").val()==""){
                         $("#pw_check_msg").html("비밀번호를 입력해주세요.").css("color", "red").attr("data-check", "0");
