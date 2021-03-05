@@ -375,7 +375,7 @@ while($count = $adlist->fetch_array()){
                 url : "./impclick.php",
                 type : "POST",
                 // traditional : true,
-                dataType : "JSONP",
+                dataType : "JSON",
                 data : {
                     "labels" : config.data.labels
                 },

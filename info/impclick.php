@@ -27,8 +27,12 @@ for($i = 0; $i < count($labels); $i++){ // 설정된 날짜 갯수만큼 반복
         // echo 'mysqli_num_rows :'.mysqli_num_rows($query);
         // echo '<br>';
         $clicksql = mysqli_fetch_array($query);
+        if($clicksql['isClick'] != null) {
+            $click[$i] = $clicksql['isClick'];
+        } else {
+            $click[$i] = 0;
+        }
         
-        $click[$i] = $clicksql['isClick'];
         // print_r($clicksql['isClick']);
         // echo '<br>';
     }
