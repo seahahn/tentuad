@@ -38,7 +38,10 @@
             </li>
         </ul>
         <!-- 사이드바 내용 부분 끝-->
+        <div>
         <button type="button" class="btn btn-lg btn-warning mt-3 justify-content-center w-100 rounded-0" onclick="location.href='../info/add.php'"><span class="text-light">+ 광고 만들기</span></button>
+        <!-- <button type="button" class="btn btn-lg btn-warning mt-3 justify-content-center w-100 rounded-0" onclick="location.href='../info/add.php'"><span class="text-light">+ 광고 만들기</span></button> -->
+        </div>
     </nav>
     </div>
 </aside>

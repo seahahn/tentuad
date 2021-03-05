@@ -150,7 +150,7 @@ while($count = $adlist->fetch_array()){
                                             <table id="table_id" class="display">
                                                 <thead>
                                                     <tr>
-                                                        <th>ㅁ</th>
+                                                        <th><input class="form-check-input" type="checkbox" value="" id="check_all"></th>
                                                         <th>광고 제목</th>
                                                         <th>ON/OFF</th>
                                                         <th>상태</th>

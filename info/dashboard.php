@@ -34,7 +34,7 @@ while($count = $adlist->fetch_array()){
 		<link rel="stylesheet" href="../assets/css/dashboard.css" />
 	</head>	
     <body>
-        <style type="text/css">html.hs-messages-widget-open.hs-messages-mobile,html.hs-messages-widget-open.hs-messages-mobile body{overflow:hidden!important;position:relative!important}html.hs-messages-widget-open.hs-messages-mobile body{height:100%!important;margin:0!important}#hubspot-messages-iframe-container{display:initial!important;z-index:2147483647;position:fixed!important;bottom:0!important}#hubspot-messages-iframe-container.widget-align-left{left:0!important}#hubspot-messages-iframe-container.widget-align-right{right:0!important}#hubspot-messages-iframe-container.internal{z-index:1016}#hubspot-messages-iframe-container.internal iframe{min-width:108px}#hubspot-messages-iframe-container .shadow-container{display:initial!important;z-index:-1;position:absolute;width:0;height:0;bottom:0;content:""}#hubspot-messages-iframe-container .shadow-container.internal{display:none!important}#hubspot-messages-iframe-container .shadow-container.active{width:400px;height:400px}#hubspot-messages-iframe-container iframe{display:initial!important;width:100%!important;height:100%!important;border:none!important;position:absolute!important;bottom:0!important;right:0!important;background:transparent!important}</style>
+        <style type="text/css">html.hs-messages-widget-open.hs-messages-mobile,html.hs-messages-widget-open.hs-messages-mobile body{overflow:hidden!important;position:relative!important}html.hs-messages-widget-open.hs-messages-mobile body{height:100%!important;margin:0!important}#hubspot-messages-iframe-container{display:initial!important;z-index:2147483647;position:fixed!important;bottom:0!important}#hubspot-messages-iframe-container.widget-align-left{left:0!important}#hubspot-messages-iframe-container.widget-align-right{right:0!important}#hubspot-messages-iframe-container.internal{z-index:1016}#hubspot-messages-iframe-container.internal iframe{min-width:108px}#hubspot-messages-iframe-container .shadow-container{display:initial!important;z-index:-1;position:absolute;width:0;height:0;bottom:0;content:""}#hubspot-messages-iframe-container .shadow-container.internal{display:none!important}#hubspot-messages-iframe-container .shadow-container.active{width:400px;height:400px}#hubspot-messages-iframe-container iframe{display:initial!important;width:100%!important;height:100%!important;border:none!important;position:absolute!important;bottom:0!important;right:0!important;background:transparent!important}</style>        
         <noscript>We're sorry, but TENTUPLAY doesn't work properly without JavaScript enabled. Please enable it to continue.</noscript>
         <div>
             <div id="viewport" class="blur1red">
@@ -121,7 +121,7 @@ while($count = $adlist->fetch_array()){
                                         <h5 data-v-80081fce="" class="title">
                                             <div class="d-flex justify-content-between">
                                             <span class="align-self-center">그래프</span>
-                                            <span class="align-self-center">기간 : <input type="text" id="datepicker_s"> ~ <input type="text" id="datepicker_e"></span>
+                                            <span class="align-self-center">기간 : <input type="text" id="datepicker_s" onselect="datepick();"> ~ <input type="text" id="datepicker_e" onselect="datepick();"></span>
                                             </div>
                                         </h5>
                                         <div data-v-80081fce="" class="content">
@@ -149,7 +149,7 @@ while($count = $adlist->fetch_array()){
                                             <table id="table_id" class="display">
                                                 <thead>
                                                     <tr>
-                                                        <th>ㅁ</th>
+                                                        <th class="tablecheck" style="background-image: url()"><input class="form-check-input" type="checkbox" value="" id="check_all"></th>
                                                         <th>광고 제목</th>
                                                         <th>ON/OFF</th>
                                                         <th>상태</th>
@@ -167,6 +167,7 @@ while($count = $adlist->fetch_array()){
                                                         <?php
                                                         $sql = mq("SELECT * FROM adList WHERE owner_idx = '$idx' ORDER BY title DESC, period_s ASC");
                                                         while($ad = $sql->fetch_array()){
+                                                            $idx = $ad['idx'];
                                                             $title = $ad['title'];
                                                             $onoff = $ad['onoff'];
                                                             $status = $ad['status'];
@@ -186,9 +187,13 @@ while($count = $adlist->fetch_array()){
                                                             if($end_year == 9999) $end = "종료일 없음";
                                                         ?>
                                                     <tr>
-                                                        <td>ㅁ</td>
+                                                        <td><input class="form-check-input" type="checkbox" value="check_<?=$idx?>" id="check_<?=$idx?>"></td>
                                                         <td><?=$title;?></td>
-                                                        <td>(스위치)</td>
+                                                        <td>
+                                                            <div class="form-check form-switch">
+                                                                <input class="form-check-input" type="checkbox" id="switch_<?=$idx?>">
+                                                            </div>
+                                                        </td>
                                                         <td><?=$status;?></td>
                                                         <td><?=$budget;?></td>
                                                         <td><?=$cost;?></td>
@@ -219,64 +224,311 @@ while($count = $adlist->fetch_array()){
 
         <?php include_once "../util/scripts.php" ?>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script>
+        <script type="text/javascript">
+        console.log(moment().format("MM-DD"));
+
+        // 화면 하단 광고 지표(노출 수, 클릭 수, 클릭률 등) 표시하는 테이블
         $(document).ready( function () {
             $('#table_id').DataTable();
         } );
 
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'line',
+        // 화면 중앙 차트에서 기간 설정하는 부분(시작일 ~ 종료일)
+        // 옵션 한국어 세팅
+        $.datepicker.regional['ko'] = {
+            closeText: '닫기',
+            prevText: '이전달',
+            nextText: '다음달',
+            currentText: '오늘',
+            monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
+            '7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
+            monthNamesShort: ['1월','2월','3월','4월','5월','6월',
+            '7월','8월','9월','10월','11월','12월'],
+            dayNames: ['일','월','화','수','목','금','토'],
+            dayNamesShort: ['일','월','화','수','목','금','토'],
+            dayNamesMin: ['일','월','화','수','목','금','토'],
+            weekHeader: 'Wk',
+            dateFormat: 'yy-mm-dd',
+            firstDay: 0,
+            isRTL: false,
+            showMonthAfterYear: true,
+            yearSuffix: '',
+            showOn: 'focus',
+            buttonText: "달력",
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            yearRange: 'c-99:c+99',
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ko']);
 
-            // The data for our dataset
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: '비용',
-                    backgroundColor: 'rgb(255, 255, 255, 0)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    data: [0, 10, 5, 2, 20, 30, 45]
-                },
-                {
-                    label: '노출 수',
-                    backgroundColor: 'rgb(255, 255, 255, 0)',
-                    borderColor: 'rgb(51, 0, 255)',
-                    data: [3, 14, 6, 7, 4, 25, 45]
-                }]
-            },
-
-            // Configuration options go here
-            options: {}
+        // 시작일이 종료일보다 뒤에 있는 경우 방지
+        $('#datepicker_s').datepicker(); // 시작일 초기화
+        $('#datepicker_s').datepicker("option", "maxDate", $("#datepicker_e").val()); // 종료일 넘겨서 선택 불가
+        $('#datepicker_s').datepicker("option", "onClose", function ( selectedDate ) {
+            $("#datepicker_e").datepicker( "option", "minDate", selectedDate );
+        });
+        $('#datepicker_e').datepicker(); // 종료일 초기화
+        $('#datepicker_e').datepicker("option", "minDate", $("#datepicker_s").val()); // 시작일 넘겨서 선택 불가
+        $('#datepicker_e').datepicker("option", "maxDate", 0); // 오늘 날짜 이후로 선택 불가
+        $('#datepicker_e').datepicker("option", "onClose", function ( selectedDate ) {
+            $("#datepicker_s").datepicker( "option", "maxDate", selectedDate );
         });
 
-        $( function() {
-            $( "#datepicker_s" ).datepicker({
-                changeMonth: true,
-                changeYear: true,
-                showButtonPanel: true
-            });
-            $( "#datepicker_s" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-            $( "#datepicker_e" ).datepicker({
-                changeMonth: true,
-                changeYear: true,
-                showButtonPanel: true
-            });
-            $( "#datepicker_e" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+        // 화면 열때 종료일은 오늘, 시작일은 오늘로부터 7일 전으로 초기화
+        $('#datepicker_s').datepicker('setDate', '-7D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+        $('#datepicker_e').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
 
-            // $( "#datepicker_s" ).datepicker({
-            //     changeMonth: true,
-            //     changeYear: true,
-            //     showButtonPanel: true
-            // });
-            // $( "#datepicker_e" ).datepicker({
-            //     changeMonth: true,
-            //     changeYear: true,
-            //     showButtonPanel: true
-            // });
-        } );
+        var sdate = $( "#datepicker_s" ).datepicker( "getDate" ); // 차트 시작일
+        var edate = $( "#datepicker_e" ).datepicker( "getDate" ); // 차트 종료일
+        var imp = []; // 노출 수
+        var click = []; // 클릭 수
+
+        // 화면 중앙 광고 지표 표시하는 꺾은선그래프(차트)
+        var ctx = document.getElementById('myChart').getContext('2d'); // 차트 불러올 위치 초기화
+        var config = {
+            type: 'line',
+            options: {
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            parser: 'YYYY-MM-DD HH:mm:ss',
+                            unit: 'month',
+                            displayFormats: {
+                                month: 'MM-DD'
+                            },
+                            min: sdate,
+                            max: edate
+                        },
+                        ticks: {
+                            source: 'data'
+                        }
+                    }]
+                }
+            },
+            plugins: [{
+                beforeInit: function(chart) {
+                    var time = chart.options.scales.xAxes[0].time, // 'time' object reference
+                        // difference (in days) between min and max date
+                        timeDiff = moment(time.max).diff(moment(time.min), 'd');
+                    // populate 'labels' array
+                    // (create a date string for each date between min and max, inclusive)
+                    for (i = 0; i <= timeDiff; i++) {
+                        var _label = moment(time.min).add(i, 'd').format('YYYY-MM-DD HH:mm:ss');
+                        chart.data.labels.push(_label);
+                    }
+                }
+            }],
+
+            // 차트 안에 들어갈 데이터 내용
+            // datasets : 해당 꺾은선그래프의 제목(labels), 그래프 영역 아래 배경색, 그래프 선의 색, 표시할 데이터
+            data: {
+                datasets: [
+                {
+                    label: '노출 수',
+                    // yAxisID: 'A',
+                    backgroundColor: 'rgb(255, 255, 255, 0)',
+                    borderColor: 'rgb(255, 105, 0)',
+                    data: []
+                },
+                {
+                    label: '클릭 수',
+                    // yAxisID: 'A',
+                    backgroundColor: 'rgb(255, 255, 255, 0)',
+                    borderColor: 'rgb(51, 0, 255)',
+                    data: []
+                }]
+            }
+        }; // 차트 옵션 설정
+        
+        
+        var chart = new Chart(ctx, config); // 차트 초기화
+        console.log(config.data.labels);
+        /* 시작일~종료일에 해당되는 노출수, 클릭수 불러오기*/
+        // function checkImpClick(){
+            $(document).ready( function () {
+            $.ajax({
+                url : "./impclick.php",
+                type : "POST",
+                // traditional : true,
+                // dataType : "JSON",
+                data : {
+                    "labels" : config.data.labels
+                },
+                success : function(data){
+                    if(data){
+                        imp = data.imp;
+                        click = data.click;
+                        console.log("노출수, 클릭수 불러오기 성공");
+                        console.log(data);
+                        console.log(data['imp']);
+                        console.log(click);
+                        config.data.datasets = [
+                        {
+                            label: '노출 수',
+                            // yAxisID: 'A',
+                            backgroundColor: 'rgb(255, 255, 255, 0)',
+                            borderColor: 'rgb(255, 105, 0)',
+                            data: imp
+                        },
+                        {
+                            label: '클릭 수',
+                            // yAxisID: 'A',
+                            backgroundColor: 'rgb(255, 255, 255, 0)',
+                            borderColor: 'rgb(51, 0, 255)',
+                            data: click
+                        }];
+                        chart.update();
+                    } else {
+                        console.log("노출수, 클릭수 불러오기 실패");
+                    }
+                }
+            });
+        });
+
+        // 차트 시작일과 종료일 변경 시 이벤트(날짜값 변경, 차트 새로고침)
+        $("#datepicker_s")
+            .datepicker()
+            .on("change", function() {
+                console.log("Got change event from field");
+                sdate = $( "#datepicker_s" ).datepicker( "getDate" );
+                console.log(moment(sdate).format("MM-DD"));
+                datepick_s(chart);
+        });
+        $("#datepicker_e")
+            .datepicker()
+            .on("change", function() {
+                console.log("Got change event from field");
+                edate = $( "#datepicker_e" ).datepicker( "getDate" );
+                console.log(moment(edate).format("MM-DD"));
+                datepick_e(chart);
+        });
+
+        // 시작일 or 종료일 변경 시 차트 새로고침
+        function datepick_s(chart) {
+            config.options.scales = {
+                xAxes: [{
+                        type: 'time',
+                        time: {
+                            parser: 'YYYY-MM-DD HH:mm:ss',
+                            unit: 'month',
+                            displayFormats: {
+                                month: 'MM-DD'
+                            },
+                            min: sdate,
+                            max: edate
+                        },
+                        ticks: {
+                            source: 'data'
+                        }
+                    }]
+            }
+
+            var imp = []; // 노출 수
+            var click = []; // 클릭 수
+            // X축에 변경된 날짜 범위 적용
+            var time = chart.options.scales.xAxes[0].time, // 'time' object reference
+                // difference (in days) between min and max date
+                timeDiff = moment(time.max).diff(moment(time.min), 'd');
+            // populate 'labels' array
+            // (create a date string for each date between min and max, inclusive)
+            for (i = 0; i <= timeDiff; i++) {
+                chart.data.labels.splice(-1,1); // 기존 데이터 전부 제거(안그러면 왼쪽 끝부터 표시되지 않음)
+            }
+            for (i = 0; i <= timeDiff; i++) {
+                var _label = moment(time.min).add(i, 'd').format('YYYY-MM-DD HH:mm:ss');
+                chart.data.labels.push(_label);
+            }
+
+            // 새로운 데이터셋 불러오기
+            var dataset = config.data.datasets;
+		    for(var i=0; i<dataset.length; i++){
+                config.data.datasets.splice(-1,1); // 기존 데이터셋 삭제
+            }
+            config.data.datasets = [
+                {
+                    label: '노출 수',
+                    // yAxisID: 'A',
+                    backgroundColor: 'rgb(255, 255, 255, 0)',
+                    borderColor: 'rgb(255, 105, 0)',
+                    data: imp
+                },
+                {
+                    label: '클릭 수',
+                    // yAxisID: 'A',
+                    backgroundColor: 'rgb(255, 255, 255, 0)',
+                    borderColor: 'rgb(51, 0, 255)',
+                    data: click
+                }];
+
+            console.log(config.data.datasets);
+            chart.update();
+        }
+
+        function datepick_e(chart) {
+            config.options.scales = {
+                xAxes: [{
+                        type: 'time',
+                        time: {
+                            parser: 'YYYY-MM-DD HH:mm:ss',
+                            unit: 'month',
+                            displayFormats: {
+                                month: 'MM-DD'
+                            },
+                            min: sdate,
+                            max: edate
+                        },
+                        ticks: {
+                            source: 'data'
+                        }
+                    }]
+            }
+
+            var imp = []; // 노출 수
+            var click = []; // 클릭 수
+            // X축에 변경된 날짜 범위 적용
+            var time = chart.options.scales.xAxes[0].time, // 'time' object reference
+                // difference (in days) between min and max date
+                timeDiff = moment(time.max).diff(moment(time.min), 'd');
+            // populate 'labels' array
+            // (create a date string for each date between min and max, inclusive)
+            for (i = 0; i <= timeDiff; i++) {
+                chart.data.labels.splice(-1,1); // 기존 데이터 전부 제거(안그러면 왼쪽 끝부터 표시되지 않음)
+            }
+            for (i = 0; i <= timeDiff; i++) {
+                var _label = moment(time.min).add(i, 'd').format('YYYY-MM-DD HH:mm:ss');
+                chart.data.labels.push(_label);
+                imp.push((Math.floor(Math.random() * (300 - 100)) + 100));
+                click.push(Math.floor(Math.random() * (100 - 0)));
+            }
+            
+            // 새로운 데이터셋 불러오기
+            var dataset = config.data.datasets;
+		    for(var i=0; i<dataset.length; i++){
+                config.data.datasets.splice(-1,1); // 기존 데이터셋 삭제
+            }
+            config.data.datasets = [
+                {
+                    label: '노출 수',
+                    // yAxisID: 'A',
+                    backgroundColor: 'rgb(255, 255, 255, 0)',
+                    borderColor: 'rgb(255, 105, 0)',
+                    data: imp
+                },
+                {
+                    label: '클릭 수',
+                    // yAxisID: 'A',
+                    backgroundColor: 'rgb(255, 255, 255, 0)',
+                    borderColor: 'rgb(51, 0, 255)',
+                    data: click
+                }];
+            
+            console.log("datepick_e");
+            chart.update();
+        }
         </script>
     </body>
 </html>

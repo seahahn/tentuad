@@ -103,7 +103,7 @@ $(function(){
 function checkEmailAjax(){
     $.ajax({
         url : "./check_email.php",
-        type : "POST",                    
+        type : "POST",
         dataType : "JSON",
         data : {
             "email" : $("#email").val()
