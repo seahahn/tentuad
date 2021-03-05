@@ -10,20 +10,20 @@
 
 		<header>
 			<div class="flexible fluid container">
-				<h1 class="dark logo"><a href="/ko/">TentuPlay</a></h1>
+				<h1 class="dark logo"><a href="./index.php">TentuPlay</a></h1>
 
 				<nav id="gnb">
 					<h2 class="hidden hamburger menu"><span>Navigation</span></h2>
 
 					<ul class="global navigation">
 						<li>
-							<a href="/ko/products/">제품소개</a>
+							<a href="#">제품소개</a>
 						</li>
 						<li>
-							<a href="/ko/pricing/">가격정책</a>
+							<a href="#">가격정책</a>
 						</li>
 						<li>
-							<a href="/ko/docs/">개발자문서</a>
+							<a href="#">개발자문서</a>
 						</li>
 						<li>
 							<a href="https://tentuad.s3.ap-northeast-2.amazonaws.com/pkg/TentuAd_SDK.unitypackage">SDK 다운로드</a>
@@ -31,7 +31,7 @@
 					</ul>
 				</nav>
 
-				<a class="primary button" href="users/signup.php" target="_blank">
+				<a class="primary button" href="./users/signup.php" target="_blank">
 				광고 관리로 이동
 				</a>
 
@@ -173,10 +173,10 @@
 						<h5 class="small headline with margin">개발자</h5>
 						<ul>
 							<li>
-								<a href="/ko/docs/">개발자문서</a>
+								<a href="#">개발자문서</a>
 							</li>
 							<li>
-								<a href="/ko/docs/">SDK 다운로드</a>
+								<a href="https://tentuad.s3.ap-northeast-2.amazonaws.com/pkg/TentuAd_SDK.unitypackage">SDK 다운로드</a>
 							</li>
 						</ul>
 					</div>
@@ -185,16 +185,16 @@
 						<h5 class="small headline with margin">서비스</h5>
 						<ul>
 							<li>
-								<a href="users/signup.php" target="_blank">광고 관리로 이동</a>
+								<a href="./users/signup.php" target="_blank">광고 관리로 이동</a>
 							</li>
 							<li>
-								<a href="/ko/terms/">서비스 이용약관</a>
+								<a href="#">서비스 이용약관</a>
 							</li>
 							<li>
-								<a href="/ko/privacy/">개인정보이용방침</a>
+								<a href="#">개인정보이용방침</a>
 							</li>
 							<li>
-								<a href="/ko/contact/">문의하기</a>
+								<a href="#">문의하기</a>
 							</li>
 						</ul>
 					</div>

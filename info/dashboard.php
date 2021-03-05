@@ -330,7 +330,7 @@ while($count = $adlist->fetch_array()){
                     }],
                     yAxes: [{
                         ticks: {
-                            beginAtZero:false,
+                            beginAtZero:true,
                         }
                     }]
                 }
@@ -375,6 +375,7 @@ while($count = $adlist->fetch_array()){
         /* 시작일~종료일에 해당되는 노출수, 클릭수 불러오기*/
         // function checkImpClick(){
             $(document).ready( function () {
+                console.log("ajax test");
             $.ajax({
                 url : "./impclick.php",
                 type : "POST",
@@ -387,10 +388,10 @@ while($count = $adlist->fetch_array()){
                     if(data){
                         imp = data.imp;
                         click = data.click;
-                        // console.log("노출수, 클릭수 불러오기 성공");
-                        // console.log("data : " + data);
-                        // console.log(imp);
-                        // console.log(click);
+                        console.log("노출수, 클릭수 불러오기 성공");
+                        console.log("data : " + data);
+                        console.log(imp);
+                        console.log(click);
                         config.data.datasets = [
                         {
                             label: '노출 수',
