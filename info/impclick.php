@@ -12,7 +12,8 @@ for($i = 0; $i < count($labels); $i++){ // 설정된 날짜 갯수만큼 반복
     $imp[$i] = 0;
     $click[$i] = 0;
     while($impclick = $adlist->fetch_array()){ // 해당 날짜에 기록된 광고 노출/클릭 수 불러오기
-        $sql = mq("SELECT * FROM UserAdClick WHERE owner_idx = '".$impclick[owner_idx]."' AND DATE(actiondate)='$labels[$i]'");
+        $date = date("YYYY-MM-DD", strtotime($labels[$i]));
+        $sql = mq("SELECT * FROM UserAdClick WHERE owner_idx = '".$impclick['owner_idx']."' AND DATE(actiondate)='$date'");
         $imp[$i] += mysqli_num_rows($sql); // 노출 수
         $clicksql = mysqli_fetch_array($sql);
         $click[$i] += $clicksql['isClick'];
