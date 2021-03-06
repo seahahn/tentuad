@@ -1,3 +1,17 @@
+<?php
+// 이전 로그인에서 '이메일 저장하기' 체크했다면 쿠키에 저장된 정보를 불러옴
+if(isset($_COOKIE['cookieemail'])){
+	$cookieemail = $_COOKIE['cookieemail']; // 이메일 입력란에 넣을 값
+	$remember_info = $_COOKIE['remember_info'];
+    echo $remember_info;
+	if($remember_info == '1') $checked = 'checked'; // '이메일 저장하기' 좌측 체크박스에 체크함
+
+} else {
+	$cookieemail = '';
+	$remember_info = '';
+	$checked = '';
+}    
+?>
 <!DOCTYPE HTML>
 <!--
 	Miniport by HTML5 UP
@@ -29,14 +43,14 @@
                             <form data-v-7f893d34="" id="formLogin" name="formLogin" method="POST" action="./login_ok.php">
                                 <ul data-v-7f893d34="" class="fieldset">
                                 <li data-v-7f893d34="">
-                                    <input data-v-7f893d34="" id="email" name="email" type="email" maxlength="50" class=""><label data-v-7f893d34="">이메일</label><!---->
+                                    <input data-v-7f893d34="" id="email" name="email" type="email" maxlength="50" class="" value="<?=$cookieemail?>"><label data-v-7f893d34="">이메일</label><!---->
                                 </li>
                                 <li data-v-7f893d34="">
                                     <input data-v-7f893d34="" id="password" name="password" type="password" class=""><label data-v-7f893d34="">비밀번호</label><!---->
                                 </li>
                                 <li data-v-7f893d34="">
                                     <div data-v-cd70975a="" data-v-7f893d34="" class="checkbox">
-                                        <input data-v-cd70975a="" type="checkbox" id="checkbox-remember" value="1">
+                                        <input data-v-cd70975a="" type="checkbox" name="remember_info" id="checkbox-remember" value="1" <?=$checked?>>
                                         <label data-v-cd70975a="" for="checkbox-remember">
                                             <span data-v-cd70975a="">
                                             <svg data-v-cd70975a="" width="12" height="10" viewbox="0 0 12 0">

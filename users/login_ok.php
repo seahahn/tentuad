@@ -3,6 +3,18 @@
 
     $email = $_POST['email'];
     $password = $_POST['password'];
+
+    if(isset($_POST['remember_info']) && $_POST['remember_info'] == ('checked' || 'on')) {
+        // '이메일 저장하기' 체크한 경우 쿠키 생성
+        $remember_info = $_POST['remember_info'];
+        setcookie("cookieemail", $email, time() + 86400 * 30); // 쿠키에 이메일 입력값 저장
+        setcookie("remember_info", $remember_info, time() + 86400 * 30); // 쿠키에 체크박스 체크 여부 저장
+        
+    } else if(!isset($_POST['remember_info']) || $_POST['remember_info'] == ''){
+        setcookie("cookieemail", "", time()-3600);
+        setcookie("remember_info", "", time()-3600);
+    }
+
     $sql = "SELECT * FROM aduser WHERE email='$email'";
     $result = mq($sql);
 

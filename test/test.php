@@ -1,165 +1,86 @@
+<?php
+// 이전 로그인에서 '이메일 저장하기' 체크했다면 쿠키에 저장된 정보를 불러옴
+if(isset($_COOKIE['cookieemail'])){
+	$cookieemail = $_COOKIE['cookieemail']; // 이메일 입력란에 넣을 값
+	$rememberInfo = $_COOKIE['rememberInfo'];
+	if($rememberInfo == 'on') $checked = 'checked'; // '이메일 저장하기' 좌측 체크박스에 체크함
+
+} else {
+	$cookieemail = '';
+	$rememberInfo = '';
+	$checked = '';
+}    
+?>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>chart.js</title>
-<head>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-</head>
-<body>
-	<div class="chart-container" style="position: relative; height:200px; width:60vw">
-		<canvas id="myChart"></canvas>
-	</div>
-	<button type="button" id="reData">데이터 변경</button>
-	<button type="button" id="addData">데이터 추가</button>
-	<button type="button" id="addDataSet">데이터셋 추가</button>
-	<button type="button" id="delData">데이터 삭제</button>
-	<button type="button" id="delDataset">데이터셋 삭제</button>
+<html lang="ko">
+	<head>
+		<?php include_once "../fragments/head.php"; ?>
+	</head>
+	<body>
+		<div id="page-wrapper">
+			<!-- Header -->
+			<div class="mb-4" id="header">
+				<?php include_once "../fragments/header.php"; ?>
+			</div>
 
+			<!-- 메인 영역-->
+			<div class="container mt-5 mb-5">
+				<div class="d-flex justify-content-center">
+					<fieldset class="col-6">
+						<form name="loginSbmt" id="loginSbmt" method="POST" action="login_ok.php">
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="email" name="email" class="form-control" id="email" value="<?=$cookieemail?>">                                                                
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" name="password" class="form-control" id="password">
+							</div>
+							<div class="form-check d-flex align-content-center">
+								<input class="form-check-input align-self-center mt-0" type="checkbox" name="rememberInfo" id="rememberInfo" <?=$checked?>>
+								<label class="form-check-label" for="rememberInfo">
+									이메일 저장하기
+								</label>
+							</div>
+							<br/>
+							<button name="loginBtn" class="col mb-3" type="button" accesskey="Enter" onclick="check_input()">Login</button>
+							<br/>
+							<div class="row">
+								<div class="col-2">
+									<a href="register.php">Register</a>
+								</div>
+								<div class=col-1>
+									<span class="border"></span>
+								</div>
+								<div class="col">
+									<a href="findPw.php">Find Password</a>
+								</div>
+							</div>                        
+						</form>
+					</fieldset>
+				</div>
+			</div>
 
-  <script>
-	var ctx = document.getElementById('myChart');
-	  
-	var config = {
-		type: 'line',
-		data: {
-			labels: [ // Date Objects
-				'data1',
-				'data2',
-				'data3',
-				'data4',
-				'data5',
-				'data6',
-				'data7'
-			],
-			datasets: [{
-				label: 'My First dataset',
-				backgroundColor: 'rgba(75, 192, 192, 1)',
-				borderColor: 'rgba(75, 192, 192, 1)',
-				fill: false,
-				data: [
-					Math.floor(Math.random() * 50),
-					Math.floor(Math.random() * 50),
-					Math.floor(Math.random() * 50),
-					Math.floor(Math.random() * 50),
-					Math.floor(Math.random() * 50),
-					Math.floor(Math.random() * 50),
-					Math.floor(Math.random() * 50)
-				],
-			}, {
-				label: 'My Second dataset',
-				backgroundColor: 'rgba(255, 99, 132, 1)',
-				borderColor: 'rgba(255, 99, 132, 1)',
-				fill: false,
-				data: [
-					Math.floor(Math.random() * 50),
-					Math.floor(Math.random() * 50),
-					Math.floor(Math.random() * 50),
-					Math.floor(Math.random() * 50),
-					Math.floor(Math.random() * 50),
-					Math.floor(Math.random() * 50),
-					Math.floor(Math.random() * 50)
-				],
-			}]
-		},
-		options: {
-			maintainAspectRatio: false,
-			title: {
-				text: 'Chart.js Time Scale'
-			},
-			scales: {
-				yAxes: [{
-					scaleLabel: {
-						display: true,
-						labelString: '차트'
-					}
-				}]
-			},
-		}
-	};
-	 
-	//차트 그리기
-	var myChart = new Chart(ctx, config);
-	  
-	//데이터 변경
-	document.getElementById('reData').onclick = function(){
-		
-		//데이터셋 수 만큼 반복
-		var dataset = config.data.datasets;
-		for(var i=0; i<dataset.length; i++){
-			console.log(dataset);
-			//데이터 갯수 만큼 반복
-			var data = dataset[i].data;
-			for(var j=0 ; j < data.length ; j++){
-				data[j] = Math.floor(Math.random() * 50);
-			}
-		}
-		
-		myChart.update();	//차트 업데이트
-	}
-	
-	//데이터 추가
-	document.getElementById('addData').onclick = function(){
-		
-		//라벨추가
-		config.data.labels.push('data'+config.data.labels.length)
-		
-		//데이터셋 수 만큼 반복
-		var dataset = config.data.datasets;
-		for(var i=0; i<dataset.length; i++){
-			//데이터셋의 데이터 추가
-			dataset[i].data.push(Math.floor(Math.random() * 50));
-		}
-		myChart.update();	//차트 업데이트
-	}
-	
-	//데이터셋 추가
-	document.getElementById('addDataSet').onclick = function(){
-		var color1 = Math.floor(Math.random() * 256);
-		var color2 = Math.floor(Math.random() * 256);
-		var color3 = Math.floor(Math.random() * 256);
-		
-		console.log(color1 + " " + color2 + " " + color3)
-		
-		var newDataset = {
-			label: 'new Dataset'+config.data.datasets.length,
-			borderColor : 'rgba('+color1+', '+color2+', '+color3+', 1)',
-			backgroundColor : 'rgba('+color1+', '+color2+', '+color3+', 1)',
-			data: [],
-			fill: false
-		}
-		
-		// newDataset에 데이터 삽입
-		for (var i=0; i< config.data.labels.length; i++){
-			var num = Math.floor(Math.random() * 50);
-			newDataset.data.push(num);
-		}
-		
-		// chart에 newDataset 푸쉬
-		config.data.datasets.push(newDataset);
-		
-		myChart.update();	//차트 업데이트
-	}
-	
-	//데이터 삭제
-	document.getElementById('delData').onclick = function(){
-		
-		config.data.labels.splice(-1,1);//라벨 삭제
-		
-		//데이터 삭제
-		config.data.datasets.forEach(function(dataset) {
-			dataset.data.pop();
-		});
-		
-		myChart.update();	//차트 업데이트
-	}
-	
-	//데이터셋 삭제
-	document.getElementById('delDataset').onclick = function(){
-		config.data.datasets.splice(-1,1);
-		myChart.update();	//차트 업데이트
-	}
-	
-  </script>
-</body>
+			<!-- Footer -->
+			<div class="mt-4" id="footer">
+				<?php include_once "../fragments/footer.php"; ?>
+			</div>
+		</div>
+
+		<!-- Main Scripts -->
+			<script src="/assets/js/jquery.min.js"></script>
+			<script src="/assets/js/jquery.dropotron.min.js"></script>
+			<script src="/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/assets/js/jquery.scrollex.min.js"></script>
+			<script src="/assets/js/browser.min.js"></script>
+			<script src="/assets/js/breakpoints.min.js"></script>
+			<script src="/assets/js/util.js"></script>
+			<script src="/assets/js/main.js"></script>
+			<script src="login.js"></script>
+
+		<!-- Other Stripts-->
+			<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>			
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+			<script src="/bootstrap/bootstrap.bundle.js"></script>
+	</body>
+</html>
