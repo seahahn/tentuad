@@ -73,7 +73,7 @@ try {
         <div style="text-align:left;color:#60666d;font-size:14px;line-height:21px;font-family:sans-serif;max-width:600px;min-width:320px;width:320px;width:calc(28000% - 167400px)">
 
           <div align="left" style="font-size:12px;font-style:normal;font-weight:normal;line-height:19px;margin-left:20px;margin-right:20px;margin-top:40px">
-            <img style="border:0;display:block;height:auto;width:100%;max-width:150px" alt="" width="150" src="https://tentuplay.io/static/images/common/logo_dark.png" tabindex="0" loading="lazy">
+            <img style="border:0;display:block;height:auto;width:100%;max-width:150px" alt="" width="150" src="https://tentuad.s3.ap-northeast-2.amazonaws.com/webimg/logo_dark.png" tabindex="0" loading="lazy">
             <div dir="ltr" style="opacity: 0.01; left: 1063px; top: 406px;">
               <div tabindex="0">
                 <div></div>
