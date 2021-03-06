@@ -40,7 +40,7 @@ include_once "../util/db_con.php";
                                         <label for="category" class="col col-form-label">광고 카테고리</label>
                                         <div class="col-sm-10">
                                             <div class="row px-3">
-                                                <select name="category" id="category" class="form-select col" aria-label="Default select example" style="width:49%;" onchange="itemChange()">
+                                                <select name="category" id="category" class="form-select col" aria-label="Default select example" onchange="itemChange()">
                                                     <option selected disabled>대분류</option>
                                                     <option value="man_clothes">남성의류</option>
                                                     <option value="woman_clothes">여성의류</option>
@@ -49,8 +49,26 @@ include_once "../util/db_con.php";
                                                     <option value="head">모자</option>
                                                 </select>
                                                 <!-- <span class="mx-auto"></span> -->
-                                                <select name="sub_ctgr" id="sub_ctgr" class="form-select col" aria-label="Default select example" style="width:49%;">
+                                                <select name="sub_ctgr" id="sub_ctgr" class="form-select col" aria-label="Default select example">
                                                     <option selected disabled>소분류</option>
+                                                </select>
+                                                <select name="f_style" id="f_style" class="form-select col" aria-label="Default select example">
+                                                    <option selected disabled>패션 스타일</option>
+                                                    <option value="nomcore">놈코어</option>
+                                                    <option value="dandy">댄디</option>
+                                                    <option value="layered">레이어드</option>
+                                                    <option value="maximalism">맥시멀리즘</option>
+                                                    <option value="modern">모던</option>
+                                                    <option value="minimalism">미니멀리즘</option>
+                                                    <option value="vintage">빈티지</option>
+                                                    <option value="street">스트릿</option>
+                                                    <option value="sporty">스포티</option>
+                                                    <option value="american_casual">아메리칸 캐주얼</option>
+                                                    <option value="avant_garde">아방가르드</option>
+                                                    <option value="enix">에닉스</option>
+                                                    <option value="casual">캐주얼</option>
+                                                    <option value="classic">클래식</option>
+                                                    <option value="feminine">페미닌</option>
                                                 </select>
                                             </div>
                                         </div>

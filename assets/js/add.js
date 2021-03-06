@@ -6,14 +6,6 @@ function check_input() {
         return;
     }
 
-    if(!$("#budget").val() && !$("#no_budget").prop("checked")){
-        alert("광고 예산을 입력해주세요.");                    
-        $("#budget").focus();
-        return;
-    }
-
-    console.log($("#category").val());
-    console.log($("#sub_ctgr").val());
     if(!$("#category").val()){
         alert("카테고리 대분류를 설정해주세요.");
         $("#category").focus();
@@ -26,11 +18,25 @@ function check_input() {
         return;
     }
 
+    if(!$("#f_style").val()){
+        alert("패션 스타일을 설정해주세요.");
+        $("#f_style").focus();
+        return;
+    }
+
     if(!$("#url").val()){
         alert("상품 페이지 URL을 입력해주세요.");
         $("#url").focus();
         return;
     }
+
+    if(!$("#budget").val() && !$("#no_budget").prop("checked")){
+        alert("광고 예산을 입력해주세요.");                    
+        $("#budget").focus();
+        return;
+    }
+
+    
 
     var startDate = $('#period_s').val();
     var endDate = $('#period_e').val();

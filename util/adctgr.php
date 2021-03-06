@@ -4,10 +4,10 @@
             var selectCtgr = $("#category").val();
             var sub;
 
-            var man_clothes = ['<option selected disabled>소분류</option>', 
+            var man_clothes = ['<option selected disabled>소분류</option>',
                 '<option value="man_knitwear">니트</option>',
-                '<option value="man_pants_long">바지(롱)</option>',
-                '<option value="man_pants_short">바지(숏)</option>',
+                '<option value="man_pants_long">긴바지</option>',
+                '<option value="man_pants_short">반바지</option>',
                 '<option value="man_shirts">셔츠</option>',
                 '<option value="man_sweater">스웨터</option>',
                 '<option value="man_jacket">재킷</option>',
@@ -23,8 +23,8 @@
             var woman_clothes = ['<option selected disabled>소분류</option>',
                 '<option value="woman_knitwear">니트</option>',
                 '<option value="woman_leggings">레깅스</option>',
-                '<option value="woman_pants_long">바지(롱)</option>',
-                '<option value="woman_pants_short">바지(숏)</option>',
+                '<option value="woman_pants_long">긴바지</option>',
+                '<option value="woman_pants_short">반바지</option>',
                 '<option value="woman_blouse">블라우스/셔츠</option>',
                 '<option value="woman_sweater">스웨터</option>',
                 '<option value="woman_skirts_long">스커트(롱)</option>',
