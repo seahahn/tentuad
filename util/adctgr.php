@@ -83,18 +83,106 @@
             var selectCtgr = $("#sub_ctgr").val();
             var ctgr_m;
 
-            if(selectCtgr == "man_jacket" | "man_jumper" | "man_cardigan" | "man_coat") {
-                ctgr_m = "outer";
-            } else if(selectCtgr == "man_knitwear" | "man_shirts" | "man_sweater" | "man_sportswear_top" | "man_tshirts_long" | "man_tshirts_short") {
-                ctgr_m = "top";
-            } else if(selectCtgr == "man_pants_long" | "man_pants_short" | "man_jean" | "man_sportswear_bottom") {
-                ctgr_m = "bottom";
-            } else if(selectCtgr == "woman_jacket" | "woman_jumper" | "woman_cardigan" | "woman_coat") {
-                ctgr_m = "outer";
-            } else if(selectCtgr == "woman_knitwear" | "woman_blouse" | "woman_sweater" | "woman_onepiece" | "woman_sportswear_top" | "woman_shirts_long" | "woman_shirts_short") {
-                ctgr_m = "top";
-            } else if(selectCtgr == "woman_leggings" | "woman_pants_long" | "woman_pants_short" | "woman_skirts_long" | "woman_skirts_short" | "woman_jean" | "woman_sportswear_bottom") {
-                ctgr_m = "bottom";
+            switch(selectCtgr) {
+            // 아우터
+                case "man_jacket":
+                    ctgr_m = "outer";
+                    break;
+                case "man_jumper":
+                    ctgr_m = "outer";
+                    break;
+                case "man_cardigan":
+                    ctgr_m = "outer";
+                    break;
+                case "man_coat":
+                    ctgr_m = "outer";
+                    break;
+                case "woman_jacket":
+                    ctgr_m = "outer";
+                    break;
+                case "woman_jumper":
+                    ctgr_m = "outer";
+                    break;
+                case "woman_cardigan":
+                    ctgr_m = "outer";
+                    break;
+                case "woman_coat":
+                    ctgr_m = "outer";
+                    break;
+            // 상의
+                case "man_knitwear":
+                    ctgr_m = "top";
+                    break;
+                case "man_shirts":
+                    ctgr_m = "top";
+                    break;
+                case "man_sweater":
+                    ctgr_m = "top";
+                    break;
+                case "man_sportswear_top":
+                    ctgr_m = "top";
+                    break;
+                case "man_tshirts_long":
+                    ctgr_m = "top";
+                    break;
+                case "man_tshirts_short":
+                    ctgr_m = "top";
+                    break;
+                case "woman_knitwear":
+                    ctgr_m = "top";
+                    break;
+                case "woman_blouse":
+                    ctgr_m = "top";
+                    break;
+                case "woman_sweater":
+                    ctgr_m = "top";
+                    break;
+                case "woman_onepiece":
+                    ctgr_m = "top";
+                    break;
+                case "woman_sportswear_top":
+                    ctgr_m = "top";
+                    break;
+                case "woman_shirts_long":
+                    ctgr_m = "top";
+                    break;
+                case "woman_shirts_short":
+                    ctgr_m = "top";
+                    break;
+            // 하의
+                case "man_pants_long":
+                    ctgr_m = "outer";
+                    break;
+                case "man_pants_short":
+                    ctgr_m = "outer";
+                    break;
+                case "man_jean":
+                    ctgr_m = "outer";
+                    break;
+                case "man_sportswear_bottom":
+                    ctgr_m = "outer";
+                    break;
+                case "woman_leggings":
+                    ctgr_m = "outer";
+                    break;
+                case "woman_pants_long":
+                    ctgr_m = "outer";
+                    break;
+                case "woman_pants_short":
+                    ctgr_m = "outer";
+                    break;
+                case "woman_skirts_long":
+                    ctgr_m = "outer";
+                    break;
+                case "woman_skirts_short":
+                    ctgr_m = "outer";
+                    break;
+                case "woman_jean":
+                    ctgr_m = "outer";
+                    break;
+                case "woman_sportswear_bottom":
+                    ctgr_m = "outer";
+                    break;
             }
 
             $("#ctgr_m").val(ctgr_m);
