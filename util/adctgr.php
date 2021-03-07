@@ -1,4 +1,3 @@
-<!-- 게시물 대분류에 따른 소분류, 말머리 바꾸기-->
 <script>
         function itemChange() {
             var selectCtgr = $("#category").val();
