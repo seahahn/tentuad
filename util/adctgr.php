@@ -89,9 +89,7 @@
                 ctgr_m = "top";
             } else if(selectCtgr == "man_pants_long" | "man_pants_short" | "man_jean" | "man_sportswear_bottom") {
                 ctgr_m = "bottom";
-            }
-
-            if(selectCtgr == "woman_jacket" | "woman_jumper" | "woman_cardigan" | "woman_coat") {
+            } else if(selectCtgr == "woman_jacket" | "woman_jumper" | "woman_cardigan" | "woman_coat") {
                 ctgr_m = "outer";
             } else if(selectCtgr == "woman_knitwear" | "woman_blouse" | "woman_sweater" | "woman_onepiece" | "woman_sportswear_top" | "woman_shirts_long" | "woman_shirts_short") {
                 ctgr_m = "top";
