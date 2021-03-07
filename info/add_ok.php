@@ -10,6 +10,7 @@
 
     $adTitle = $_POST['adTitle'];
     $category = $_POST['category']; // 상품 카테고리 대분류
+    $ctgr_m = $_POST['ctgr_m']; // 상품 카테고리 중분류(의류 -> 아우터/상의/하의)
     $sub_ctgr = $_POST['sub_ctgr']; // 상품 카테고리 소분류
     $f_style = $_POST['f_style']; // 상품의 패션 스타일(댄디, 아방가르드 등)
     $url = $_POST['url']; // 광고 클릭 시 연결할 URL
@@ -145,6 +146,7 @@
         budget = '".$budget."',
         owner_idx = '".$idx."',
         ctgr_b = '".$category."',
+        ctgr_m = '".$ctgr_m."',
         ctgr_s = '".$sub_ctgr."',
         f_style = '".$f_style."',
         period_s = '".$period_s."',

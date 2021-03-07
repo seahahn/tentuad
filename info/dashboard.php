@@ -139,11 +139,11 @@ while($count = $adlist->fetch_array()){
                                     <div data-v-defd96e4="" class="card" chart-type="Bar">
                                         <h5 data-v-defd96e4="" class="title">
                                             광고 지표
-                                            <i data-v-defd96e4="" class="help icon has-tooltip" data-original-title="null">
-                                            <svg data-v-defd96e4="">
-                                                <use data-v-defd96e4="" xlink:href="/img/sprites.df5ba72e.svg#help-circle"></use>
-                                            </svg>
-                                            </i>
+                                            <!-- <i data-v-defd96e4="" class="help icon has-tooltip" data-original-title="null">
+                                                <svg data-v-defd96e4="">
+                                                    <use data-v-defd96e4="" xlink:href="../assets/css/images/sprites.df5ba72e.svg#help-circle"></use>
+                                                </svg>
+                                            </i> -->
                                         </h5>
                                         <div class="px-1 py-3">
                                             <table id="table_id" class="display">

@@ -28,7 +28,13 @@
         };
         $(document).ready( function () {
             $('#table_id').DataTable({
-                language : lang_kor
+                language : lang_kor,
+                columnDefs: [
+                    {
+                        targets: -1,
+                        className: 'dt-head-center'
+                    }
+                ]
             });
         } );
 

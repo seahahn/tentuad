@@ -18,7 +18,7 @@
                 '<option value="man_sportswear_top">트레이닝복(상의)</option>',
                 '<option value="man_sportswear_bottom">트레이닝복(하의)</option>',
                 '<option value="man_tshirts_long">티셔츠(긴팔)</option>',
-                '<option value="man_tshirts_long">티셔츠(반팔)</option>'];
+                '<option value="man_tshirts_short">티셔츠(반팔)</option>'];
 
             var woman_clothes = ['<option selected disabled>소분류</option>',
                 '<option value="woman_knitwear">니트</option>',
@@ -76,6 +76,29 @@
             for(var i = 0; i < sub.length; i++) {        
                 var sub_opt = $(sub[i]);
                 $("#sub_ctgr").append(sub_opt);
-            }    
+            }
+        }
+
+        function ctgr_m_change() {
+            var selectCtgr = $("#sub_ctgr").val();
+            var ctgr_m;
+
+            if(selectCtgr == "man_jacket" | "man_jumper" | "man_cardigan" | "man_coat") {
+                ctgr_m = "outer";
+            } else if(selectCtgr == "man_knitwear" | "man_shirts" | "man_sweater" | "man_sportswear_top" | "man_tshirts_long" | "man_tshirts_short") {
+                ctgr_m = "top";
+            } else if(selectCtgr == "man_pants_long" | "man_pants_short" | "man_jean" | "man_sportswear_bottom") {
+                ctgr_m = "bottom";
+            }
+
+            if(selectCtgr == "woman_jacket" | "woman_jumper" | "woman_cardigan" | "woman_coat") {
+                ctgr_m = "outer";
+            } else if(selectCtgr == "woman_knitwear" | "woman_blouse" | "woman_sweater" | "woman_onepiece" | "woman_sportswear_top" | "woman_shirts_long" | "woman_shirts_short") {
+                ctgr_m = "top";
+            } else if(selectCtgr == "woman_leggings" | "woman_pants_long" | "woman_pants_short" | "woman_skirts_long" | "woman_skirts_short" | "woman_jean" | "woman_sportswear_bottom") {
+                ctgr_m = "bottom";
+            }
+
+            $("#ctgr_m").val(ctgr_m);
         }
         </script>

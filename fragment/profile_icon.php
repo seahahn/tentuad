@@ -2,7 +2,7 @@
     <!-- 우측 상단 회원정보 아이콘 -->
     <i data-v-42570b20="" class="round icon align-self-end btn btn-secondary" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         <svg data-v-42570b20="">
-            <use data-v-42570b20="" xlink:href="/img/sprites.df5ba72e.svg#user"></use>
+            <use data-v-42570b20="" xlink:href="../assets/css/images/sprites.df5ba72e.svg#user"></use>
         </svg>
     </i>
     

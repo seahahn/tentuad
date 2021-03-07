@@ -49,7 +49,7 @@ include_once "../util/db_con.php";
                                                     <option value="head">모자</option>
                                                 </select>
                                                 <!-- <span class="mx-auto"></span> -->
-                                                <select name="sub_ctgr" id="sub_ctgr" class="form-select col" aria-label="Default select example">
+                                                <select name="sub_ctgr" id="sub_ctgr" class="form-select col" aria-label="Default select example" onchange="ctgr_m_change()">
                                                     <option selected disabled>소분류</option>
                                                 </select>
                                                 <select name="f_style" id="f_style" class="form-select col" aria-label="Default select example">
@@ -70,6 +70,7 @@ include_once "../util/db_con.php";
                                                     <option value="classic">클래식</option>
                                                     <option value="feminine">페미닌</option>
                                                 </select>
+                                                <input type="hidden" id="ctgr_m" name="ctgr_m" value="">
                                             </div>
                                         </div>
                                         <span id="ctgrhelp" data-check="0"></span>
