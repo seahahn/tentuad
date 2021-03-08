@@ -23,6 +23,7 @@ if(isset($_COOKIE['cookieemail'])){
 		<title>TentuAd: AI 광고 어시스턴트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="../assets/css/bootstrap.css" />
 		<link rel="stylesheet" href="../assets/css/login_chunk.css" />
 		<link rel="stylesheet" href="../assets/css/app.css" />
 	</head>	
@@ -49,7 +50,7 @@ if(isset($_COOKIE['cookieemail'])){
                                     <input data-v-7f893d34="" id="password" name="password" type="password" class=""><label data-v-7f893d34="">비밀번호</label><!---->
                                 </li>
                                 <li data-v-7f893d34="">
-                                    <div data-v-cd70975a="" data-v-7f893d34="" class="checkbox">
+                                    <!-- <div data-v-cd70975a="" data-v-7f893d34="" class="checkbox">
                                         <input data-v-cd70975a="" type="checkbox" name="remember_info" id="checkbox-remember" value="1" <?=$checked?>>
                                         <label data-v-cd70975a="" for="checkbox-remember">
                                             <span data-v-cd70975a="">
@@ -59,6 +60,13 @@ if(isset($_COOKIE['cookieemail'])){
                                             </span>
                                             <span data-v-cd70975a="">계정정보 기억</span>
                                         </label>
+                                    </div> -->
+
+                                    <div class="form-check d-flex">
+                                        <input class="form-check-input me-2" type="checkbox" value="1" name="remember_info" id="checkbox-remember">
+                                        <!-- <label class="form-check-label d-flex align-content-center" for="no_budget"> -->
+                                            <span data-v-cd70975a="" class="align-self-center">계정정보 기억</span>
+                                        <!-- </label> -->
                                     </div>
                                 </li>
                                 </ul>
