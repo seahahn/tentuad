@@ -48,7 +48,7 @@
 					<span>유저 맞춤 광고로</span> <span class="condensed">광고 효율을 극대화하세요</span>
 				</h1>
 				<p class="afterhead">
-					<span>유저 한 명 한 명에게 꼭 맞는 광고로 클릭율과</span> <span>매출을 높여보세요.</span>
+					<span>유저 한 명 한 명에게 꼭 맞는 광고로 클릭률과</span> <span>매출을 높여보세요.</span>
 				</p>
 
 				<div class="call to action">
