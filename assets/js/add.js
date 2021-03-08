@@ -99,12 +99,12 @@ function handleChange(file) {
                 var width = image.width;
                 var height = image.height;
                 if(id == "img11") {
-                    if (width == 200 && height == 200) { //Judge file pixels
+                    if (width == 300 && height == 300) { //Judge file pixels
                     //upload image 
                     $('#img11_preview').attr('src', data);
                     console.log($('#img11').val());
                     } else {
-                        alert("이미지 픽셀 크기가 200X200이 아닙니다!");
+                        alert("이미지 픽셀 크기가 300X300이 아닙니다!");
                         return;
                     }
                 } else if(id == "img43") {

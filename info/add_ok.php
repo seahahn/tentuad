@@ -48,7 +48,7 @@
     if($_FILES) {
         $baseDownFolder = "../images/"; // 로컬 컴퓨터 내에 임시로 파일 저장해둘 위치
 
-        // 1:1(200*200) 이미지 첨부 구현
+        // 1:1(300*300) 이미지 첨부 구현
         if(count($_FILES['img11']['name']) > 0 && $_FILES['img11']['name'][0] != "") {
             // 실제 파일명 
             $real_filename = $_FILES['img11']['name'][0];

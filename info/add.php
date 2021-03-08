@@ -129,7 +129,7 @@ include_once "../util/db_con.php";
                                                 <img id="img11_preview">
                                             </div>
                                             <span class="upload-cencel" ng-click="resetImage('nativeUpload20', 1)"></span>
-                                            <span class="fs-5 align-self-end">200 X 200 | 1MB</span>
+                                            <span class="fs-5 align-self-end">300 X 300 | 1MB</span>
                                             <input id="img11" name="img11[]" type="file" accept=".jpg, .png" title="1:1" class="upload w-0" onchange="handleChange(this);">
                                         </div>
                                         <div class="area-upload d-flex mb-3">
