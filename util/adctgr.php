@@ -150,37 +150,37 @@
                     break;
             // 하의
                 case "man_pants_long":
-                    ctgr_m = "outer";
+                    ctgr_m = "bottom";
                     break;
                 case "man_pants_short":
-                    ctgr_m = "outer";
+                    ctgr_m = "bottom";
                     break;
                 case "man_jean":
-                    ctgr_m = "outer";
+                    ctgr_m = "bottom";
                     break;
                 case "man_sportswear_bottom":
-                    ctgr_m = "outer";
+                    ctgr_m = "bottom";
                     break;
                 case "woman_leggings":
-                    ctgr_m = "outer";
+                    ctgr_m = "bottom";
                     break;
                 case "woman_pants_long":
-                    ctgr_m = "outer";
+                    ctgr_m = "bottom";
                     break;
                 case "woman_pants_short":
-                    ctgr_m = "outer";
+                    ctgr_m = "bottom";
                     break;
                 case "woman_skirts_long":
-                    ctgr_m = "outer";
+                    ctgr_m = "bottom";
                     break;
                 case "woman_skirts_short":
-                    ctgr_m = "outer";
+                    ctgr_m = "bottom";
                     break;
                 case "woman_jean":
-                    ctgr_m = "outer";
+                    ctgr_m = "bottom";
                     break;
                 case "woman_sportswear_bottom":
-                    ctgr_m = "outer";
+                    ctgr_m = "bottom";
                     break;
             }
 
