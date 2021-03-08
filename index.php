@@ -67,31 +67,31 @@
 				<ol class="grid">
 					<li class="four wide column with fadeInUp animation center aligned" style="visibility: visible; animation-name: fadeInUp;">
 						<h3 class="collapsible small headline">
-							<span>원하는 상품을 </span> <span>알맞은 유저에게 광고하세요</span>
+							<span><strong>원하는 상품을</strong> </span> <span><strong>알맞은 유저에게 광고하세요</strong></span>
 						</h3>
 
 						<p>
-							상품의 특성에 따라 그에 맞는 유저에게 광고를 노출하세요.
+							상품의 특성에 따라 그에 맞는 유저에게 <br>광고를 노출하세요.
 						</p>
 					</li>
 
 					<li class="four wide column with fadeInUp animation center aligned" data-wow-delay="0.15s" style="visibility: visible; animation-delay: 0.15s; animation-name: fadeInUp;">
 						<h3 class="collapsible small headline">
-							<span>개발팀의 도움 없이</span> <span> 유저 맞춤 광고를 진행하세요</span>
+							<span><strong>개발팀의 도움 없이</strong> </span> <span><strong>유저 맞춤 광고를 진행하세요</strong></span>
 						</h3>
 
 						<p>
-							자체 메시징 시스템으로 시간 지체 없이 골든타이밍에 광고 메시지를 전송하세요.
+							자체 메시징 시스템으로 시간 지체 없이 <br>골든타이밍에 광고 메시지를 전송하세요.
 						</p>
 					</li>
 
 					<li class="four wide column with fadeInUp animation center aligned" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
 						<h3 class="collapsible small headline">
-							<span>인공지능으로 </span> <span>광고 효율을 최적화하세요</span>
+							<span><strong>인공지능으로</strong> </span> <span><strong>광고 효율을 최적화하세요</strong></span>
 						</h3>
 
 						<p>
-							AI가 유저의 행동 패턴을 분석하여 각 유저가 선호할 만한 상품을 자동으로 추천합니다.
+							AI가 유저의 행동 패턴을 분석하여 <br>각 유저가 선호할 만한 상품을 <br>자동으로 추천합니다.
 						</p>
 					</li>
 				</ol>
@@ -158,7 +158,7 @@
 							<dt class="hidden">사무실 주소</dt>
 							<dd>
 							<!-- 서울특별시 강남구 역삼로 165 -->
-							서울특별시 동작구
+							서울특별시 동작구 사당로13길 36
 							</dd>
 
 							<!-- <dt class="hidden">Tel</dt>

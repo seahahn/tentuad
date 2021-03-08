@@ -195,7 +195,7 @@ if(isset($_GET["lang"])) $lang = $_GET["lang"]; // 언어 학습 카테고리에
                             }
                             ?>
                         </table>
-                        <?php                                    
+                        <?php
                             if($post_count == 0) {
                             ?>                                    
                                     <div class="d-flex align-items-center justify-content-center" style="height: 25vh;">

@@ -61,6 +61,16 @@ function check_input() {
     document.formAdd.submit();
 }
 
+// 광고 예산 3자리 단위마다 콤마 생성
+function addCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+$("#budget").on("keyup", function() {
+    $(this).val(addCommas($(this).val().replace(/[^0-9]/g,"")));
+});
+
+// 이미지 선택하여 첨부하면서 미리보기 이미지도 넣어줌
+// 이미지 규격에 맞지 않으면 경고 메시지 띄움
 function handleChange(file) {
     // if (input.files && input.files[0]) {
     //     var reader = new FileReader();
@@ -100,25 +110,24 @@ function handleChange(file) {
                 var height = image.height;
                 if(id == "img11") {
                     if (width == 300 && height == 300) { //Judge file pixels
-                    //upload image 
-                    $('#img11_preview').attr('src', data);
-                    console.log($('#img11').val());
+                        //upload image 
+                        $('#img11_preview').attr('src', data);
                     } else {
                         alert("이미지 픽셀 크기가 300X300이 아닙니다!");
                         return;
                     }
                 } else if(id == "img43") {
                     if (width == 400 && height == 300) { //Judge file pixels
-                    //upload image 
-                    $('#img43_preview').attr('src', data);
+                        //upload image 
+                        $('#img43_preview').attr('src', data);
                     } else {
                         alert("이미지 픽셀 크기가 400X300이 아닙니다!");
                         return;
                     }
                 } else if(id == "img34") {
                     if (width == 300 && height == 400) { //Judge file pixels
-                    //upload image 
-                    $('#img34_preview').attr('src', data);
+                        //upload image 
+                        $('#img34_preview').attr('src', data);
                     } else {
                         alert("이미지 픽셀 크기가 300X400이 아닙니다!");
                         return;
@@ -131,3 +140,18 @@ function handleChange(file) {
         return;
     }
 }
+
+// 이미지 우측 상단 X 버튼 클릭 시 이미지 첨부 삭제 및 미리보기 제거
+$(function() {
+    $(".imgreset").click(function(){
+        var file = $(this).data("con");
+        var image = $(this).data("image");
+        // console.log(file);
+        // console.log(image);
+
+        $("#"+file).val("");
+        $("#"+image).attr("src", "");
+
+        // console.log($(file).val());
+    });
+});

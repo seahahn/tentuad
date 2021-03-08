@@ -89,7 +89,7 @@ include_once "../util/db_con.php";
                                         <label for="url" class="col col-form-label">일 광고 예산</label>
                                         <div class="col-sm-10">
                                             <div class="row px-3">                                                
-                                                <input type="number" class="form-control" id="budget" name="budget"><span class="align-self-center w-auto">원</span>
+                                                <input type="text" class="form-control" id="budget" name="budget"><span class="align-self-center w-auto">원</span>
                                                 <div class="form-check col-auto align-self-center ms-3">
                                                     <input class="form-check-input" type="checkbox" value="" id="no_budget" onclick="none_budget();">
                                                     <label class="form-check-label" for="none_budget">
@@ -128,7 +128,7 @@ include_once "../util/db_con.php";
                                             <div class="preview-native-square" onclick="document.all.img11.click();">
                                                 <img id="img11_preview">
                                             </div>
-                                            <span class="upload-cencel" ng-click="resetImage('nativeUpload20', 1)"></span>
+                                            <span class="upload-cencel imgreset" ng-click="resetImage('nativeUpload20', 1)" value="img11" data-con="img11" data-image="img11_preview"></span>
                                             <span class="fs-5 align-self-end">300 X 300 | 1MB</span>
                                             <input id="img11" name="img11[]" type="file" accept=".jpg, .png" title="1:1" class="upload w-0" onchange="handleChange(this);">
                                         </div>
@@ -136,7 +136,7 @@ include_once "../util/db_con.php";
                                             <div class="preview-native-horizontal1" onclick="document.all.img43.click();">
                                                 <img id="img43_preview">
                                             </div>
-                                            <span class="upload-cencel" ng-click="resetImage('nativeUpload20', 1)"></span>
+                                            <span class="upload-cencel imgreset" ng-click="resetImage('nativeUpload20', 1)" value="img43" data-con="img43" data-image="img43_preview"></span>
                                             <span class="fs-5 align-self-end">400 X 300 | 1MB</span>
                                             <input id="img43" name="img43[]" type="file" accept=".jpg, .png" title="4:3" class="upload w-0" onchange="handleChange(this);">
                                         </div>
@@ -144,7 +144,7 @@ include_once "../util/db_con.php";
                                             <div class="preview-native-vertical" onclick="document.all.img34.click();">
                                                 <img id="img34_preview">
                                             </div>
-                                            <span class="upload-cencel" ng-click="resetImage('nativeUpload20', 1)"></span>
+                                            <span class="upload-cencel imgreset" ng-click="resetImage('nativeUpload20', 1)" value="img34" data-con="img34" data-image="img34_preview"></span>
                                             <span class="fs-5 align-self-end">300 X 400 | 1MB</span>
                                             <input id="img34" name="img34[]" type="file" accept=".jpg, .png" title="3:4" class="upload w-0" onchange="handleChange(this);">
                                         </div>
