@@ -3,7 +3,6 @@
 if(isset($_COOKIE['cookieemail'])){
 	$cookieemail = $_COOKIE['cookieemail']; // 이메일 입력란에 넣을 값
 	$remember_info = $_COOKIE['remember_info'];
-    echo $remember_info;
 	if($remember_info == '1') $checked = 'checked'; // '이메일 저장하기' 좌측 체크박스에 체크함
 
 } else {
@@ -63,9 +62,9 @@ if(isset($_COOKIE['cookieemail'])){
                                     </div> -->
 
                                     <div class="form-check d-flex">
-                                        <input class="form-check-input me-2" type="checkbox" value="1" name="remember_info" id="checkbox-remember">
+                                        <input class="form-check-input me-2" type="checkbox" value="1" name="remember_info" id="checkbox-remember" <?=$checked?>>
                                         <!-- <label class="form-check-label d-flex align-content-center" for="no_budget"> -->
-                                            <span data-v-cd70975a="" class="align-self-center" <?=$checked?>>계정정보 기억</span>
+                                            <span data-v-cd70975a="" class="align-self-center">계정정보 기억</span>
                                         <!-- </label> -->
                                     </div>
                                 </li>
