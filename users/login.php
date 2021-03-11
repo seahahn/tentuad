@@ -65,7 +65,7 @@ if(isset($_COOKIE['cookieemail'])){
                                     <div class="form-check d-flex">
                                         <input class="form-check-input me-2" type="checkbox" value="1" name="remember_info" id="checkbox-remember">
                                         <!-- <label class="form-check-label d-flex align-content-center" for="no_budget"> -->
-                                            <span data-v-cd70975a="" class="align-self-center">계정정보 기억</span>
+                                            <span data-v-cd70975a="" class="align-self-center" <?=$checked?>>계정정보 기억</span>
                                         <!-- </label> -->
                                     </div>
                                 </li>

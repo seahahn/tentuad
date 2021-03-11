@@ -114,7 +114,6 @@
                     yAxes: [{
                         ticks: {
                             beginAtZero:true,
-                            stepSize: 1,
                             precision: 0
                         }
                     }]
@@ -239,6 +238,7 @@
                     yAxes: [{
                         ticks: {
                             beginAtZero:true,
+                            precision: 0
                         }
                     }]
             }
@@ -305,6 +305,7 @@
                     yAxes: [{
                         ticks: {
                             beginAtZero:true,
+                            precision: 0
                         }
                     }]
             }
