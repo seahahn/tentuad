@@ -367,10 +367,6 @@
                     if(data){
                         imp = data['imp'];
                         click = data.click;
-                        // console.log("노출수, 클릭수 불러오기 성공");
-                        // console.log("data : " + data);
-                        // console.log(imp);
-                        // console.log(click);
                         config.data.datasets = [
                         {
                             label: '노출 수',
