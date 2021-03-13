@@ -6,7 +6,7 @@
         <div class="border-bottom">
             <a href="../info/dashboard.php" class="active">
                 <h1 class="logo">TENTUPLAY</h1>
-                <h2 class="text-center mb-3">광고주 센터</h2>
+                <h2 class="text-center mb-3">게임사 센터</h2>
             </a>
         </div>
         <!-- 사이드바 헤더 부분 끝-->
@@ -14,7 +14,7 @@
         <!-- 사이드바 내용 부분 시작-->
         <ul class="global navigation">
             <li>
-                <span data-v-4bcec590="" class="exact active">광고 목록</span>
+                <span data-v-4bcec590="" class="exact active">페르소나 목록</span>
                 <div aria-expanded="true">
                 <ul class="submenu level one">
                 <?php
