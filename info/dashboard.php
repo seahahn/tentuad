@@ -6,6 +6,7 @@ $aduser = mq("SELECT * FROM aduser WHERE email='$email'");
 $userinfo = mysqli_fetch_array($aduser);
 $money = $userinfo['money']; // 광고주가 소지한 광고용 충전 금액
 
+// 광고 지표(광고별) 테이블의 데이터 채우기 위한 값들 불러오기
 $adlist = mq("SELECT * FROM adList WHERE owner_idx = '$idx'");
 $budget_sum = 0; // 광고 예산 합계
 $cost_sum = 0; // 광고 비용 합계
@@ -18,8 +19,17 @@ while($count = $adlist->fetch_array()){
     $click_sum += $count['click'];
 }
 
+// 광고 지표(페르소나별) 테이블의 데이터 채우기 위한 값들 불러오기
+$ps = ["inssa", "ps1", "ps2", "ps3", "ps4"]; // 페르소나 목록을 담은 배열
+$imp_ps = []; // 페르소나별 노출 수 배열에 담기. 테이블에 데이터 표시할 때 순차적으로 불러오기 위함.
+$click_ps = []; // 페르소나별 클릭 수 배열에 담기. 테이블에 데이터 표시할 때 순차적으로 불러오기 위함.
+for($i=0; $i<count($ps); $i++){
+    $query_imp = mq("SELECT * FROM UserAdClick WHERE owner_idx = '$idx' AND isClick='0' AND ps='$ps[$i]'");
+    $query_click = mq("SELECT * FROM UserAdClick WHERE owner_idx = '$idx' AND isClick='1' AND ps='$ps[$i]'");
+    $imp_ps[$i] = mysqli_num_rows($query_imp); // 노출 수
+    $click_ps[$i] = mysqli_num_rows($query_click); // 클릭 수
+}
 ?>
-
 <!DOCTYPE HTML>
 <html>	
     <head>
@@ -47,6 +57,8 @@ while($count = $adlist->fetch_array()){
                             <h2 class="page headline">대시보드</h2>
 
                             <!-- 상단 요약 시작 -->
+                            <!-- 전체 광고에 대한 데이터 보여주는 경우 -->
+                            <?php if(!isset($_GET['adidx'])) { ?>
                             <div class="grid with gutter">
                                 <div class="twelve wide column">
                                 <div class="card">
@@ -110,9 +122,85 @@ while($count = $adlist->fetch_array()){
                                 </div>
                                 </div>
                             </div>
+
+                            <!-- 개별 광고에 대한 데이터 보여주는 경우 -->
+                            <?php 
+                            } else { 
+                                $adidx = $_GET['adidx'];
+                                $sql = mq("SELECT * FROM adList WHERE idx = '$adidx'");
+                                $result = mysqli_fetch_array($sql);
+                                $status = $result['status'];
+                                switch($status){
+                                    //광고중(0), 광고 중지(1), 광고 운영 불가(예산 부족(2), 검수 반려(3)), 심사중(4)
+                                    case 0:
+                                        $status_show = '광고중';
+                                        break;
+                                    case 1:
+                                        $status_show = '광고 중지';
+                                        break;
+                                    case 2:
+                                        $status_show = '예산 부족';
+                                        break;
+                                    case 3:
+                                        $status_show = '검수 반려';
+                                        break;
+                                    case 4:
+                                        $status_show = '심사중';
+                                        break;
+                                }
+                                $budget = $result['budget'];
+                                $cost = $result['cost'];
+                                $imp = $result['imp'];
+                                $click = $result['click'];
+                            ?>
+                            <div class="grid with gutter">
+                                <div class="twelve wide column">
+                                <div class="card">
+                                    <h5 class="title">요약</h5>
+                                    <div class="content">
+                                        <div class="summary grid">
+                                            <dl>
+                                            <dt class="small headline">
+                                                <span class="align-middle me-3">상태</span>
+                                            </dt>
+                                            <dd class="sub"></dd>
+                                            <dd role="status"><!----></dd>
+                                            <dd class="highlight"><?=$status_show?></dd>
+                                            </dl>
+
+                                            <dl>
+                                            <dt class="small headline">광고 예산</dt>
+                                            <dd role="status"><!----></dd>
+                                            <dd class="highlight"><?=$budget?> 원</dd>
+                                            </dl>
+
+                                            <dl>
+                                            <dt class="small headline">광고 비용</dt>
+                                            <dd role="status"><!----></dd>
+                                            <dd class="highlight"><?=$cost?> 원</dd>
+                                            </dl>
+
+                                            <dl>
+                                            <dt class="small headline">노출 수</dt>
+                                            <dd role="status"><!----></dd>
+                                            <dd class="highlight"><?=$imp?></dd>
+                                            </dl>
+
+                                            <dl>
+                                            <dt class="small headline">클릭 수</dt>
+                                            <dd role="status"><!----></dd>
+                                            <dd class="highlight"><?=$click?></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <?php } ?>
                             <!-- 상단 요약 끝 -->
 
-                            <!-- 대시보드 메인 시작 -->
+
+
                             <!-- 광고 지표 그래프 표시 시작 -->
                             <div class="grid with gutter">
                                 <div class="twelve wide column">
@@ -131,14 +219,19 @@ while($count = $adlist->fetch_array()){
                                 </div>
                                 </div>
                             </div>
-                            <!-- 사용자 정보, 광고 지표 그래프 표시 끝 -->
+                            <!-- 광고 지표 그래프 표시 끝 -->
+
+
+
+                            <!-- 전체 광고에 대한 데이터 보여주는 경우에만 광고별 광고 지표 테이블을 보여줌 -->
                             <!-- 광고별 예산, 비용, 노출 수, 클릭 수, 클릭률 표시 시작 -->
+                            <?php if(!isset($_GET['adidx'])) { ?>                            
                             <div class="grid with gutter">
                                 <div class="twelve wide column">
                                 <div>
                                     <div data-v-defd96e4="" class="card" chart-type="Bar">
                                         <h5 data-v-defd96e4="" class="title">
-                                            광고 지표
+                                            광고 지표(광고별)
                                             <!-- <i data-v-defd96e4="" class="help icon has-tooltip" data-original-title="null">
                                                 <svg data-v-defd96e4="">
                                                     <use data-v-defd96e4="" xlink:href="../assets/css/images/sprites.df5ba72e.svg#help-circle"></use>
@@ -146,7 +239,7 @@ while($count = $adlist->fetch_array()){
                                             </i> -->
                                         </h5>
                                         <div class="px-1 py-3">
-                                            <table id="table_id" class="display">
+                                            <table id="table_ad" class="display">
                                                 <thead>
                                                     <tr>
                                                         <th class="tablecheck" style="background-image: url()"><input class="form-check-input" type="checkbox" value="" id="check_all"></th>
@@ -208,7 +301,7 @@ while($count = $adlist->fetch_array()){
                                                         <td><input class="form-check-input" type="checkbox" value="check_<?=$idx?>" id="check_<?=$idx?>"></td>
                                                         <td><?=$title;?></td>
                                                         <td>
-                                                            <div class="form-check form-switch">
+                                                            <div class="form-switch">
                                                                 <input class="form-check-input" type="checkbox" id="switch_<?=$idx?>" checked>
                                                             </div>
                                                         </td>
@@ -232,8 +325,138 @@ while($count = $adlist->fetch_array()){
                                 </div>
                                 </div>
                             </div>
+                            <?php } ?>
                             <!-- 광고별 예산, 비용, 노출 수, 클릭 수, 클릭률 표시 끝 -->
-                            <!-- 대시보드 메인 끝 -->
+
+
+
+                            <!-- 페르소나별 비용, 노출 수, 클릭 수, 클릭률 표시 시작 -->
+                            <!-- 전체 광고에 대한 데이터 보여주는 경우 -->
+                            <?php if(!isset($_GET['adidx'])) { ?>
+                            <div class="grid with gutter">
+                                <div class="twelve wide column">
+                                <div>
+                                    <div data-v-defd96e4="" class="card" chart-type="Bar">
+                                        <h5 data-v-defd96e4="" class="title">
+                                            광고 지표(페르소나별)
+                                            <!-- <i data-v-defd96e4="" class="help icon has-tooltip" data-original-title="null">
+                                                <svg data-v-defd96e4="">
+                                                    <use data-v-defd96e4="" xlink:href="../assets/css/images/sprites.df5ba72e.svg#help-circle"></use>
+                                                </svg>
+                                            </i> -->
+                                        </h5>
+                                        <div class="px-1 py-3">
+                                            <table id="table_ps" class="display">
+                                                <thead>
+                                                    <tr>
+                                                        <th>페르소나명</th>
+                                                        <th>비용</th>
+                                                        <th>노출 수</th>
+                                                        <th>클릭 수</th>
+                                                        <th>클릭률</th>
+                                                        <th>노출당 비용</th>
+                                                        <th>클릭당 비용</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <?php
+                                                        for($i=0; $i<count($ps); $i++){
+                                                            $title = $ps[$i];
+                                                            $imp_show = (int)$imp_ps[$i];
+                                                            $click_show = (int)$click_ps[$i];
+                                                            $cost = $click_show * 100;
+                                                        ?>
+                                                    <tr>
+                                                        <td><?=$title;?></td>
+                                                        <td><?=$cost;?></td>
+                                                        <td><?=$imp_show;?></td>
+                                                        <td><?=$click_show;?></td>
+                                                        <td><?php if($imp_show==0) { echo '-';} else { echo round(($click_show/$imp_show)*100).'%';}?></td>
+                                                        <td><?php if($imp_show==0) { echo '-';} else { echo round($cost/$imp_show);}?></td>
+                                                        <td><?php if($click_show==0) { echo '-';} else { echo round($cost/$click_show);}?></td>
+                                                    </tr>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <!-- 개별 광고에 대한 데이터 보여주는 경우 -->
+                            <?php 
+                            } else { 
+                                $adidx = $_GET['adidx'];
+                                $sql = mq("SELECT * FROM adList WHERE idx = '$adidx'");
+                                $result = mysqli_fetch_array($sql);
+
+                                $imp_ps = []; // 페르소나별 노출 수 배열에 담기. 테이블에 데이터 표시할 때 순차적으로 불러오기 위함.
+                                $click_ps = []; // 페르소나별 클릭 수 배열에 담기. 테이블에 데이터 표시할 때 순차적으로 불러오기 위함.
+                                for($i=0; $i<count($ps); $i++){
+                                    $query_imp = mq("SELECT * FROM UserAdClick WHERE adid = '$adidx' AND isClick='0' AND ps='$ps[$i]'");
+                                    $query_click = mq("SELECT * FROM UserAdClick WHERE adid = '$adidx' AND isClick='1' AND ps='$ps[$i]'");
+                                    $imp_ps[$i] = mysqli_num_rows($query_imp); // 노출 수
+                                    $click_ps[$i] = mysqli_num_rows($query_click); // 클릭 수
+                                }
+                            ?>
+                            <div class="grid with gutter">
+                                <div class="twelve wide column">
+                                <div>
+                                    <div data-v-defd96e4="" class="card" chart-type="Bar">
+                                        <h5 data-v-defd96e4="" class="title">
+                                            광고 지표(페르소나별)
+                                            <!-- <i data-v-defd96e4="" class="help icon has-tooltip" data-original-title="null">
+                                                <svg data-v-defd96e4="">
+                                                    <use data-v-defd96e4="" xlink:href="../assets/css/images/sprites.df5ba72e.svg#help-circle"></use>
+                                                </svg>
+                                            </i> -->
+                                        </h5>
+                                        <div class="px-1 py-3">
+                                            <table id="table_ps" class="display">
+                                                <thead>
+                                                    <tr>
+                                                        <th>페르소나명</th>
+                                                        <th>비용</th>
+                                                        <th>노출 수</th>
+                                                        <th>클릭 수</th>
+                                                        <th>클릭률</th>
+                                                        <th>노출당 비용</th>
+                                                        <th>클릭당 비용</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <?php
+                                                        for($i=0; $i<count($ps); $i++){
+                                                            $title = $ps[$i];
+                                                            $imp_show = (int)$imp_ps[$i];
+                                                            $click_show = (int)$click_ps[$i];
+                                                            $cost = $click_show * 100;
+                                                        ?>
+                                                    <tr>
+                                                        <td><?=$title;?></td>
+                                                        <td><?=$cost;?></td>
+                                                        <td><?=$imp_show;?></td>
+                                                        <td><?=$click_show;?></td>
+                                                        <td><?php if($imp_show==0) { echo '-';} else { echo round(($click_show/$imp_show)*100).'%';}?></td>
+                                                        <td><?php if($imp_show==0) { echo '-';} else { echo round($cost/$imp_show);}?></td>
+                                                        <td><?php if($click_show==0) { echo '-';} else { echo round($cost/$click_show);}?></td>
+                                                    </tr>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <?php } ?>
+                            <!-- 페르소나별 비용, 노출 수, 클릭 수, 클릭률 표시 끝 -->
+
                         </div>
                     </div>
                 </div>

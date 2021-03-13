@@ -22,7 +22,7 @@
                 while($ad = $sql->fetch_array()){
                 ?>
                     <li data-v-4bcec590="">
-                        <a data-v-4bcec590="" href="#" aria-current="page" class=""><span data-v-4bcec590=""><?=$ad["title"]?> </span></a>
+                        <a data-v-4bcec590="" href="../info/dashboard.php?adidx=<?=$ad['idx']?>" aria-current="page" class=""><span data-v-4bcec590=""><?=$ad["title"]?> </span></a>
                     </li>
                 <?php
                 }

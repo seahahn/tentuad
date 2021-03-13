@@ -1,7 +1,7 @@
 // console.log(moment().format("MM-DD"));
         
         // 화면 하단 광고 지표(노출 수, 클릭 수, 클릭률 등) 표시하는 테이블
-        // DataTables language option : Korean
+        // 언어 설정 한국어로 변경
         var lang_kor = {
             "decimal" : "",
             "emptyTable" : "데이터가 없습니다.",
@@ -26,13 +26,34 @@
                 "sortDescending" : " :  내림차순 정렬"
             }
         };
+        
         $(document).ready( function () {
-            $('#table_id').DataTable({
+            // 광고 지표(광고별) 테이블 초기화
+            $('#table_ad').DataTable({
                 language : lang_kor,
                 columnDefs: [
                     {
-                        targets: -1,
+                        targets: "_all",
                         className: 'dt-head-center'
+                    },
+                    {
+                        targets: "_all",
+                        className: 'dt-body-center'
+                    }
+                ]
+            });
+
+            // 광고 지표(페르소나별) 테이블 초기화
+            $('#table_ps').DataTable({
+                language : lang_kor,
+                columnDefs: [
+                    {
+                        targets: "_all",
+                        className: 'dt-head-center'
+                    },
+                    {
+                        targets: "_all",
+                        className: 'dt-body-center'
                     }
                 ]
             });
@@ -84,6 +105,7 @@
         $('#datepicker_s').datepicker('setDate', '-7D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
         $('#datepicker_e').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
 
+        // 시작일, 종료일과 이에 따른 노출 수, 클릭 수 데이터를 불러오기 위한 변수 초기화
         var sdate = $( "#datepicker_s" ).datepicker( "getDate" ); // 차트 시작일
         var edate = $( "#datepicker_e" ).datepicker( "getDate" ); // 차트 종료일
         var imp = []; // 노출 수
@@ -153,13 +175,10 @@
                 }]
             }
         };
-        
         var chart = new Chart(ctx, config); // 차트 초기화
 
         /* 시작일~종료일에 해당되는 노출수, 클릭수 불러오기*/
-        // function checkImpClick(){
-            $(document).ready( function () {
-                console.log("ajax test");
+        $(document).ready( function () {
             $.ajax({
                 url : "./impclick.php",
                 type : "POST",
@@ -172,10 +191,7 @@
                     if(data){
                         imp = data.imp;
                         click = data.click;
-                        // console.log("노출수, 클릭수 불러오기 성공");
-                        // console.log("data : " + data);
-                        // console.log(imp);
-                        // console.log(click);
+
                         config.data.datasets = [
                         {
                             label: '노출 수',
@@ -203,7 +219,7 @@
         $("#datepicker_s")
             .datepicker()
             .on("change", function() {
-                console.log("Got change event from field");
+                console.log("Got change event from field datepicker_s");
                 sdate = $( "#datepicker_s" ).datepicker( "getDate" );
                 console.log(moment(sdate).format("MM-DD"));
                 datepick_s(chart);
@@ -211,7 +227,7 @@
         $("#datepicker_e")
             .datepicker()
             .on("change", function() {
-                console.log("Got change event from field");
+                console.log("Got change event from field datepicker_e");
                 edate = $( "#datepicker_e" ).datepicker( "getDate" );
                 console.log(moment(edate).format("MM-DD"));
                 datepick_e(chart);
@@ -329,7 +345,7 @@
 
             // 새로운 데이터셋 불러오기
             var dataset = config.data.datasets;
-		    for(var i=0; i<dataset.length; i++){
+            for(var i=0; i<dataset.length; i++){
                 config.data.datasets.splice(-1,1); // 기존 데이터셋 삭제
             }
             config.data.datasets = [
