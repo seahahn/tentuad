@@ -18,6 +18,15 @@ while($count = $adlist->fetch_array()){
     $imp_sum += $count['imp'];
     $click_sum += $count['click'];
 }
+
+if(isset($_GET['adidx'])) {
+    $adidx = $_GET['adidx'];
+    $sql = mq("SELECT * FROM adList WHERE idx='".$adidx."'");
+    $result = mysqli_fetch_array($sql);
+    $dashboard_title = ' - '.$result['title'];
+} else {
+    $dashboard_title = "";
+}
 ?>
 <!DOCTYPE HTML>
 <html>	
@@ -44,7 +53,7 @@ while($count = $adlist->fetch_array()){
 
                         <div class="container">
                             <div class="d-flex justify-content-between">
-                                <h2 class="page headline"><span class="align-self-center">대시보드</span></h2>
+                                <h2 class="page headline"><span class="align-self-center">대시보드 <?=$dashboard_title?></span></h2>
                                 <div>
                                     <i class="small calendar icon"><svg style="fill: #ff6900"><use xlink:href="../assets/css/images/sprites.df5ba72e.svg#calendar"></use></svg></i>
                                     <span class="align-self-center">기간 : <input type="text" id="datepicker_s"> ~ <input type="text" id="datepicker_e"></span>
