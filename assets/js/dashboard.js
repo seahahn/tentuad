@@ -1,5 +1,3 @@
-// console.log(moment().format("MM-DD"));
-        
 // 화면 하단 광고 지표(노출 수, 클릭 수, 클릭률 등) 표시하는 테이블
 // 언어 설정 한국어로 변경
 var lang_kor = {
@@ -26,34 +24,24 @@ var lang_kor = {
         "sortDescending" : " :  내림차순 정렬"
     }
 };
-
 $(document).ready( function () {
-    // 광고 지표(광고별) 테이블 초기화
-    $('#table_ad').DataTable({
+    $('#table_ad').DataTable({ // 광고 지표(광고별) 테이블 초기화
         language : lang_kor,
+        "autoWidth": false,
         columnDefs: [
             {
                 targets: "_all",
-                className: 'dt-head-center'
-            },
-            {
-                targets: "_all",
-                className: 'dt-body-center'
+                className: 'dt-head-center dt-body-center'
             }
         ]
     });
 
-    // 광고 지표(페르소나별) 테이블 초기화
-    $('#table_ps').DataTable({
+    $('#table_ps').DataTable({ // 광고 지표(페르소나별) 테이블 초기화
         language : lang_kor,
         columnDefs: [
             {
                 targets: "_all",
-                className: 'dt-head-center'
-            },
-            {
-                targets: "_all",
-                className: 'dt-body-center'
+                className: 'dt-head-center dt-body-center'
             }
         ]
     });
@@ -177,11 +165,9 @@ var config = {
 };
 var chart = new Chart(ctx, config); // 차트 초기화
 
-/* 시작일~종료일에 해당되는 노출수, 클릭수 불러오기*/
-console.log(getParam("adidx"));
+// 페이지 로드 시 시작일~종료일에 해당되는 노출수, 클릭수 불러오기
 $(document).ready( function () {
-    // 전체 광고 대시보드인 경우
-    if(getParam("adidx") == "") {
+    if(getParam("adidx") == "") { // 전체 광고 대시보드인 경우
         $.ajax({
             url : "./impclick.php",
             type : "POST",
@@ -189,13 +175,18 @@ $(document).ready( function () {
             dataType : "JSON",        
             data : {
                 // "adidx" : getParam("adidx"),
-                "labels" : config.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
+                "labels" : chart.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
             },
             success : function(data){
                 if(data){
                     imp = data.imp;
                     click = data.click;
-                    config.data.datasets = [
+                    imp_sum = data.imp_sum;
+                    click_sum = data.click_sum;
+                    $('#imp_sum').text(imp_sum);
+                    $('#click_sum').text(click_sum);
+                    $('#cost_sum').text(click_sum*100);
+                    chart.data.datasets = [
                     {
                         label: '노출 수',
                         // yAxisID: 'A',
@@ -211,14 +202,50 @@ $(document).ready( function () {
                         data: click
                     }];
                     chart.update();
-                    console.log(data.noset);
                 } else {
                     console.log("노출수, 클릭수 불러오기 실패");
                 }
             }
         });
-    } else {
-        // 개별 광고 대시보드인 경우
+
+        // 광고 지표(광고별) 테이블의 노출 수, 클릭 수 데이터 불러오기
+        $.ajax({
+            url : "./impclick_ad.php",
+            type : "POST",
+            // traditional : true,
+            dataType : "HTML",
+            data : {
+                // "adidx" : adid,
+                "labels" : chart.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
+            },
+            success : function(data){
+                if(data){
+                    $("#adTable_body").html(data);
+                } else {
+                    console.log("노출수, 클릭수 불러오기 실패");
+                }
+            }
+        });
+
+        // 광고 지표(페르소나별) 테이블의 노출 수, 클릭 수 데이터 불러오기
+        $.ajax({
+            url : "./impclick_ps.php",
+            type : "POST",
+            // traditional : true,
+            dataType : "HTML",
+            data : {
+                // "adidx" : adid,
+                "labels" : chart.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
+            },
+            success : function(data){
+                if(data){
+                    $("#psTable_body").html(data);
+                } else {
+                    console.log("노출수, 클릭수 불러오기 실패");
+                }
+            }
+        });
+    } else { // 개별 광고 대시보드인 경우
         var adid = getParam("adidx");
         $.ajax({
             url : "./impclick.php",
@@ -227,13 +254,18 @@ $(document).ready( function () {
             dataType : "JSON",        
             data : {
                 "adidx" : adid,
-                "labels" : config.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
+                "labels" : chart.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
             },
             success : function(data){
                 if(data){
                     imp = data.imp;
                     click = data.click;
-                    config.data.datasets = [
+                    imp_sum = data.imp_sum;
+                    click_sum = data.click_sum;
+                    $('#imp_sum').text(imp_sum);
+                    $('#click_sum').text(click_sum);
+                    $('#cost_sum').text(click_sum*100);
+                    chart.data.datasets = [
                     {
                         label: '노출 수',
                         // yAxisID: 'A',
@@ -249,7 +281,25 @@ $(document).ready( function () {
                         data: click
                     }];
                     chart.update();
-                    console.log(data.noset);
+                } else {
+                    console.log("노출수, 클릭수 불러오기 실패");
+                }
+            }
+        });
+
+        // 광고 지표(페르소나별) 테이블의 노출 수, 클릭 수 데이터 불러오기
+        $.ajax({
+            url : "./impclick_ps.php",
+            type : "POST",
+            // traditional : true,
+            dataType : "HTML",
+            data : {
+                "adidx" : adid,
+                "labels" : chart.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
+            },
+            success : function(data){
+                if(data){
+                    $("#psTable_body").html(data);
                 } else {
                     console.log("노출수, 클릭수 불러오기 실패");
                 }
@@ -262,23 +312,19 @@ $(document).ready( function () {
 $("#datepicker_s")
     .datepicker()
     .on("change", function() {
-        console.log("Got change event from field datepicker_s");
         sdate = $( "#datepicker_s" ).datepicker( "getDate" );
-        console.log(moment(sdate).format("MM-DD"));
         datepick_s(chart);
 });
 $("#datepicker_e")
     .datepicker()
     .on("change", function() {
-        console.log("Got change event from field datepicker_e");
         edate = $( "#datepicker_e" ).datepicker( "getDate" );
-        console.log(moment(edate).format("MM-DD"));
         datepick_e(chart);
 });
 
 // 시작일 or 종료일 변경 시 차트 새로고침
 function datepick_s(chart) {
-    config.options.scales = {
+    chart.options.scales = {
         xAxes: [{
                 type: 'time',
                 time: {
@@ -308,44 +354,27 @@ function datepick_s(chart) {
         timeDiff = moment(time.max).diff(moment(time.min), 'd');
     // populate 'labels' array
     // (create a date string for each date between min and max, inclusive)
-    for (i = 0; i <= timeDiff; i++) {
-        chart.data.labels.splice(-1,1); // 기존 데이터 전부 제거(안그러면 왼쪽 끝부터 표시되지 않음)
-    }
-    for (i = 0; i <= timeDiff; i++) {
-        var _label = moment(time.min).add(i, 'd').format('YYYY-MM-DD HH:mm:ss');
+    // for (i = 0; i <= timeDiff; i++) {
+    //     chart.data.labels.splice(-1,1); // 기존 데이터 전부 제거(안그러면 왼쪽 끝부터 표시되지 않음)
+    // }
+    chart.data.labels = []; // 기존 데이터 전부 제거(안그러면 왼쪽 끝부터 표시되지 않음)
+    
+    for (i = 0; i <= timeDiff; i++) { // 새로운 기간 데이터 채우기
+        var _label = moment(time.min).add(i, 'd').format('YYYY-MM-DD');
         chart.data.labels.push(_label);
     }
-
+    
+    // 새로운 데이터셋 불러오기
+    var dataset = chart.data.datasets;
+    for(var i=0; i<dataset.length; i++){
+        chart.data.datasets.splice(-1,1); // 기존 데이터셋 삭제
+    }
     // 변경된 날짜 범위에 해당하는 데이터 가져오기
     checkImpClick();
-
-    // 새로운 데이터셋 불러오기
-    var dataset = config.data.datasets;
-    for(var i=0; i<dataset.length; i++){
-        config.data.datasets.splice(-1,1); // 기존 데이터셋 삭제
-    }
-    config.data.datasets = [
-        {
-            label: '노출 수',
-            // yAxisID: 'A',
-            backgroundColor: 'rgb(255, 255, 255, 0)',
-            borderColor: 'rgb(255, 105, 0)',
-            data: imp
-        },
-        {
-            label: '클릭 수',
-            // yAxisID: 'A',
-            backgroundColor: 'rgb(255, 255, 255, 0)',
-            borderColor: 'rgb(51, 0, 255)',
-            data: click
-        }];
-
-    console.log(config.data.datasets);
-    // chart.update();
+    setTableImpClick();
 }
-
 function datepick_e(chart) {
-    config.options.scales = {
+    chart.options.scales = {
         xAxes: [{
                 type: 'time',
                 time: {
@@ -375,46 +404,29 @@ function datepick_e(chart) {
         timeDiff = moment(time.max).diff(moment(time.min), 'd');
     // populate 'labels' array
     // (create a date string for each date between min and max, inclusive)
-    for (i = 0; i <= timeDiff; i++) {
-        chart.data.labels.splice(-1,1); // 기존 데이터 전부 제거(안그러면 왼쪽 끝부터 표시되지 않음)
-    }
-    for (i = 0; i <= timeDiff; i++) {
-        var _label = moment(time.min).add(i, 'd').format('YYYY-MM-DD HH:mm:ss');
+    // for (i = 0; i <= timeDiff; i++) {
+    //     chart.data.labels.splice(-1,1); // 기존 데이터 전부 제거(안그러면 왼쪽 끝부터 표시되지 않음)
+    // }
+    chart.data.labels = []; // 기존 데이터 전부 제거(안그러면 왼쪽 끝부터 표시되지 않음)
+
+    for (i = 0; i <= timeDiff; i++) { // 새로운 기간 데이터 채우기
+        var _label = moment(time.min).add(i, 'd').format('YYYY-MM-DD');
         chart.data.labels.push(_label);
     }
 
+    // 새로운 데이터셋 불러오기
+    var dataset = chart.data.datasets;
+    for(var i=0; i<dataset.length; i++){
+        chart.data.datasets.splice(-1,1); // 기존 데이터셋 삭제
+    }
     // 변경된 날짜 범위에 해당하는 데이터 가져오기
     checkImpClick();
-
-    // 새로운 데이터셋 불러오기
-    var dataset = config.data.datasets;
-    for(var i=0; i<dataset.length; i++){
-        config.data.datasets.splice(-1,1); // 기존 데이터셋 삭제
-    }
-    config.data.datasets = [
-        {
-            label: '노출 수',
-            // yAxisID: 'A',
-            backgroundColor: 'rgb(255, 255, 255, 0)',
-            borderColor: 'rgb(255, 105, 0)',
-            data: imp
-        },
-        {
-            label: '클릭 수',
-            // yAxisID: 'A',
-            backgroundColor: 'rgb(255, 255, 255, 0)',
-            borderColor: 'rgb(51, 0, 255)',
-            data: click
-        }];
-
-    console.log(config.data.datasets);
-    // chart.update();
+    setTableImpClick();
 }
 
-/* 시작일~종료일에 해당되는 노출수, 클릭수 불러오기*/
+/* 상단 요약과 그래프에 시작일~종료일에 해당되는 노출수, 클릭수 불러오기*/
 function checkImpClick(){
-    // 전체 광고 대시보드인 경우
-    if(getParam("adidx") == "") {
+    if(getParam("adidx") == "") { // 전체 광고 대시보드인 경우
         $.ajax({
             url : "./impclick.php",
             type : "POST",
@@ -422,13 +434,18 @@ function checkImpClick(){
             dataType : "JSON",        
             data : {
                 // "adidx" : getParam("adidx"),
-                "labels" : config.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
+                "labels" : chart.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
             },
             success : function(data){
                 if(data){
                     imp = data.imp;
                     click = data.click;
-                    config.data.datasets = [
+                    imp_sum = data.imp_sum;
+                    click_sum = data.click_sum;
+                    $('#imp_sum').text(imp_sum);
+                    $('#click_sum').text(click_sum);
+                    $('#cost_sum').text(click_sum*100);
+                    chart.data.datasets = [
                     {
                         label: '노출 수',
                         // yAxisID: 'A',
@@ -444,14 +461,12 @@ function checkImpClick(){
                         data: click
                     }];
                     chart.update();
-                    console.log(data.noset);
                 } else {
                     console.log("노출수, 클릭수 불러오기 실패");
                 }
             }
         });
-    } else {
-        // 개별 광고 대시보드인 경우
+    } else { // 개별 광고 대시보드인 경우
         var adid = getParam("adidx");
         $.ajax({
             url : "./impclick.php",
@@ -466,6 +481,11 @@ function checkImpClick(){
                 if(data){
                     imp = data.imp;
                     click = data.click;
+                    imp_sum = data.imp_sum;
+                    click_sum = data.click_sum;
+                    $('#imp_sum').text(imp_sum);
+                    $('#click_sum').text(click_sum);
+                    $('#cost_sum').text(click_sum*100);
                     config.data.datasets = [
                     {
                         label: '노출 수',
@@ -489,6 +509,66 @@ function checkImpClick(){
             }
         });
     }
+}
+// 광고 지표 테이블 데이터 불러오기
+function setTableImpClick() {
+    if(getParam("adidx") == "") { // 전체 광고 대시보드인 경우
+        $.ajax({ // 광고 지표(광고별) 테이블 데이터 불러오기
+            url : "./impclick_ad.php",
+            type : "POST",
+            // traditional : true,
+            dataType : "HTML",
+            data : {
+                // "adidx" : adid,
+                "labels" : chart.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
+            },
+            success : function(data){
+                if(data){
+                    $("#adTable_body").html(data);
+                } else {
+                    console.log("노출수, 클릭수 불러오기 실패");
+                }
+            }
+        });
+    
+        $.ajax({ // 광고 지표(페르소나별) 테이블 데이터 불러오기
+            url : "./impclick_ps.php",
+            type : "POST",
+            // traditional : true,
+            dataType : "HTML",
+            data : {
+                // "adidx" : adid,
+                "labels" : chart.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
+            },
+            success : function(data){
+                if(data){
+                    $("#psTable_body").html(data);
+                } else {
+                    console.log("노출수, 클릭수 불러오기 실패");
+                }
+            }
+        });
+    } else { // 개별 광고 대시보드인 경우
+        var adid = getParam("adidx");
+        $.ajax({ // 광고 지표(페르소나별) 테이블 데이터 불러오기
+            url : "./impclick_ps.php",
+            type : "POST",
+            // traditional : true,
+            dataType : "HTML",
+            data : {
+                "adidx" : adid,
+                "labels" : chart.data.labels // 시작일~종료일 날짜들 담은 배열 보내기
+            },
+            success : function(data){
+                if(data){
+                    $("#psTable_body").html(data);
+                } else {
+                    console.log("노출수, 클릭수 불러오기 실패");
+                }
+            }
+        });
+    }
+    
 }
 
 // url 에서 parameter 추출(GET값 가져오기)
